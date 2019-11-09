@@ -53,8 +53,10 @@
 						<?php
 							if (isset($_SESSION['auth'])){
 						?>	
-								<a class="editButton sectionsEdit" href="index.php?action=contentAdmin&id=<?= htmlspecialchars($data['id']) ?>">Mise à jour</a>
-								<a class="editButton" href="index.php?action=confirmDeleteContent&id=<?= htmlspecialchars($data['id']) ?>">Supprimer</a>
+								<div class="gpBtUpdate">
+									<a class="editButton" href="index.php?action=contentAdmin&id=<?= htmlspecialchars($data['id']) ?>">Mise à jour</a>
+									<a class="editButton" href="index.php?action=confirmDeleteContent&id=<?= htmlspecialchars($data['id']) ?>">Supprimer</a>
+								</div>
 						<?php
 							}
 						?> 
