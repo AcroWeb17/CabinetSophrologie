@@ -1,0 +1,7 @@
+RewriteEngine On
+#redirection de l accueil
+RewriteRule ^accueil$ index.php [L]
+
+
+
+

@@ -4,7 +4,7 @@
 		<meta charset="UTF-8"/>
 		<title><?= htmlspecialchars($content['title']); ?> - Cabinet de Sophrologie</title>
 		<link rel="shortcut icon" href="public/Illustrations/favicon.ico"/>
-		<link rel="stylesheet" href="public/sophrologie.css"/>
+		<link rel="stylesheet" href="public/css/sophrologie.css"/>
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 		<meta name="description" content="Sophrologie Marine">
@@ -24,32 +24,43 @@
 			?>	
 					<section class="contenuRubriques">
 						<div class="separationSections">
-							<h2 class="titreSection"> <?= htmlspecialchars($content['title']); ?></h2>
-							<form class="styleForm" action="index.php?action=contentUpdate&id=<?= htmlspecialchars($content['id']); ?>" method="post" >
-								<label for="newTitle">Titre de la section:</label>
-								<input type="text" id="newTitle" name="newTitle" value="<?= htmlspecialchars($content['title']); ?>" required/>
-								<label for="idPage">Nom de la page:</label>
-								<select type="text" id="idPage" name="idPage"/>
-									<?php
-										while($menu = $pageMenu->fetch())
-										{
-									?>
-									<option value="<?= ($menu['idPage'])?>"><?= htmlspecialchars($menu['titlePage']) ?></option>
-									<?php
-										}
-									?> 
-									
-									<option value="">Brouillon</option>
-		
-				
-								</select>
-								<textarea class="largeTxtAdmin" name="content" rows="255" >
-									<?=html_entity_decode($content['content'])?>
-								</textarea>
-								<div class="submitAccueil">
+							<h2 class="titreSection"> <?= htmlspecialchars($contentDetail['title']); ?></h2>
+							<form class="styleForm" action="index.php?action=contentUpdate&id=<?= htmlspecialchars($contentDetail['id']); ?>" method="post" >
+								<div class="gpLabelAdmin">
+									<label class="labelAdmin" for="newTitle">Titre de la section:</label>
+									<input class="inputAdmin" type="text" id="newTitle" name="newTitle" value="<?= htmlspecialchars($contentDetail['title']); ?>" required/>
+								</div>
+								<div class="gpLabelAdmin">
+									<label class="labelAdmin" for="idPage">Nom de la page:</label>
+									<select  class="inputAdmin" type="text" id="idPage" name="idPage" />
+										<?php
+											while($menu = $pageMenu->fetch())
+											{
+												$selected = "";
+												if (($content['idPage'])==($menu['idPage'])){
+													$selected="selected";
+												}
+										?>
+										<option <?= $selected ?> value="<?= ($menu['idPage'])?>"><?= htmlspecialchars($menu['titlePage']) ?></option>
+										<?php
+											}
+										?> 
+										<option value="">Brouillon</option>
+									</select>
+								</div>
+								<div class="gpLabelAdmin">
+									<label class="labelAdmin" for="indexContent">Ordre du contenu dans la page:</label>
+									<input class="inputAdmin" type="number" id="indexContent" name="indexContent" value="<?= htmlspecialchars($contentDetail['index_content']); ?>" required/>
+								</div>
+								<div class="gpLabelAdmin">
+									<textarea class="largeTxtAdmin" name="content" rows="255" >
+										<?=html_entity_decode($contentDetail['content'])?>
+									</textarea>
+								</div>
+								<div class="gpBtUpdate">
 									<a class="editButton" href="index.php?action=page">Annuler</a>
 									<input type="submit" class="editButton" value="Enregistrer" />
-									<a class="editButton" href="index.php?action=confirmDeleteContent&id=<?= htmlspecialchars($content['id']) ?>">Supprimer</a>
+									<a class="editButton" href="index.php?action=confirmDeleteContent&id=<?= htmlspecialchars($contentDetail['id']) ?>">Supprimer</a>
 								</div>
 							</form>
 						</div>

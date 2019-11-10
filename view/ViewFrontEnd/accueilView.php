@@ -4,7 +4,7 @@
 		<meta charset="UTF-8"/>
 		<title>Accueil - Cabinet de Sophrologie</title>
 		<link rel="shortcut icon" href="public/Illustrations/favicon.ico"/>
-		<link rel="stylesheet" href="public/sophrologie.css"/>
+		<link rel="stylesheet" href="public/css/sophrologie.css"/>
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 		<meta name="description" content="Sophrologie Marine">
@@ -19,8 +19,8 @@
 			?>		
 					<div class="identification">
 						<h2 class="titreSection titreConnect">Bienvenue Marine </h2>
-						<a class="changeMdP" href="index?action=newPassword" alt="Password" title="Modifier le mot de passe"><i class="fas fa-key"></i></a>
-						<a class="deconnect" href="index?action=deconnect" alt="Deconnexion" title="Deconnexion">Deconnexion</a>
+						<a class="changeMdP" href="index.php?action=newPassword" alt="Password" title="Modifier le mot de passe"><i class="fas fa-key"></i></a>
+						<a class="deconnect" href="index.php?action=deconnect" alt="Deconnexion" title="Deconnexion">Deconnexion</a>
 					</div>
 			<?php
 				}
@@ -38,7 +38,7 @@
 					<?php
 					if (isset($_SESSION['auth'])){
 					?>	
-						<a class="editButton msgAccueilEdit" href="index?action=msgAccueil">Mise à jour</a>
+						<a class="editButton msgAccueilEdit" href="index.php?action=msgAccueil">Mise à jour</a>
 					<?php
 						}
 					?> 
@@ -52,7 +52,7 @@
 					{
 				?>
 				<article class="itemsRubrique">
-					<a href="index?action=page&idPage=<?= htmlspecialchars($data['idPage']) ?>">
+					<a href="index.php?action=page&name=<?= htmlspecialchars($data['name']) ?>">
 						<img class="imgRubrique" src="<?=$data['picture'] ?>"alt="" title=""/>
 						<h3 class="titreRubrique"> <?= htmlspecialchars($data['titlePage']) ?> </h3>
 					</a>
@@ -64,8 +64,8 @@
 					if (isset($_SESSION['auth'])){
 					?>	
 						<div class="pageUpdate">
-							<a class="editButton editPage" href="index?action=pageAdmin">Gestion des pages</a>
-							<a class="editButton editPage" href="index?action=contentAllAdmin">Gestion des contenus</a>
+							<a class="editButton editPage" href="index.php?action=pageAdmin">Gestion des pages</a>
+							<a class="editButton editPage" href="index.php?action=contentAllAdmin">Gestion des contenus</a>
 						</div>
 					<?php
 						}

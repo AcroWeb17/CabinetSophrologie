@@ -4,7 +4,7 @@
 		<meta charset="UTF-8"/>
 		<title>Interface de connexion - Cabinet de Sophrologie</title>
 		<link rel="shortcut icon" href="public/Illustrations/favicon.ico"/>
-		<link rel="stylesheet" href="public/sophrologie.css"/>
+		<link rel="stylesheet" href="public/css/sophrologie.css"/>
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 		<meta name="description" content="Sophrologie Marine">
@@ -20,7 +20,7 @@
 		<main class="mainConnect">
 			<section class="contenuRubriques">
 				<h2 class="titreSection"> Se connecter </h2>
-				<form id="formConnexion" class="formConnect" method="post">
+				<form id="formConnexion" class="formConnect" method="post" action="index.php?action=interfaceAdmin">
 					<label for="loginUser"> Identifiant</label>
 					<input type="text" name="login" id="loginUser" required /><br/><br/>
 					<label for="passwordUser">Mot de passe </label>
@@ -40,7 +40,7 @@
 		</footer>
 
 		<!--Fichier Javascript-->
-		<script src="public/gestionUsers.js"> </script>
+		<script src="public/js/connexionForm.js"> </script>
 		
 	</body>
 </html>

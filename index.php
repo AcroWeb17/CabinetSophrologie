@@ -9,11 +9,17 @@ use Sophrologie\controller\PageControl;
 use Sophrologie\controller\ContentControl;
 use Sophrologie\controller\ConnectControl;
 use Sophrologie\controller\MsgAccueilControl;
+use Sophrologie\controller\MailControl;
 
 try{
 	if(isset($_GET['action'])){
-		if ($_GET['action'] == 'page'){
-			if(isset($_GET['idPage'])){
+		if($_GET['action'] == 'accueil'){
+			$accueilControl = new AccueilControl();
+			$accueilDetail = $accueilControl->accueilDetail();
+		}
+
+		else if ($_GET['action'] == 'page'){
+			if(isset($_GET['name'])){
 				$pageControl = new PageControl;
 				$pageDetail = $pageControl->pageDetail();
 			}
@@ -37,9 +43,10 @@ try{
 				$id = isset($_POST['id'])?htmlspecialchars($_POST['id']):NULL;
 				$title = isset($_POST['newTitle'])?htmlspecialchars($_POST['newTitle']):NULL;
 				$content = isset($_POST['content'])?htmlspecialchars($_POST['content']):NULL;
+				$indexContent = isset($_POST['indexContent'])?htmlspecialchars($_POST['indexContent']):NULL;
 				$idPage = isset($_POST['idPage'])?htmlspecialchars($_POST['idPage']):NULL;
 				$contentControl = new ContentControl;
-				$contentDetail = $contentControl->contentUpdate($_GET['id'],$title, $content,$idPage);
+				$contentDetail = $contentControl->contentUpdate($_GET['id'],$title, $content, $indexContent, $idPage);
 			}
 			else {
 				throw new Exception('Aucun identifiant de section envoyé');
@@ -56,9 +63,10 @@ try{
 			if(isset($_POST['name'])){
 				$title = isset($_POST['newTitle'])?htmlspecialchars($_POST['newTitle']):NULL;
 				$name = isset($_POST['name'])?htmlspecialchars($_POST['name']):NULL;
+				$picture = isset($_POST['picture'])?htmlspecialchars($_POST['picture']):NULL;
 				$indexPage = isset($_POST['indexPage'])?htmlspecialchars($_POST['indexPage']):NULL;
 				$pageNew = new PageControl();
-				$page = $pageNew->pageAdd($title, $name, $indexPage);
+				$page = $pageNew->pageAdd($title, $name,$picture, $indexPage);
 			}
 			else {
 				throw new Exception('Veuillez renseigner un nom de page valide');
@@ -85,9 +93,10 @@ try{
 			$idPage = isset($_POST['id'])?htmlspecialchars($_POST['id']):NULL;
 			$title = isset($_POST['newTitle'])?htmlspecialchars($_POST['newTitle']):NULL;
 			$name = isset($_POST['name'])?htmlspecialchars($_POST['name']):NULL;
+			$picture = isset($_POST['picture'])?htmlspecialchars($_POST['picture']):NULL;
 			$indexPage = isset($_POST['indexPage'])?htmlspecialchars($_POST['indexPage']):NULL;
 			$pageControl = new PageControl;
-			$pageAdminDetail = $pageControl->pageUpdate($idPage,$name,$title, $indexPage);
+			$pageAdminDetail = $pageControl->pageUpdate($idPage,$name,$title,$picture, $indexPage);
 		}
 
 		//confirmer la suppression d'une page
@@ -186,10 +195,6 @@ try{
 			require 'view/ViewFrontEnd/mentionsLegales.php';
 		}
 
-		else if($_GET['action'] == 'accueil'){
-			$accueilControl = new AccueilControl();
-			$accueilDetail = $accueilControl->accueilDetail();
-		}
 
 		else if($_GET['action'] == 'msgAccueil'){
 			$msgControl = new MsgAccueilControl();
@@ -235,6 +240,20 @@ try{
 			$confNewPassword = (isset($_POST['confirmNewPassword'])?htmlspecialchars($_POST['confirmNewPassword']):NULL);
 			$connectControl = new ConnectControl();
 			$admin = $connectControl->updatePassword($login, $password, $newPassword, $confNewPassword);
+		}
+
+		else if ($_GET['action'] == 'sendMessage'){
+			$firstName = isset($_POST['prenomUser'])?htmlspecialchars($_POST['prenomUser']):NULL;
+			$lastName = (isset($_POST['nomUser'])?htmlspecialchars($_POST['nomUser']):NULL);
+			$mail = (isset($_POST['mailUser'])?htmlspecialchars($_POST['mailUser']):NULL);
+			$tel = (isset($_POST['telUser'])?htmlspecialchars($_POST['telUser']):NULL);
+			$message = (isset($_POST['msgUser'])?htmlspecialchars($_POST['msgUser']):NULL);
+			$mailControl = new MailControl();
+			$contactMail = $mailControl->sendContactMail($firstName,$lastName,$mail,$tel,$message);
+		}
+
+		else if ($_GET['action'] == 'erreur404'){
+			require 'view/ViewFrontEnd/error404View.php';
 		}
 	}
 	else {

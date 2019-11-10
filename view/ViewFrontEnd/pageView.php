@@ -4,7 +4,7 @@
 		<meta charset="UTF-8"/>
 		<title> Cabinet de Sophrologie</title>
 		<link rel="shortcut icon" href="public/Illustrations/favicon.ico"/>
-		<link rel="stylesheet" href="public/sophrologie.css"/>
+		<link rel="stylesheet" href="public/css/sophrologie.css"/>
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 		<meta name="description" content="Sophrologie Marine">
@@ -19,7 +19,7 @@
 		<!--Corps de page-->
 		<main>
 			<section class="menu">
-				<a href="index?action=accueil">
+				<a href="index.php?action=accueil">
 					<img class="logo" src="public/Illustrations/logo.png" alt="Logo" title="Logo"/>
 				</a>
 				<div class="titresMenu">
@@ -28,11 +28,11 @@
 						while($menu = $pageMenu->fetch())
 						{
 					?>
-							<a class="lienMenu" href="index?action=page&idPage=<?= htmlspecialchars($menu['idPage']) ?>"><?= htmlspecialchars($menu['titlePage']) ?></a>
+							<a class="lienMenu" href="index.php?action=page&name=<?= htmlspecialchars($menu['name']) ?>"><?= htmlspecialchars($menu['titlePage']) ?></a>
 					<?php
 						}
 					?> 
-							<a class="lienMenu" href="index?action=accueil">Retour page d'accueil</a>
+							<a class="lienMenu" href="index.php?action=accueil">Retour page d'accueil</a>
 				</div>
 			</section>
 

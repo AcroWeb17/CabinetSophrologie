@@ -4,7 +4,7 @@
 		<meta charset="UTF-8"/>
 		<title>Administration des pages - Cabinet de Sophrologie</title>
 		<link rel="shortcut icon" href="public/Illustrations/favicon.ico"/>
-		<link rel="stylesheet" href="public/sophrologie.css"/>
+		<link rel="stylesheet" href="public/css/sophrologie.css"/>
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 		<meta name="description" content="Sophrologie Marine">
@@ -43,6 +43,10 @@
 								<div class="gpLabelAdmin">
 									<label class="labelAdmin" for="newTitle">Titre de la page:</label>
 									<input class="inputAdmin" type="text" id="newTitle" name="newTitle" value="<?= htmlspecialchars($data['titlePage']); ?>" required/>
+								</div>
+								<div class="gpLabelAdmin">
+									<label class="labelAdmin" for="picture">Photo</label>
+									<input class="inputAdmin" type="file" id="picture" name="picture" value="<?= htmlspecialchars($data['picture']); ?>" required/>
 								</div>
 								<div class="gpLabelAdmin">
 									<label class="labelAdmin" for="name">Nom de la page:</label>

@@ -10,8 +10,8 @@ class ContentControl
 	public function contentDetailAdmin()
 	{
 		$contentManager = new Content();
-		$content= $contentManager->getAdminContentPage($_GET['id']);
-		if ($content === false){
+		$contentDetail= $contentManager->getAdminContentPage($_GET['id']);
+		if ($contentDetail === false){
 			throw new \Exception('Cette page n\'existe pas!');		
 		}
 		else {
@@ -20,12 +20,12 @@ class ContentControl
 			require('view/ViewBackEnd/contentAdminView.php');
 		}
 	}
-	public function contentUpdate($id, $title, $content, $idPage)
+	public function contentUpdate($id, $title, $content, $indexContent, $idPage)
 	{
 		$contentManager = new Content();
-		$content = $contentManager->modifyContent($id, $title, $content, $idPage);
+		$contentUpdate = $contentManager->modifyContent($id, $title, $content, $indexContent, $idPage);
 	
-		if ($content === false){
+		if ($contentUpdate=== false){
 			throw new \Exception('Impossible d\'effectuer la mise à jour!');		
 		}
 		else {
@@ -38,7 +38,7 @@ class ContentControl
 	public function contentAllAdmin()
 	{
 		$contentManager = new Content();
-		$content = $contentManager->getListContent();
+		$contentAllAdmin = $contentManager->getListContent();
 		$contentJoin = $contentManager->getJoinContent();
 		require('view/ViewBackEnd/contentAllAdminView.php');
 	}
@@ -55,7 +55,7 @@ class ContentControl
 					throw new \Exception('Impossible d\'ajouter le contenu!');		
 				}
 				else {
-					header('Location: index?action=accueil');
+					header('Location: index.php?action=accueil');
 					exit();
 				}
 			}
@@ -72,14 +72,14 @@ class ContentControl
 		public function verifDeleteContent($id)
 	{
 		$contentManager = new Content();
-		$content = $contentManager->getAdminContentPage($_GET['id']);
+		$contentVerifDelete = $contentManager->getAdminContentPage($_GET['id']);
 		require('view/ViewBackEnd/deleteContentView.php');
 	}
 
 	public function contentDelete($id)
 	{
 		$contentManager = new Content();
-		$content = $contentManager->suppContent($id);
+		$contentDelete = $contentManager->suppContent($id);
 		if ($content === false){
 			throw new \Exception('Impossible de supprimer ce contenu!');		
 		}

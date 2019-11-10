@@ -4,7 +4,7 @@
 		<meta charset="UTF-8"/>
 		<title>Gestion des contenus - Cabinet de Sophrologie</title>
 		<link rel="shortcut icon" href="public/Illustrations/favicon.ico"/>
-		<link rel="stylesheet" href="public/sophrologie.css"/>
+		<link rel="stylesheet" href="public/css/sophrologie.css"/>
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 		<meta name="description" content="Sophrologie Marine">
@@ -42,7 +42,9 @@
 								}
 							?>
 								<div class="separationGestionContenu">
-									<h2 class="titreGestionContenu"> <?= htmlspecialchars($data['title']) ?> </h2>
+									<a href="index.php?action=contentAdmin&id=<?= htmlspecialchars($data['id']) ?>">
+										<p class="titreGestionContenu"> <?= htmlspecialchars($data['title']) ?> </p>
+									</a>
 									<div class="gpBtUpdate">
 										<a class="editButton" href="index.php?action=contentAdmin&id=<?= htmlspecialchars($data['id']) ?>">Modifier</a>
 										<a class="editButton" href="index.php?action=confirmDeleteContent&id=<?= htmlspecialchars($data['id']) ?>">Supprimer</a>

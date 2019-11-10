@@ -1,0 +1,762 @@
+/*Polices personnalisées*/
+@font-face
+{
+	font-family:'Gabriola';
+	src: url('../fonts/Gabriola.ttf') format('ttf'),
+		 url('../fonts/Gabriola.eot') format('eot') ,
+		 url('../fonts/Gabriola.woff') format('woff');
+}
+
+@font-face
+{
+	font-family:'LearningCurve';
+	src: url('../fonts/LearningCurve.ttf') format('ttf'),
+		 url('../fonts/LearningCurve.eot') format('eot') ,
+		 url('../fonts/LearningCurve.woff') format('woff');
+}
+/*Propriétés générales*/
+*
+{
+	box-sizing: border-box;
+}
+
+body
+{ 
+	margin:0;
+	font-family: verdana, arial;
+	background-color:white;
+	position:relative;
+}
+
+a
+{
+	text-decoration:none;
+	color:white;
+}
+
+header
+{
+	position:relative;
+}
+
+main
+{
+	display:flex;
+}
+
+.hidden
+{
+	display:none;
+}
+
+.button
+{
+	background:linear-gradient(120deg, #FFF, #667A81 15%, #667A81 90%, #FFF);
+	padding:10px;
+	border:none;
+	color:white;
+	font-weight:400;
+	font-size:1em;
+	text-align:center;
+	cursor:pointer;
+	margin-left:25px;
+}
+
+.editButton
+{
+	color:white;
+	font-size:0.8em;
+	border:2px solid #864670;
+	text-align:center;
+	border-radius:5px;
+	padding:3px 7px 3px 7px;
+	background-color: #C35E97;
+	cursor:pointer;
+}
+
+/* En tête */
+.bandeau
+{
+	position: relative;
+	padding-top:21.95%;
+	background-image: url(../Photos/photoBandeau.jpg);
+	background-size: cover;
+}
+
+.bandeau::after
+{
+	content:"";
+	position: absolute;
+	border-bottom: 105px white solid;
+	border-left:1650px solid transparent;
+	width:0;
+	height:0;
+	right:0;
+	bottom:-1px;
+}
+
+.titreBandeau,
+.ssTitreBandeau
+{
+	font-family:Gabriola;
+	color:white;
+	position:absolute;
+	font-weight: 400;
+	margin:0;
+}
+
+.titreBandeau
+{
+	font-size:4em;
+	top:33px;
+	left:27%;
+}
+
+.ssTitreBandeau
+{
+	font-size:2.5em;
+	top:115px;
+	left:22%;
+}
+
+.intitulesMenu
+{
+	display: flex;
+	flex-direction:column;
+	text-align:center;
+}
+
+.lienMenu
+{
+	display:flex;
+	justify-content:center;
+	font-family:Gabriola;
+	font-size:2em;
+	padding:10px 20px 10px 20px;
+}
+
+.titresMenu
+{
+	margin-top:35px;
+}
+
+/* Page d'accueil */
+.mainAccueil
+{
+	display: flex;
+}
+
+.logo
+{
+	display: block;
+	width:200px;
+	border-radius:50%;
+	background-color: white;
+	padding:20px;
+	margin:auto;
+}
+
+.identification
+{
+	position:absolute;
+	right:0;
+	bottom:-38px;
+	width:36%;
+}
+
+.titreConnect
+{
+	height:70px;
+}
+
+.changeMdP
+{
+	position:absolute;
+	bottom:60px;
+	right:25px;
+}
+
+.deconnect
+{
+	position: absolute;
+	font-family: Gabriola;
+	color:white;
+	font-size:1.5em;
+	font-weight:400;
+	bottom:20px;
+	right:60px;
+	cursor:pointer;
+}
+
+.menu
+{
+	position:relative;
+	z-index:1;
+	width:300px;
+	margin-top:-46px;
+	margin-left:50px;
+	background: linear-gradient(140deg, #667A81, #667A81 80%, #FFF,#667A81);
+	padding-bottom:160px;
+}
+
+.menu::before
+{
+	content:"";
+	position:relative;
+	top:-136px;
+	left:1px;
+	border-bottom:118px solid #667A81;
+	border-right:300px solid transparent;
+}
+
+.msgAccueilTxt p
+{
+	color:white;
+	padding:20px;
+}
+
+.signature
+{
+	font-family:LearningCurve;
+	font-size:3em;
+	margin-top:-30px;
+	margin-left:40%;
+}
+
+.msgAccueilEdit
+{
+	margin-left:60%;
+}
+
+.titreRubrique
+{
+	font-family:Gabriola;
+	font-size:2.5em;
+	font-weight:400;
+	color:white;
+}
+
+.rubriques
+{
+	position: relative;
+	display:flex;
+	flex-wrap: wrap;
+	width:80%;
+	justify-content: space-around;
+	margin:50px 40px 0px 40px;
+}
+
+.itemsRubrique
+{
+	position:relative;
+	margin-bottom:50px;
+	width:400px;
+}
+
+.imgRubrique
+{
+	border:3px solid #667A81;
+	width:100%;
+}
+
+.bandeauImg
+{
+	position:absolute;
+	width:100%;
+	height:50px;
+	bottom:35px;
+	background-color:#667A81;
+}
+
+.titreRubrique
+{
+	position:absolute;
+	margin:0;
+	bottom:-15px;
+	width:100%;
+	background-color:#667A81;
+	text-align:right;
+	padding-right:30px;
+}
+
+.titreRubrique::after
+{
+	content:"";
+	position:absolute;
+	border-bottom:30px solid #667A81;
+	border-left:400px solid transparent;
+	bottom:68px;
+	right:3px;
+}
+
+/* Page message d'accueil */
+.submitAccueil
+{
+	margin-top:10px;
+	margin-left:82%;
+}
+
+/* Rubriques */
+.photo
+{
+	position:absolute;
+	border-radius:50%;
+	top:-80px;
+	left:-160px;
+}
+
+.contenuRubriques
+{
+	width:600px;
+	margin:auto;
+	padding:20px;
+}
+
+.contenuRubriques h3,
+.titreML
+{
+	font-family:Gabriola;
+	font-size:1.8em;
+	color:#667181;
+	border-bottom:1px solid #667A81;
+	margin:50px 0px 10px 0px
+}
+
+.contenuRubriques h4
+{
+	font-family:Gabriola;
+	font-size:1.5em;
+	color:#C35E97;
+	margin:0;
+	margin:40px 0px 10px 0px
+}
+
+.contenuRubriques p
+{
+	margin:0px 0px 20px 0px;
+}
+
+.contenuRubriques ul 
+{
+  padding-left: 25px;
+}
+
+.contenuRubriques ul li
+{
+  list-style-type: none;
+  position: relative;
+}
+
+.contenuRubriques ul li:not(:last-child) 
+{
+  margin-bottom: 10px;
+}
+
+.contenuRubriques ul li::before 
+{
+  content: "";
+  display: block;
+  position: absolute;
+  left: -18px;
+  top: 5px;
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 10px solid #667A81;
+}
+
+.titreSection
+{
+	font-size:2.5em;
+}
+
+.titreSection,
+.contenuRubriques h3.titrePage
+{
+	font-family:Gabriola;
+	color:white;
+	font-weight:400;
+	text-align:right;
+	padding-right:60px;
+	background:linear-gradient(120deg, #FFF, #667A81 95%, #FFF);
+}
+
+.separationSections
+{
+	padding-bottom:50px;
+	position: relative
+}
+
+
+.retourHtPage
+{
+	position: fixed;
+	right:30px;
+	bottom:20px;
+	color: #667A81;
+	width:50px;
+	height:50px;
+	z-index:1;
+	font-size:0;
+	text-decoration:none;
+}
+
+.fa-arrow-alt-circle-up
+{
+	font-size:35px;
+}
+
+/* Interface de mise à jour */
+.gpButton
+{
+	margin-top:15%;
+}
+
+/* Administration des pages */
+.gpBtUpdate
+{
+	text-align:right;
+}
+
+.contenuRubriques h3.titrePage
+{
+	border:none;
+}
+
+.pageUpdate
+{
+	margin-left:50%;
+	margin-top:25px;
+}
+
+.editPage
+{
+	margin-left:10px;
+}
+
+.inputAdmin
+{
+	height:30px;
+	background:none;
+	border:0;
+	border-bottom: 2px solid #667A81;
+	font-size:1.1em;
+	color:#667A81;
+}
+
+.labelAdmin
+{
+	padding-right: 10px;
+}
+
+.gpLabelAdmin
+{
+	margin-bottom:30px;
+}
+
+
+/* Administration des contenus */
+.contenuRubriques h3.titreGestionContenu
+{
+	border:none;
+	margin-bottom: 0;
+}
+
+.contenuRubriques p.titreGestionContenu
+{
+	color:#667A81;
+	font-size:1.1em;
+	margin:30px 0px 0px 0px;
+}
+
+.submitGestionContenu
+{
+	margin-top:0;
+	margin-left:82%;
+}
+
+.separationGestionContenu
+{
+	border-bottom:1px solid #667A81;
+	padding-bottom:25px;
+	position:relative;
+}
+
+/* Carte de localisation */
+.mapContact
+{
+	width:100%;
+	height:400px;
+	border:2px solid #667A81;
+	margin-bottom:50px;
+}
+
+.map
+{
+	height:100%;
+	width:100%;
+	border:none;
+}
+
+/* Adresse du cabinet */
+.contentContact
+{
+	color:#667A81;
+	font-weight:400;
+	font-size:1.2em;
+	text-align:center;
+}
+
+/* Formulaire de contact */
+.formContact
+{
+	padding:50px;
+	padding-bottom:160px;
+	margin-top:50px;
+	background: linear-gradient(140deg, #FFF, #667A81 15%, #667A81 80%, #FFF,#667A81);
+}
+
+.labelContact
+{
+	height:35px;
+    line-height:35px;
+    color:white;
+	font-size:1.2em;
+	margin-right:15px;
+}
+
+.inputContact
+{
+	flex:1;
+	height:35px;
+    line-height:35px;
+    padding:0 5px;
+	background:none;
+	border:0;
+	border-bottom:1px solid white;
+	color:white;
+	font-size:1.2em;
+}
+
+.gpLabelContact
+{
+	display:flex;
+	padding-bottom:40px;
+	margin:auto;
+}
+
+.gpLabelContact.gpLabelContactVertical
+{
+    display: block;
+}
+
+.txtContact
+{
+	width:100%;
+    height:280px;
+    margin-top:5px;
+    margin-bottom:0;
+    padding:5px;
+    background:none;
+	border:0;
+	border-left:1px solid white;
+    border-bottom:1px solid white;
+	color:white;
+    font-family:Verdana, Arial;
+	font-size:1.2em;
+    resize: none;
+}
+
+.btSend
+{
+	padding:3px 15px 1px 15px;
+	border:none;
+	background:linear-gradient(120deg, #667A81 10%, #FFF 50%, #667A81 90%);
+	color:#444;
+	font-weight:600;
+	font-family:Gabriola;
+	font-size:1.5em;
+	cursor:pointer;
+}
+
+.contactInfoMsg:empty {
+    display:none;
+}
+
+.contactInfoMsg {
+    margin-top:15px;
+    padding:15px;
+    border-radius:3px;
+    border:1px solid #667a81;
+    color:#667a81;
+    background:#f2f2f2;
+    font-size:.9em;
+}
+
+.contactInfoMsg.contactSuccessMsg li::before {
+    top:4px;
+}
+
+.contactInfoMsg.contactSuccessMsg {
+    border-color:#488f06;
+    color:#488f06;
+    background:#f1fbd1;
+}
+
+.contactInfoMsg.contactSuccessMsg li::before {
+    border-left-color:#488f06;
+}
+
+.contactInfoMsg.contactErrorMsg {
+    border-color:#b50303;
+    color:#b50303;
+    background:#fee5e2;
+}
+
+.contactInfoMsg.contactErrorMsg li::before {
+    border-left-color:#b50303;
+}
+
+.contactInfoMsg p,
+.contactInfoMsg ul {
+    margin-top:0;
+}
+
+.contactInfoMsg p:not(:last-child),
+.contactInfoMsg ul:not(:last-child) {
+    margin-bottom:10px;
+}
+
+.contactInfoMsg p:last-child,
+.contactInfoMsg ul:last-child,
+.contactInfoMsg ul li:last-child {
+    margin-bottom:0;
+}
+
+.formContact .formLoading {
+    flex: 1;
+    text-align: center;
+    margin-top: 8px;
+    margin-bottom: 0;
+    font-size: 1.5em;
+    color: #fff;
+}
+
+
+/* Interface de connexion */
+.mainConnect
+{
+	min-height:54vh;
+}
+
+.formConnect
+{
+	width:35%;
+	margin:auto;
+	padding-top:30px;
+}
+
+.btConnect
+{
+	margin-top:30px;
+	margin-left:30%;
+}
+
+.redirection
+{
+	text-align:center;
+	margin-top:30px;
+	line-height:30px;
+}
+
+#oubliPassword
+{
+	color:#667A81;
+	font-weight:600;
+	font-style:italic;
+	font-size:0.9em;
+	text-align:center;
+	margin:25px 0px 0px 0px;
+}
+
+/* Interface de deconnexion */
+.deconnectAccueil
+{
+	margin-left:15%;
+}
+
+.btSolo
+{
+	margin-left:35%;
+}
+
+/* Nouveau Mot de passe */
+.formNewMdp
+{
+	width:55%;
+	margin:auto;
+	padding-top:30px;
+}
+
+.submitNewPassword
+{
+	margin-top:25px;
+	margin-left:22%;
+}
+
+/* Mentions Legales */
+.mainMLegales
+{
+	display: block;
+	margin:0px 200px 0px 200px;
+}
+
+
+/*Propriétés de TinyMCE*/
+.tox
+{
+	width:100%;
+	margin:auto;
+	margin-top:10px;
+}
+
+.largeTxtAdmin + .tox-tinymce
+{
+	height:800px !important;
+}
+
+.smallTxtAdmin + .tox-tinymce
+{
+	height:300px !important;
+}
+
+/*Propriétés du pied de page*/
+footer
+{
+	position:relative;
+}
+
+footer::after
+{
+	content:"";
+	border-bottom: 115px #667A81 solid;
+	border-right:1245px solid transparent;
+	width:0;
+	height:0;
+	left:0;
+	bottom:0px;
+}
+
+.contacts
+{
+	position:absolute;
+	color:white;
+	line-height:10px;
+	top:40px;
+	left:20px;
+}
+
+
+
+

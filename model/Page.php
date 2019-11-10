@@ -24,30 +24,30 @@ class Page extends DataBase
 		return $listMenu;
 	}
 
-	public function getPage($idPage)
+	public function getPage($name)
 	{
 		$db = $this->dbConnect();
-		$req= $db->prepare('SELECT idPage FROM pages WHERE idPage=?');
-		$req->execute(array($idPage));
+		$req= $db->prepare('SELECT idPage, name FROM pages WHERE name=?');
+		$req->execute(array($name));
 		$page = $req->fetch();
 		return $page;
 	}
 
-		public function getContact($idPage)
+		public function getContact($name)
 	{
 		$db = $this->dbConnect();
-		$req = $db->prepare('SELECT contact FROM pages WHERE idPage=?');
-		$req->execute(array($idPage));
+		$req = $db->prepare('SELECT contact FROM pages WHERE name=?');
+		$req->execute(array($name));
 		$contact = $req->fetch();
 		return $contact;
 	}
 
 	//ajouter une page
-	public function postPage($title, $name, $indexPage)
+	public function postPage($title, $name, $photo, $indexPage)
 	{
 		$db = $this->dbConnect();
-		$req = $db->prepare('INSERT INTO pages (name,titlePage,index_page,picture,contact) VALUES(?,?,?,0,0)');
-		$newPage = $req->execute(array($name,$title, $indexPage));
+		$req = $db->prepare('INSERT INTO pages (name,titlePage,index_page,picture,contact) VALUES(?,?,?,?,0)');
+		$newPage = $req->execute(array($name,$title, $indexPage,$photo));
 		return $newPage;
 	}
 
@@ -63,11 +63,11 @@ class Page extends DataBase
 	}
 
 	//modifie le contenu d'une page
-	public function modifyPage($idPage, $name, $title, $indexPage)
+	public function modifyPage($idPage, $name, $title, $picture, $indexPage)
 	{
 		$db = $this->dbConnect();
-		$req = $db->prepare('UPDATE pages SET name=?, titlePage=?, index_page=? WHERE idPage=?');
-		$pageMaj = $req->execute(array($name, $title, $indexPage, $idPage));
+		$req = $db->prepare('UPDATE pages SET name=?, titlePage=?, index_page=?, picture=? WHERE idPage=?');
+		$pageMaj = $req->execute(array($name, $title, $indexPage,$picture, $idPage));
 		return $pageMaj;
 	}
 

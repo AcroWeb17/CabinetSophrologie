@@ -4,7 +4,7 @@
 		<meta charset="UTF-8"/>
 		<title>Contact - Cabinet de Sophrologie</title>
 		<link rel="shortcut icon" href="public/Illustrations/favicon.ico"/>
-		<link rel="stylesheet" href="public/sophrologie.css"/>
+		<link rel="stylesheet" href="public/css/sophrologie.css"/>
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 		<meta name="description" content="Sophrologie Marine">
@@ -19,7 +19,7 @@
 		<!--Corps de page-->
 		<main>
 			<section class="menu">
-				<a href="index?action=accueil">
+				<a href="index.php?action=accueil">
 					<img class="logo" src="public/Illustrations/logo.png" alt="Logo" title="Logo"/>
 				</a>
 				<div class="titresMenu">
@@ -28,11 +28,11 @@
 						while($menu = $pageMenu->fetch())
 						{
 					?>
-							<a class="lienMenu" href="index?action=page&idPage=<?= htmlspecialchars($menu['idPage']) ?>"><?= htmlspecialchars($menu['titlePage']) ?></a>
+							<a class="lienMenu" href="index.php?action=page&name=<?= htmlspecialchars($menu['name']) ?>"><?= htmlspecialchars($menu['titlePage']) ?></a>
 					<?php
 						}
 					?> 
-							<a class="lienMenu" href="index?action=accueil">Retour page d'accueil</a>
+							<a class="lienMenu" href="index.php?action=accueil">Retour page d'accueil</a>
 				</div>
 			</section>
 
@@ -53,14 +53,15 @@
 						<p class="contentContact"><?= html_entity_decode($content['content']) ?> </p>
 	
 					</div>
-					<form class="formContact">
+					
+					<form class="formContact" id="formContact" method="post" action="index.php?action=sendMessage">
 						<div class="gpLabelContact">
-							<label class="labelContact" for="pernomUser">Votre nom</label>
+							<label class="labelContact" for="nomUser">Votre nom *</label>
 							<input class="inputContact" type="text" id="nomUser" name="nomUser" required/>
 						</div>
 						<div class="gpLabelContact">
-							<label class="labelContact" for="prenomUser">Votre prénom</label>
-							<input class="inputContact" type="text" id="prenomUser" name="nomUser" required/>
+							<label class="labelContact" for="prenomUser">Votre prénom *</label>
+							<input class="inputContact" type="text" id="prenomUser" name="prenomUser" required/>
 						</div>
 						<div class="gpLabelContact">
 							<label class="labelContact" for="mailUser">Votre adresse mail</label>
@@ -68,14 +69,24 @@
 						</div>
 						<div class="gpLabelContact">
 							<label class="labelContact" for="telUser">Votre téléphone</label>
-							<input class="inputContact" type="tel" id="telUser" name="telUser" required/>
+							<input class="inputContact" type="tel" id="telUser" name="telUser" />
 						</div>
-						<div class="gpLabelContact">
-							<textarea class="txtContact" rows="15" placeholder="Votre message"></textarea>
+						<div class="gpLabelContact gpLabelContactVertical">
+                            <label class="labelContact" for="msgUser">Votre message *</label>
+							<textarea class="txtContact" rows="15" id="msgUser" name="msgUser"></textarea>
 						</div>
 						<div class="gpLabelContact">
 							<input class="btSend" type="submit" value="Envoyer" />
+                            <p id="formLoading" class="formLoading hidden">Validation en cours...</p>
 						</div>
+                        <div id="contactErrorMsg" class="contactInfoMsg contactErrorMsg"></div>
+                        <div id="contactSuccessMsg" class="contactInfoMsg contactSuccessMsg"></div>
+                        <div class="contactInfoMsg">
+                            <ul>
+                                <li>Les champs marqués par * sont obligatoires.</li>
+                                <li>Merci de fournir une adresse mail ou un numéro de téléphone afin de pouvoir vous recontacter.</li>
+                            </ul>
+                        </div>
 					</form>
 
 					<a id="retourHtPage" class="retourHtPage" href="#"><i class="fas fa-arrow-alt-circle-up"></i>Retour en haut de la page</a>
@@ -87,6 +98,9 @@
 		<footer>
 			<?php include("public/footer.php");?>
 		</footer>
+
+		<script src="public/js/contactForm.js"></script>
+
 		
 	</body>
 </html>

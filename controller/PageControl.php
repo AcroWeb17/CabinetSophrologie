@@ -10,7 +10,7 @@ class PageControl
 	public function pageDetail()
 	{
 		$pageManager = new Page();
-		$page = $pageManager->getPage($_GET['idPage']);
+		$page = $pageManager->getPage($_GET['name']);
 
 		if ($page === false){
 			throw new \Exception('Cette page n\'existe pas!');		
@@ -19,15 +19,15 @@ class PageControl
 
 			$pageManager = new Page();
 			$pageMenu = $pageManager->getListMenu();
-			$pageContact = $pageManager->getContact($_GET['idPage']);
+			$pageContact = $pageManager->getContact($_GET['name']);
 			if ($pageContact['contact'] === '1'){
 				$contentManager = new Content();
-				$content = $contentManager->getContentContact($_GET['idPage']);
+				$content = $contentManager->getContentContact($_GET['name']);
 				require('view/ViewFrontEnd/contactView.php');
 			}
 			else {
 				$contentManager = new Content();
-				$content = $contentManager->getContentPage($_GET['idPage']);
+				$content = $contentManager->getContentPage($_GET['name']);
 				require('view/ViewFrontEnd/pageView.php');
 			}		
 		}
@@ -40,19 +40,19 @@ class PageControl
 		require('view/ViewBackEnd/pagesAdminView.php');
 	}
 
-	public function pageAdd($title, $name, $indexPage)
+	public function pageAdd($title, $name, $picture, $indexPage)
 	{
 		if(!empty($_POST) && !empty($_POST['name'])){
 			$pageName = new Page();
 			$namePageVerif = $pageName->pageVerif($name);
 			if($namePageVerif==="0"){
 				$pageManager = new Page();
-				$newPage = $pageManager->postPage($title, $name, $indexPage);
+				$newPage = $pageManager->postPage($title, $name, $picture,$indexPage);
 				if ($newPage === false){
 					throw new \Exception('Impossible d\'ajouter la page!');		
 				}
 				else {
-					header('Location: index?action=accueil');
+					header('Location: index.php?action=accueil');
 					exit();
 				}
 			}
@@ -66,10 +66,10 @@ class PageControl
 
 	}
 	
-	public function pageUpdate($idPage,$name,$title, $indexPage)
+	public function pageUpdate($idPage,$name,$title,$picture, $indexPage)
 	{
 		$pageManager = new Page();
-		$page = $pageManager->modifyPage($idPage,$name,$title, $indexPage);
+		$page = $pageManager->modifyPage($idPage,$name,$title,$picture, $indexPage);
 		require('view/ViewBackEnd/confirmUpdatePageAdminView.php');
 	}
 
