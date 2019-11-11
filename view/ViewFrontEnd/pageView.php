@@ -17,55 +17,48 @@
 		</header>
 
 		<!--Corps de page-->
-		<main>
-			<section class="menu">
-				<a href="index.php?action=accueil">
-					<img class="logo" src="public/Illustrations/logo.png" alt="Logo" title="Logo"/>
-				</a>
-				<div class="titresMenu">
+		<main class="mainPage">
+			<?php include("public/menu.php");?>
+
+			<section class="sectionRubriques">
+				<div class="contenuRubriques">
 					<?php
-					//Affichage des rubriques
-						while($menu = $pageMenu->fetch())
-						{
-					?>
-							<a class="lienMenu" href="index.php?action=page&name=<?= htmlspecialchars($menu['name']) ?>"><?= htmlspecialchars($menu['titlePage']) ?></a>
+						if (isset($_SESSION['auth'])){
+					?>	
+							<div class="gpBtUpdate">
+								<a class="editButton" href="index.php?action=newContent">Nouveau contenu</a>
+								<a class="editButton editPage" href="index.php?action=contentAllAdmin">Gestion des contenus</a>
+							</div>
 					<?php
 						}
 					?> 
-							<a class="lienMenu" href="index.php?action=accueil">Retour page d'accueil</a>
-				</div>
-			</section>
-
-			<section class="contenuRubriques">
-
-				<div class="separationSections">
-					<?php
-					//Affichage des rubriques
-						while($data = $content->fetch())
-						{
-					?>
-							<h2 class="titreSection"> <?= htmlspecialchars($data['title']) ?> </h2>
-							<img class="photo" src="<?=$data['picture'] ?>"alt="" title=""/>
-							<p class="contentPage">
-								<?= html_entity_decode($data['content']) ?>
-							</p>
-				</div>
+					<div class="separationSections">
 						<?php
-							if (isset($_SESSION['auth'])){
-						?>	
-								<div class="gpBtUpdate">
-									<a class="editButton" href="index.php?action=contentAdmin&id=<?= htmlspecialchars($data['id']) ?>">Mise à jour</a>
-									<a class="editButton" href="index.php?action=confirmDeleteContent&id=<?= htmlspecialchars($data['id']) ?>">Supprimer</a>
-								</div>
+						//Affichage des rubriques
+							while($data = $content->fetch())
+							{
+						?>
+								<h2 class="titreSection"> <?= htmlspecialchars($data['title']) ?> </h2>
+								<img class="photo" src="<?=$data['picture'] ?>"alt="" title=""/>
+								<p class="contentPage">
+									<?= html_entity_decode($data['content']) ?>
+								</p>
+							<?php
+								if (isset($_SESSION['auth'])){
+							?>	
+									<div class="gpBtUpdate">
+										<a class="editButton" href="index.php?action=contentAdmin&id=<?= htmlspecialchars($data['id']) ?>">Mise à jour</a>
+										<a class="editButton" href="index.php?action=confirmDeleteContent&id=<?= htmlspecialchars($data['id']) ?>">Supprimer</a>
+									</div>
+							<?php
+								}
+							?> 
 						<?php
 							}
 						?> 
-					<?php
-						}
-					?> 
-				
-					<a id="retourHtPage"class="retourHtPage" href="#"><i class="fas fa-arrow-alt-circle-up"></i>Retour en haut de la page</a>
-				
+					</div>
+						<a id="retourHtPage"class="retourHtPage" href="#"><i class="fas fa-arrow-alt-circle-up"></i>Retour en haut de la page</a>
+				</div>
 			</section>
 
 		</main>

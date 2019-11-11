@@ -26,7 +26,7 @@
 			<section class="contenuRubriques">
 				<h2 class="titreSection">Le contenu a bien été supprimé</h2>
 				<div class="gpButton">
-					<a class="button deconnectAccueil" href="index.php?action=contentAllAdmin">Retour à la page précédente</a>
+					<a class="button deconnectAccueil" href="index.php?action=contentAdmin&id=<?= htmlspecialchars($contentDetail['id']); ?>">Retour à la page précédente</a>
 					<a class="button deconnectAccueil" href="index.php?action=accueil">Retour à la page d'accueil</a>
 				</div>
 			</section>

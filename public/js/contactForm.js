@@ -87,14 +87,28 @@ class contactForm {
     }
     
     // Affichage de la réponse
-    displayResponse(response,thisContactForm) {
-        if (response.indexOf('L\'envoi de votre message a échoué')!=-1 || response.indexOf('Votre message n\'a pas pu être envoyé')!=-1) {
-            thisContactForm.contactSuccessDiv.innerHTML = '';
-            thisContactForm.contactErrorDiv.innerHTML = response;
-        } else if (response.indexOf('Votre message a bien été transmis')!=-1) {
-            thisContactForm.contactErrorDiv.innerHTML = '';
-            thisContactForm.contactSuccessDiv.innerHTML = response;
+    displayResponse(responseText,thisContactForm) {
+        
+        var response = {
+            'status': '',
+            'msgHtml': ''
+        };
+        
+        try {
+            response = JSON.parse(responseText);
+        } catch (e) {
+            response.status = 'error';
+            response.msgHtml = '<p>L\'envoi de votre message a échoué pour raisons techniques. Nous vous prions de bien vouloir ré-essayer plus tard.</p>';
         }
+        
+        if (response.status == 'error') {
+            thisContactForm.contactSuccessDiv.innerHTML = '';
+            thisContactForm.contactErrorDiv.innerHTML = response.msgHtml;
+        } else if (response.status == 'success') {
+            thisContactForm.contactErrorDiv.innerHTML = '';
+            thisContactForm.contactSuccessDiv.innerHTML = response.msgHtml;
+        }
+        
     }
     
 }

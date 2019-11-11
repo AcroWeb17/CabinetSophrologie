@@ -17,13 +17,14 @@
 		</header>
 
 		<!--Corps de page-->
-		<main>
+		<main class="mainPage">
 			<!--En mode Admin-->
 			<?php
 				if (isset($_SESSION['auth'])) {
 			?>	
-					<section class="contenuRubriques">
-						<div class="separationSections">
+					<?php include("public/menu.php");?>
+					<section class="sectionRubriques">
+						<div class="separationSections contenuRubriques">
 							<h2 class="titreSection"> <?= htmlspecialchars($contentDetail['title']); ?></h2>
 							<form class="styleForm" action="index.php?action=contentUpdate&id=<?= htmlspecialchars($contentDetail['id']); ?>" method="post" >
 								<div class="gpLabelAdmin">
@@ -34,10 +35,10 @@
 									<label class="labelAdmin" for="idPage">Nom de la page:</label>
 									<select  class="inputAdmin" type="text" id="idPage" name="idPage" />
 										<?php
-											while($menu = $pageMenu->fetch())
+											while($menu = $listPages->fetch())
 											{
 												$selected = "";
-												if (($content['idPage'])==($menu['idPage'])){
+												if (($contentDetail['idPage'])==($menu['idPage'])){
 													$selected="selected";
 												}
 										?>
@@ -45,7 +46,7 @@
 										<?php
 											}
 										?> 
-										<option value="">Brouillon</option>
+										<option value="10">Brouillon</option>
 									</select>
 								</div>
 								<div class="gpLabelAdmin">
@@ -58,7 +59,7 @@
 									</textarea>
 								</div>
 								<div class="gpBtUpdate">
-									<a class="editButton" href="index.php?action=page">Annuler</a>
+									<a class="editButton" href="index.php?action=contentAllAdmin">Annuler</a>
 									<input type="submit" class="editButton" value="Enregistrer" />
 									<a class="editButton" href="index.php?action=confirmDeleteContent&id=<?= htmlspecialchars($contentDetail['id']) ?>">Supprimer</a>
 								</div>

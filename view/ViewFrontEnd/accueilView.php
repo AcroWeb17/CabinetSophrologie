@@ -31,7 +31,9 @@
 		<main class="mainAccueil">
 			<!--Présentation-->
 			<section class="menu">
-				<img class="logo" src="public/Illustrations/logo.png" alt="Logo" title="Logo"/>
+				<div class="lienLogo">
+					<img class="logo" src="public/Illustrations/logo.svg" alt="Logo" title="Logo"/>
+				</div>
 				<article class="msgAccueilTxt">
 					<p>	<?= html_entity_decode($msgAccueil['content']) ?></p>
 					<p class="signature"> Marine</p>

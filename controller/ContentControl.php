@@ -17,6 +17,7 @@ class ContentControl
 		else {
 			$pageManager = new Page();
 			$pageMenu = $pageManager->getListMenu();
+			$listPages = $pageManager->getListPages();
 			require('view/ViewBackEnd/contentAdminView.php');
 		}
 	}
@@ -29,7 +30,7 @@ class ContentControl
 			throw new \Exception('Impossible d\'effectuer la mise à jour!');		
 		}
 		else {
-			header('Location: index.php?action=confirmUpdatePage&id=');
+			header('Location: index.php?action=confirmUpdateContent&id=');
 			exit();
 		}
 	}
@@ -38,19 +39,29 @@ class ContentControl
 	public function contentAllAdmin()
 	{
 		$contentManager = new Content();
-		$contentAllAdmin = $contentManager->getListContent();
 		$contentJoin = $contentManager->getJoinContent();
+		$pageManager = new Page();
+		$pageMenu = $pageManager->getListMenu();
 		require('view/ViewBackEnd/contentAllAdminView.php');
 	}
 
-	public function contentAdd($title, $content, $idPage)
+
+	public function contentNew()
+	{
+		$pageManager = new Page();
+		$pageMenu = $pageManager->getListMenu();
+		$listPages = $pageManager->getListPages();
+		require 'view/ViewBackEnd/newContentView.php';	
+	}
+
+	public function contentAdd($title, $content,$indexContent, $idPage)
 	{
 		if(!empty($_POST) && !empty($_POST['newTitle'])){
 			$contentTitle = new Content();
 			$contentVerif = $contentTitle->contentVerif($title);
 			if($contentVerif==="0"){
 				$contentManager = new Content();
-				$newContent = $contentManager->postContent($title, $content, $idPage);
+				$newContent = $contentManager->postContent($title, $content,$indexContent, $idPage);
 				if ($newContent === false){
 					throw new \Exception('Impossible d\'ajouter le contenu!');		
 				}
@@ -88,7 +99,8 @@ class ContentControl
 			exit();	
 		}
 	}
-		
-	
+
+			
+
 
 }

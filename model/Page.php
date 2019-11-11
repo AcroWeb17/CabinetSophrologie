@@ -13,14 +13,14 @@ class Page extends DataBase
 	public function getListPages()
 	{
 		$db = $this->dbConnect();
-		$listPages = $db->query('SELECT idPage, name, titlePage, index_page, picture FROM pages ORDER BY index_page ASC');
+		$listPages = $db->query('SELECT idPage, name, titlePage, index_page, picture FROM pages WHERE idPage != 10 ORDER BY index_page ASC');
 		return $listPages;
 	}
 
 		public function getListMenu()
 	{
 		$db = $this->dbConnect();
-		$listMenu = $db->query('SELECT idPage, name, titlePage, contact FROM pages ORDER BY index_page ASC');
+		$listMenu = $db->query('SELECT idPage, name, titlePage, contact FROM pages WHERE idPage != 10 ORDER BY index_page ASC');
 		return $listMenu;
 	}
 
@@ -56,7 +56,7 @@ class Page extends DataBase
 	{
 		$db = $this->dbConnect();
 		$req = $db->prepare('SELECT COUNT(name) AS cnt FROM pages WHERE name=?');
-		$req->execute(array($_POST['name']));
+		$req->execute(array($name));
 		$pageNameVerif = $req->fetch();
 		$pageCount = $pageNameVerif['cnt'];
 		return $pageCount;

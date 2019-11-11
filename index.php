@@ -28,34 +28,11 @@ try{
 			}
 		}
 
-		else if ($_GET['action'] == 'contentAdmin'){
-			if(isset($_GET['id'])) {
-				$contentControl = new ContentControl;
-				$contentDetail = $contentControl->contentDetailAdmin();
-			}
-			else {
-				throw new Exception('Aucun titre de section envoyé');
-			}
-		}
-
-		else if ($_GET['action'] == 'contentUpdate'){
-			if(isset($_GET['id'])){
-				$id = isset($_POST['id'])?htmlspecialchars($_POST['id']):NULL;
-				$title = isset($_POST['newTitle'])?htmlspecialchars($_POST['newTitle']):NULL;
-				$content = isset($_POST['content'])?htmlspecialchars($_POST['content']):NULL;
-				$indexContent = isset($_POST['indexContent'])?htmlspecialchars($_POST['indexContent']):NULL;
-				$idPage = isset($_POST['idPage'])?htmlspecialchars($_POST['idPage']):NULL;
-				$contentControl = new ContentControl;
-				$contentDetail = $contentControl->contentUpdate($_GET['id'],$title, $content, $indexContent, $idPage);
-			}
-			else {
-				throw new Exception('Aucun identifiant de section envoyé');
-			}
-		}
 
 		//création d'une nouvelle page
 		else if ($_GET['action'] == 'newPage'){
-			require 'view/ViewBackEnd/newPageView.php';
+			$pageNew = new PageControl();
+			$page = $pageNew->pageMenu();
 		}
 
 		//ajouter une page
@@ -135,7 +112,8 @@ try{
 		//administration des contenus
 		//création d'un nouveau contenu
 		else if ($_GET['action'] == 'newContent'){
-			require 'view/ViewBackEnd/newContentView.php';
+			$contentNew = new ContentControl();
+			$content = $contentNew->contentNew();
 		}
 
 		//ajouter un contenu
@@ -144,13 +122,51 @@ try{
 				$title = isset($_POST['newTitle'])?htmlspecialchars($_POST['newTitle']):NULL;
 				$content = isset($_POST['content'])?htmlspecialchars($_POST['content']):NULL;
 				$idPage = isset($_POST['idPage'])?htmlspecialchars($_POST['idPage']):NULL;
+				$indexContent = isset($_POST['indexContent'])?htmlspecialchars($_POST['indexContent']):NULL;
 				$contentNew = new ContentControl();
-				$content = $contentNew->contentAdd($title, $content, $idPage);
+				$content = $contentNew->contentAdd($title, $content,$indexContent, $idPage);
 			}
 			else {
 				throw new Exception('Veuillez renseigner un nom de page valide');
 			}	
 		}
+
+
+		else if ($_GET['action'] == 'contentAdmin'){
+			if(isset($_GET['id'])) {
+				$contentControl = new ContentControl;
+				$contentDetail = $contentControl->contentDetailAdmin();
+			}
+			else {
+				throw new Exception('Aucun titre de section envoyé');
+			}
+		}
+
+		else if ($_GET['action'] == 'contentUpdate'){
+			if(isset($_GET['id'])){
+				$id = isset($_POST['id'])?htmlspecialchars($_POST['id']):NULL;
+				$title = isset($_POST['newTitle'])?htmlspecialchars($_POST['newTitle']):NULL;
+				$content = isset($_POST['content'])?htmlspecialchars($_POST['content']):NULL;
+				$indexContent = isset($_POST['indexContent'])?htmlspecialchars($_POST['indexContent']):NULL;
+				$idPage = isset($_POST['idPage'])?htmlspecialchars($_POST['idPage']):NULL;
+				$contentControl = new ContentControl;
+				$contentDetail = $contentControl->contentUpdate($_GET['id'],$title, $content, $indexContent, $idPage);
+			}
+			else {
+				throw new Exception('Aucun identifiant de section envoyé');
+			}
+		}
+		//confirmation de la mise à jour d'un contenu
+		else if ($_GET['action'] == 'confirmUpdateContent'){
+			if(isset($_GET['id'])){
+				require 'view/ViewBackEnd/confirmUpdateContentView.php';
+			}
+			else {
+				throw new Exception('Aucun identifiant de section envoyé');
+			}
+		}
+
+
 
 		//confirmer la suppression d'une page
 		else if ($_GET['action'] == 'confirmDeleteContent'){
@@ -213,6 +229,18 @@ try{
 			$connect = $connectControl->connect();
 		}
 
+		//mot de passe oublié
+		else if($_GET['action'] == 'forgetPassword'){
+			require ('view/ViewFrontEnd/forgetPasswordView.php');
+		}
+
+		//envoie d'un nouveau mot de passe
+		else if($_GET['action'] == 'sendNewPassword'){
+			$mailUser = (isset($_POST['mailUser'])?htmlspecialchars($_POST['mailUser']):NULL);
+			$mailControl = new MailControl();
+			$contactMail = $mailControl->sendNewPwd($mailUser);
+		}
+
 		//déconnexion
 		else if($_GET['action'] == 'deconnect'){
 			$connectControl = new ConnectControl();
@@ -229,8 +257,11 @@ try{
 
 		//modification du mot de passe
 		else if($_GET['action'] == 'newPassword'){
-			require ('view/ViewBackEnd/newPassword.php');
+			require ('view/ViewBackEnd/newPasswordView.php');
 		}
+
+
+		
 		
 		//mise à jour du mot de passe
 		else if ($_GET['action'] == 'updatePassword'){

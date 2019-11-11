@@ -16,38 +16,53 @@
 		</header>
 
 		<!--Corps de page-->
-		<main>
+		<main class="mainPage">
 			<?php
 				if (isset($_SESSION['auth'])){
 			?>	
+			<?php include("public/menu.php");?>
+			<section class="sectionRubriques">
+				<div class="contenuRubriques">
+					<h2 class="titreSection"> Nouveau contenu </h2>
+					<div class="gpBtUpdate">
+						<a class="editButton" href="index.php?action=contentAllAdmin">Annuler</a>
+						<a class="editButton" href="index.php?action=accueil">Retour à la page d'accueil</a>
+					</div>
 
-			<section class="contenuRubriques">
-				<h2 class="titreSection"> Nouveau contenu </h2>
-				<div class="gpBtUpdate">
-					<a class="editButton" href="index.php?action=contentAllAdmin">Annuler</a>
-					<a class="editButton" href="index.php?action=accueil">Retour à la page d'accueil</a>
+					<div class="separationSections">
+						<form class="styleForm" action="index.php?action=addContent" method="post" >
+							<div class="gpLabelAdmin">
+								<label class="labelAdmin" for="newTitle">Titre de la section:</label>
+								<input class="inputAdmin" type="text" id="newTitle" name="newTitle" required/>
+							</div>
+							<div class="gpLabelAdmin">
+								<label class="labelAdmin" for="idPage">Nom de la page</label>
+								<select  class="inputAdmin" type="text" id="idPage" name="idPage" />
+										<?php
+											while($menu = $listPages->fetch())
+											{
+										?>
+										<option value="<?= ($menu['idPage'])?>"><?= htmlspecialchars($menu['titlePage']) ?></option>
+										<?php
+											}
+										?> 
+										<option selected value="10">Brouillon</option>
+								</select>
+							</div>
+							<div class="gpLabelAdmin">
+								<label class="labelAdmin" for="indexContent">Ordre du contenu dans la page</label>
+								<input class="inputAdmin" type="number" id="indexContent" name="indexContent" required/>
+							</div>
+							<div class="gpLabelAdmin">
+								<label class="labelAdmin" for="content">Contenu:</label>
+								<textarea class="largeTxtAdmin" name="content" rows="255" ></textarea>
+							</div>
+							<div class="gpBtUpdate">
+								<input type="submit" class="editButton" value="Enregistrer" />
+							</div>
+						</form>
+					</div>
 				</div>
-
-				<div class="separationSections">
-							<form class="styleForm" action="index.php?action=addContent" method="post" >
-								<div class="gpLabelAdmin">
-									<label class="labelAdmin" for="newTitle">Titre de la page:</label>
-									<input class="inputAdmin" type="text" id="newTitle" name="newTitle" required/>
-								</div>
-								<div class="gpLabelAdmin">
-									<label class="labelAdmin" for="content">Contenu de la page:</label>
-									<input class="inputAdmin" type="text" id="content" name="content" required/>
-								</div>
-								<div class="gpLabelAdmin">
-									<label class="labelAdmin" for="idPage">identifiant de la page</label>
-									<input class="inputAdmin" type="number" id="idPage" name="idPage" required/>
-								</div>
-								<div class="gpBtUpdate">
-									<input type="submit" class="editButton" value="Enregistrer" />
-								</div>
-							</form>
-				</div>
-
 			</section>
 			<?php
 				} else {
@@ -66,6 +81,9 @@
 		<footer>
 			<?php include("public/footer.php");?>
 		</footer>
-		
+				<!--Fichiers Javascript-->
+		<script src="tinymce/tinymce.min.js"></script>
+		<script src="tinymce/themes/silver/theme.min.js"></script>
+		<script src="tinymce/parametresTinyMCE.js"></script>
 	</body>
 </html>

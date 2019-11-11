@@ -18,16 +18,18 @@
 
 				<!--Corps de page-->
 		<main class="mainConnect">
-			<section class="contenuRubriques">
+			<section class="contenuConnect">
 				<h2 class="titreSection"> Se connecter </h2>
 				<form id="formConnexion" class="formConnect" method="post" action="index.php?action=interfaceAdmin">
 					<label for="loginUser"> Identifiant</label>
 					<input type="text" name="login" id="loginUser" required /><br/><br/>
 					<label for="passwordUser">Mot de passe </label>
 					<input id="passwordUser" type="password" name="password" required /><br/>
-					<p id="oubliPassword" >Mot de passe oublié	</p>
 					<button class="button btConnect" id="connectButton" type="submit" value="Se connecter">Connecter</button>
 				</form>
+				<div class=forgetPwd>
+					<a id="oubliPassword" href="index.php?action=forgetPassword">Mot de passe oublié</a>
+				</div>
 				<div id="redirectionConnect" class="redirection">
 				</div>
 			</section>
@@ -40,7 +42,7 @@
 		</footer>
 
 		<!--Fichier Javascript-->
-		<script src="public/js/connexionForm.js"> </script>
+		<script src="public/js/userForm.js"> </script>
 		
 	</body>
 </html>

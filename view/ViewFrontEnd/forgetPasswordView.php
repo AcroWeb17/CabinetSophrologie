@@ -2,7 +2,7 @@
 <html lang="fr">
 	<head>
 		<meta charset="UTF-8"/>
-		<title>Déconnexion - Cabinet de Sophrologie</title>
+		<title>Interface de connexion - Cabinet de Sophrologie</title>
 		<link rel="shortcut icon" href="public/Illustrations/favicon.ico"/>
 		<link rel="stylesheet" href="public/css/sophrologie.css"/>
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
@@ -16,20 +16,28 @@
 			<?php include("public/header.php");?>
 		</header>
 
-		<!--Corps de page-->
+				<!--Corps de page-->
 		<main class="mainConnect">
 			<section class="contenuConnect">
-				<h2 class="titreSection">Vous êtes maintenant déconnecté </h2>
-				<div class="gpButton">
-					<a class="button btSolo" href="index.php?action=accueil">Retour à la page d'accueil</a>
+				<h2 class="titreSection"> Mot de passe oublié </h2>
+				<form id="formForgetPassword" class="formConnect" method="post" action="index.php?action=sendNewPassword">
+					<label for="mailUser"> Veuillez saisir votre email:</label>
+					<input type="email" name="mailUser" id="mailUser" required /><br/><br/>
+					<button class="button btConnect" id="connectButton" type="submit" value="Valider">Valider</button>
+				</form>
+				<div id="redirectionForgetPassword" class="redirection">
 				</div>
 			</section>
 		</main>
+
 
 		<!--Pied de page-->
 		<footer>
 			<?php include("public/footer.php");?>
 		</footer>
+
+		<!--Fichier Javascript-->
+		<script src="public/js/userForm.js"> </script>
 		
 	</body>
 </html>

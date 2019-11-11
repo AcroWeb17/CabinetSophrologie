@@ -17,27 +17,11 @@
 		</header>
 
 		<!--Corps de page-->
-		<main>
-			<section class="menu">
-				<a href="index.php?action=accueil">
-					<img class="logo" src="public/Illustrations/logo.png" alt="Logo" title="Logo"/>
-				</a>
-				<div class="titresMenu">
-					<?php
-					//Affichage des rubriques
-						while($menu = $pageMenu->fetch())
-						{
-					?>
-							<a class="lienMenu" href="index.php?action=page&name=<?= htmlspecialchars($menu['name']) ?>"><?= htmlspecialchars($menu['titlePage']) ?></a>
-					<?php
-						}
-					?> 
-							<a class="lienMenu" href="index.php?action=accueil">Retour page d'accueil</a>
-				</div>
-			</section>
+		<main class="mainPage">
+			<?php include("public/menu.php");?>
 
-			<section class="contenuRubriques">
-
+			<section class="sectionRubriques">
+				<div class="contenuRubriques">
 					<h2 class="titreSection"> <?=htmlspecialchars($content['title'])?> </h2>
 					<div class="mapContact">
 						<iframe class="map" allowfullscreen src="https://www.openstreetmap.org/export/embed.html?bbox=2.30463981628418%2C49.88621549668987%2C2.3192310333251958%2C49.89818675815544&amp;layer=mapnik&amp;marker=49.89220149861141%2C2.3119354248046875"></iframe>
@@ -90,7 +74,7 @@
 					</form>
 
 					<a id="retourHtPage" class="retourHtPage" href="#"><i class="fas fa-arrow-alt-circle-up"></i>Retour en haut de la page</a>
-
+				</div>
 			</section>
 		</main>
 

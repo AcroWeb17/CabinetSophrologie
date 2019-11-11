@@ -40,6 +40,12 @@
 			<h3 class="titreML"> Propriété intellectuelle </h3>
 			<p class="pMentionsLegales">Tout le contenu du présent site est la propriété du site AcroWeb. Par conséquent, toute reproduction, distribution, modification, adaptation, retransmission ou publication, même partielle, de ces différents éléments est strictement interdite sans l'accord écrit d'AcroWeb.
 			</p>
+			<a id="retourHtPage"class="retourHtPage" href="#"><i class="fas fa-arrow-alt-circle-up"></i>Retour en haut de la page</a>
+
+			<div class=" accueilML">
+				<a class="button" href="index.php?action=accueil">Page d'accueil</a>
+			</div>
+
 		</main>	
 
 		<!--Pied de page-->

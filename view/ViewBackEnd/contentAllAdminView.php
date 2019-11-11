@@ -16,18 +16,19 @@
 		</header>
 
 		<!--Corps de page-->
-		<main>
+		<main class="mainPage">
 			<?php
 				if (isset($_SESSION['auth'])){
 			?>	
-
-			<section class="contenuRubriques">
-				<h2 class="titreSection"> Gestion des contenus </h2>
-				<div class="gpBtUpdate">
-					<a class="editButton" href="index.php?action=newContent">Nouveau contenu</a>
-					<a class="editButton" href="index.php?action=pageAdmin">Gestion des pages</a>
-					<a class="editButton" href="index.php?action=accueil">Retour à la page d'accueil</a>
-				</div>
+			<?php include("public/menu.php");?>
+			<section class="sectionRubriques">
+				<div class="contenuRubriques">
+					<h2 class="titreSection"> Gestion des contenus </h2>
+					<div class="gpBtUpdate">
+						<a class="editButton" href="index.php?action=newContent">Nouveau contenu</a>
+						<a class="editButton" href="index.php?action=pageAdmin">Gestion des pages</a>
+						<a class="editButton" href="index.php?action=accueil">Retour à la page d'accueil</a>
+					</div>
 					<div class="separationSections">
 							<?php
 								$page_courante = "";
@@ -55,6 +56,7 @@
 							?> 
 			
 					</div>
+				</div>
 			</section>
 			<?php
 				} else {

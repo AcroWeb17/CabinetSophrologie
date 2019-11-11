@@ -22,6 +22,7 @@
 			<?php
 				if (isset($_SESSION['auth'])) {
 			?>	
+					<?php include("public/menu.php");?>
 					<section class="contenuRubriques">
 						<div class="separationSections">
 							<h2 class="titreSection"> Message d'accueil</h2>

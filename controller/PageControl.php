@@ -37,6 +37,7 @@ class PageControl
 	{
 		$pageManager = new Page();
 		$page = $pageManager->getListPages();
+		$pageMenu = $pageManager->getListMenu();
 		require('view/ViewBackEnd/pagesAdminView.php');
 	}
 
@@ -70,7 +71,7 @@ class PageControl
 	{
 		$pageManager = new Page();
 		$page = $pageManager->modifyPage($idPage,$name,$title,$picture, $indexPage);
-		require('view/ViewBackEnd/confirmUpdatePageAdminView.php');
+		require('view/ViewBackEnd/confirmUpdatePageView.php');
 	}
 
 	public function verifDeletePage($idPage)
@@ -93,6 +94,11 @@ class PageControl
 		}
 	}
 
-
-
+	public function pageMenu()
+	{
+		$pageManager = new Page();
+		$pageMenu = $pageManager->getListMenu();
+		require 'view/ViewBackEnd/newPageView.php';
+	}
+		
 }

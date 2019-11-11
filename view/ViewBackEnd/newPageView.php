@@ -16,42 +16,43 @@
 		</header>
 
 		<!--Corps de page-->
-		<main>
+		<main class="mainPage">
 			<?php
 				if (isset($_SESSION['auth'])){
 			?>	
+			<?php include("public/menu.php");?>
+			<section class="sectionRubriques">
+				<div class="contenuRubriques">
+					<h2 class="titreSection"> Nouvelle page </h2>
+					<div class="gpBtUpdate">
+						<a class="editButton" href="index.php?action=pageAdmin">Annuler</a>
+						<a class="editButton" href="index.php?action=accueil">Retour à la page d'accueil</a>
+					</div>
 
-			<section class="contenuRubriques">
-				<h2 class="titreSection"> Nouvelle page </h2>
-				<div class="gpBtUpdate">
-					<a class="editButton" href="index.php?action=pageAdmin">Annuler</a>
-					<a class="editButton" href="index.php?action=accueil">Retour à la page d'accueil</a>
+					<div class="separationSections">
+						<form class="styleForm" action="index.php?action=addPage" method="post" >
+							<div class="gpLabelAdmin">
+								<label class="labelAdmin" for="newTitle">Titre de la page:</label>
+								<input class="inputAdmin" type="text" id="newTitle" name="newTitle" required/>
+							</div>
+							<div class="gpLabelAdmin">
+								<label class="labelAdmin" for="name">Nom de la page:</label>
+								<input class="inputAdmin" type="text" id="name" name="name" required/>
+							</div>
+							<div class="gpLabelAdmin">
+								<label class="labelAdmin" for="picture">Photo</label>
+								<input class="inputAdmin" type="file" id="picture" name="picture"required/>
+							</div>
+							<div class="gpLabelAdmin">
+								<label class="labelAdmin" for="indexPage">Ordre de la page:</label>
+								<input class="inputAdmin" type="number" id="indexPage" name="indexPage" required/>
+							</div>
+							<div class="gpBtUpdate">
+								<input type="submit" class="editButton" value="Enregistrer" />
+							</div>
+						</form>
+					</div>
 				</div>
-
-				<div class="separationSections">
-							<form class="styleForm" action="index.php?action=addPage" method="post" >
-								<div class="gpLabelAdmin">
-									<label class="labelAdmin" for="newTitle">Titre de la page:</label>
-									<input class="inputAdmin" type="text" id="newTitle" name="newTitle" required/>
-								</div>
-								<div class="gpLabelAdmin">
-									<label class="labelAdmin" for="name">Nom de la page:</label>
-									<input class="inputAdmin" type="text" id="name" name="name" required/>
-								</div>
-								<div class="gpLabelAdmin">
-									<label class="labelAdmin" for="picture">Photo</label>
-									<input class="inputAdmin" type="file" id="picture" name="picture"required/>
-								</div>
-								<div class="gpLabelAdmin">
-									<label class="labelAdmin" for="indexPage">Ordre de la page:</label>
-									<input class="inputAdmin" type="number" id="indexPage" name="indexPage" required/>
-								</div>
-								<div class="gpBtUpdate">
-									<input type="submit" class="editButton" value="Enregistrer" />
-								</div>
-							</form>
-				</div>
-
 			</section>
 			<?php
 				} else {
