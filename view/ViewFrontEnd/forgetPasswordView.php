@@ -37,7 +37,7 @@
 		</footer>
 
 		<!--Fichier Javascript-->
-		<script src="public/js/userForm.js"> </script>
+		<script src="public/js/userForm.js" defer> </script>
 		
 	</body>
 </html>

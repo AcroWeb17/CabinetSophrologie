@@ -15,13 +15,13 @@
 		<header>
 			<?php include("public/header.php");?>
 		</header>
-		<main>
-			<h2 class="titreSection"><?php echo' '.$errorMessage.'' ?></h2>
-			<div class="gpButton">
-					<a class="button deconnectAccueil" href="index.php?action=accueil">Retour à la page précédente</a>
-					<a class="button deconnectAccueil" href="index.php?action=accueil">Retour à la page d'accueil</a>
-			</div>
-
+		<main class="mainConnect">
+			<section class="contenuDelete">
+				<h2 class="titreSection"><?php echo' '.$errorMessage.'' ?></h2>
+				<div class="gpButton">
+						<a class="button" href="index.php?action=accueil">Retour à la page d'accueil</a>
+				</div>
+			</section>
 		</main>
 
 		<!--Pied de page-->

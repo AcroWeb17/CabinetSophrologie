@@ -22,36 +22,33 @@
 			<?php
 				if (isset($_SESSION['auth'])) {
 			?>	
-
-			<section class="contenuRubriques">
-				<h2 class="titreSection">Etes-vous certain de vouloir supprimer cette page? </h2>
-				<div class="gpButton">
-					<a class="button" href="index.php?action=pageAdmin">Retour à la page précédente</a>
-					<a href="index.php?action=deletePage&idPage=<?= htmlspecialchars($page['idPage']); ?>" 
-					   class="button">Confirmer la suppression</a>
-					<a class="button" href="index.php?action=accueil">Retour à la page d'accueil</a>
-				</div>
-			</section>
-
+					<section class="contenuDelete">
+						<h2 class="titreSection">Etes-vous certain de vouloir supprimer cette page? </h2>
+						<div class="gpButton">
+							<a class="button" href="index.php?action=pageAdmin">Gestion des pages</a>
+							<a href="index.php?action=deletePage&idPage=<?= htmlspecialchars($page['idPage']); ?>" 
+							   class="button">Confirmer la suppression</a>
+							<a class="button" href="index.php?action=accueil">Page d'accueil</a>
+						</div>
+					</section>
 			<!--En mode Utilisateur-->
 			<?php
 				} else {
 			?>
-					<h2 class="titreSection"> Vous n'avez pas les droits sur cette page </h2>
+					<section class="contenuDelete mainConnect">
+						<h2 class="titreSection">Vous n'avez pas les droits sur cette page</h2>
+						<div class="btSolo">
+							<a class="button btSolo" href="index.php?action=accueil">Page d'accueil</a>
+						</div>
+					</section>
 			<?php
 				}
 			?>
 		</main>
-
 				<!--Pied de page-->
 		<footer>
 			<?php include("public/footer.php");?>
 		</footer>
 
-		<!--Fichiers Javascript-->
-		<script src="tinymce/tinymce.min.js"></script>
-		<script src="tinymce/themes/silver/theme.min.js"></script>
-		<script src="tinymce/parametresTinyMCE.js"></script>
-		
 	</body>
 </html>

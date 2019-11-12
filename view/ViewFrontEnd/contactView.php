@@ -23,21 +23,42 @@
 			<section class="sectionRubriques">
 				<div class="contenuRubriques">
 					<h2 class="titreSection"> <?=htmlspecialchars($content['title'])?> </h2>
-					<div class="mapContact">
-						<iframe class="map" allowfullscreen src="https://www.openstreetmap.org/export/embed.html?bbox=2.30463981628418%2C49.88621549668987%2C2.3192310333251958%2C49.89818675815544&amp;layer=mapnik&amp;marker=49.89220149861141%2C2.3119354248046875"></iframe>
-					</div>
-					<div class="coordonnees">
+					<div class="introContact">
+						<p class="contentIntroContact"><?= html_entity_decode($content['content']) ?> </p>
 						<?php
 							if (isset($_SESSION['auth'])){
 						?>	
-								<a class="editButton sectionsEdit" href="index.php?action=contentAdmin&id=<?= htmlspecialchars($content['id']) ?>">Mise à jour</a>
+								<div class="gpBtUpdate">
+									<a class="editButton" href="index.php?action=contentAdmin&id=<?= htmlspecialchars($content['id']) ?>">Mise à jour</a>
+								</div>
 						<?php
 							}
 						?> 
-						<p class="contentContact"><?= html_entity_decode($content['content']) ?> </p>
-	
 					</div>
-					
+					<div class="mapContact">
+						<div id="map_viewer">
+							<p id="sources">© AcroWeb - 2019 <br/> Fond de carte: © OpenStreetMap<br/> </p>
+						</div>
+
+					</div>
+					<div class="coordonnees">
+						<input id="latX" type="hidden" value="<?= html_entity_decode($contact['latX']) ?>" disabled />
+						<input id="longY" type="hidden" value="<?= html_entity_decode($contact['longY']) ?>" disabled />
+						<p class="contentContact"><?= html_entity_decode($contact['name']) ?> </p>
+						<p class="contentContact"><?= html_entity_decode($contact['adresse']) ?> </p>
+						<p class="contentContact"><?= html_entity_decode($contact['codePostal']) ?> <?= html_entity_decode($contact['ville']) ?> </p>
+						<p class="contentContact"><?= html_entity_decode($contact['telephone']) ?> </p>
+						<p class="contentContact"><?= html_entity_decode($contact['mail']) ?> </p> 
+						<?php
+							if (isset($_SESSION['auth'])){
+						?>	
+								<div class="gpBtUpdate">
+									<a class="editButton" href="index.php?action=contentAdmin&id=<?= htmlspecialchars($content['id']) ?>">Mise à jour</a>
+								</div>
+						<?php
+							}
+						?>
+					</div>
 					<form class="formContact" id="formContact" method="post" action="index.php?action=sendMessage">
 						<div class="gpLabelContact">
 							<label class="labelContact" for="nomUser">Votre nom *</label>
@@ -83,7 +104,10 @@
 			<?php include("public/footer.php");?>
 		</footer>
 
-		<script src="public/js/contactForm.js"></script>
+		<script src="public/js/contactForm.js" defer></script>
+		<!--<script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/build/ol.js" defer></script> --><!--fond de carte Openlayers-->
+		<script src="public/js/ol.js" defer></script>
+		<script src="public/js/map.js" defer></script>	<!--fichier Javascript de la carte-->
 
 		
 	</body>

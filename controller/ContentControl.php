@@ -1,6 +1,7 @@
 <?php
 namespace Sophrologie\controller;
 use Sophrologie\model\Content;
+use Sophrologie\model\Contact;
 use Sophrologie\model\Page;
 
 
@@ -18,14 +19,17 @@ class ContentControl
 			$pageManager = new Page();
 			$pageMenu = $pageManager->getListMenu();
 			$listPages = $pageManager->getListPages();
+			$contactManager = new Contact();
+			$contactContent = $contactManager->getContact();
 			require('view/ViewBackEnd/contentAdminView.php');
 		}
 	}
-	public function contentUpdate($id, $title, $content, $indexContent, $idPage)
+	public function contentUpdate($id, $title, $content, $indexContent, $idPage, $latX, $longY, $nameCab, $adresse, $codePostal, $ville, $tel, $mail)
 	{
 		$contentManager = new Content();
 		$contentUpdate = $contentManager->modifyContent($id, $title, $content, $indexContent, $idPage);
-	
+		$contactManager = new Contact();
+		$contactUpdate = $contactManager->modifyContact($latX, $longY, $nameCab, $adresse, $codePostal, $ville, $tel, $mail);
 		if ($contentUpdate=== false){
 			throw new \Exception('Impossible d\'effectuer la mise à jour!');		
 		}

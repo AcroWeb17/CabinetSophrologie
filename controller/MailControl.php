@@ -32,17 +32,19 @@ class MailControl
 	        
 	        // Si tous les champs sont correctement remplis alors le mail est envoyé
 	        if ($errors=="") {
+                
                 //Paramètres des mails envoyés et reçus
                 // Création des variables destinataire, sujet et headers
+                $boundary = "-----=".md5(rand());
                 $admin = "acroweb@orange.fr";
                 $subject = "Message de: cabinet-sophrologie";                
-			    $headers = $this->prepareHeaders('Cabinet de Sophrologie','ne-pas-repondre@alwaysdata.net');
+			    $headers = $this->prepareHeaders('Cabinet de Sophrologie','ne-pas-repondre@alwaysdata.net',$boundary);
                 
                 // Phrases introductives (admin et copie)
                 $msgHead = "Veuillez trouver ci-dessous un message envoyé depuis le formulaire de contact du site acroweb.alwaysdata.net/sophrologie";
                 $msgCopyHead = "Veuillez trouver ci-dessous la copie du message que vous venez d'envoyer depuis le formulaire de contact du site acroweb.alwaysdata.net/sophrologie";
               
-                //Envoi des mails au format Texte
+                //Préparation des mails au format Texte
                 // Corps du message au format texte
                 $msgContentTxt = "Prénom : ".$firstName.$this->sautLigne;
 			    $msgContentTxt .= "Nom : ".$lastName.$this->sautLigne;
@@ -58,7 +60,7 @@ class MailControl
                 $msgTxt = "Bonjour,".$this->sautLigne.$this->sautLigne.$msgHead.$this->sautLigne.$this->sautLigne.$msgContentTxt;
                 $msgCopyTxt = "Bonjour,".$this->sautLigne.$this->sautLigne.$msgCopyHead.$this->sautLigne.$this->sautLigne.$msgContentTxt;
                 
-                //Envoi des mails au format Html
+                //Préparation des mails au format Html
                 // Corps du message HTML
                 $msgContentHtml = "<strong>Prénom : </strong>".$firstName."<br/>";
 			    $msgContentHtml .= "<strong>Nom : </strong>".$lastName."<br/>";
@@ -73,13 +75,12 @@ class MailControl
                 // Contenu des messages (admin et copie) au format html
                 $msgHtml = "<html><head><title>".$subject."</title></head><body><p>Bonjour<br/><br/>".$msgHead."<br/><br/>".$msgContentHtml;
                 $msgCopyHtml = "<html><head><title>".$subject."</title></head><body><p>Bonjour<br/><br/>".$msgCopyHead."<br/><br/>".$msgContentHtml;
-                
+
                 //Combinaison des mails Html et Texte
                 // Mail final admin combinant texte et html
-                $msg = $this->prepareFormatedContent($msgTxt,$msgHtml);
-                
+                $msg = $this->prepareFormatedContent($msgTxt,$msgHtml,$boundary);
                 // Mail final copie combinant texte et html
-                $msgCopy = $this->prepareFormatedContent($msgCopyTxt,$msgCopyHtml);
+                $msgCopy = $this->prepareFormatedContent($msgCopyTxt,$msgCopyHtml,$boundary);
                 
                 //Envoi des mails et de la réponse 
 			    // Envoi des mails et réponse à la page HTML
@@ -163,8 +164,9 @@ class MailControl
                     
                     //Et on envoi un mail avec le nouveau mot de passe
                     // Création des variables sujet et headers
+                    $boundary = "-----=".md5(rand());
                     $subject = "Message de: Cabinet-sophrologie";                
-                    $headers = $this->prepareHeaders('Cabinet de Sophrologie','ne-pas-repondre@alwaysdata.net');
+                    $headers = $this->prepareHeaders('Cabinet de Sophrologie','ne-pas-repondre@alwaysdata.net',$boundary);
             
                     // Phrases introductives
                     $msgHead = "Vous avez fait une demande de ré-initialisation de votre mot de passe sur le site Cabinet de Sophrologie.";
@@ -188,8 +190,8 @@ class MailControl
                     //contenu du message au format Html
                     $msgHtml = "<html><head><title>".$subject."</title></head><body><p>Bonjour<br/><br/>".$msgHead."<br/><br/>".$msgContentHtml;
 
-                    //Combinaison des mails Html et Texte
-                    $msg = $this->prepareFormatedContent($msgTxt,$msgHtml);
+                    //Mail final combinant texte et Html
+                    $msg = $this->prepareFormatedContent($msgTxt,$msgHtml,$boundary);
                     
                     //Envoi du mail et de la réponse + modif MdP dans la base
                     if (mail($mail,$subject,$msg,$headers)) {
@@ -231,8 +233,7 @@ class MailControl
 	}
     
     // Prépare les métadonnnées du mail à partir des données expéditeur
-    private function prepareHeaders($titleFrom,$mailFrom) {
-        $boundary = "-----=".md5(rand());
+    private function prepareHeaders($titleFrom,$mailFrom,$boundary) {
         $headers = "From: \"".$titleFrom."\"<".$mailFrom.">".$this->sautLigne;
         $headers .= "MIME-Version: 1.0".$this->sautLigne;
         $headers .= "Content-Type: multipart/alternative;".$this->sautLigne." boundary=\"$boundary\"".$this->sautLigne;
@@ -240,9 +241,7 @@ class MailControl
     }
     
     // Formate le contenu d'un mail combiné texte+html à partir des messages bruts texte et html
-    private function prepareFormatedContent($msgTxt,$msgHtml) {
-        
-        $boundary = "-----=".md5(rand());
+    private function prepareFormatedContent($msgTxt,$msgHtml,$boundary) {
         
         // Initialisation du message
         $msg = $this->sautLigne."--".$boundary.$this->sautLigne;

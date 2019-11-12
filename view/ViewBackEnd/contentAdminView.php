@@ -58,6 +58,47 @@
 										<?=html_entity_decode($contentDetail['content'])?>
 									</textarea>
 								</div>
+
+								<?php 
+									if(($contentDetail['idPage'])=='8')
+									{
+								?>
+										<div class="gpLabelAdmin">
+											<label class="labelAdmin" for="latX">Latitude X:</label>
+											<input class="inputAdmin" type="text" id="latX" name="latX" value="<?= htmlspecialchars($contactContent['latX']); ?>" required/>
+										</div>
+										<div class="gpLabelAdmin">
+											<label class="labelAdmin" for="longY">Longitude Y:</label>
+											<input class="inputAdmin" type="text" id="longY" name="longY" value="<?= htmlspecialchars($contactContent['longY']); ?>" required/>
+										</div>
+										<div class="gpLabelAdmin">
+											<label class="labelAdmin" for="nameCab">Nom du cabinet:</label>
+											<input class="inputAdmin" type="text" id="nameCab" name="nameCab" value="<?= htmlspecialchars($contactContent['name']); ?>" required/>
+										</div>
+										<div class="gpLabelAdmin">
+											<label class="labelAdmin" for="adresse">Adresse du cabinet:</label>
+											<input class="inputAdmin" type="text" id="adresse" name="adresse" value="<?= htmlspecialchars($contactContent['adresse']); ?>" required/>
+										</div>
+										<div class="gpLabelAdmin">
+											<label class="labelAdmin" for="codePostal">Code postal:</label>
+											<input class="inputAdmin" type="text" id="codePostal" name="codePostal" value="<?= htmlspecialchars($contactContent['codePostal']); ?>" required/>
+										</div>
+										<div class="gpLabelAdmin">
+											<label class="labelAdmin" for="ville">Ville:</label>
+											<input class="inputAdmin" type="text" id="ville" name="ville" value="<?= htmlspecialchars($contactContent['ville']); ?>" required/>
+										</div>
+										<div class="gpLabelAdmin">
+											<label class="labelAdmin" for="telephone">Téléphone:</label>
+											<input class="inputAdmin" type="text" id="telephone" name="telephone" value="<?= htmlspecialchars($contactContent['telephone']); ?>" required/>
+										</div>
+										<div class="gpLabelAdmin">
+											<label class="labelAdmin" for="mail">Mail:</label>
+											<input class="inputAdmin" type="text" id="mail" name="mail" value="<?= htmlspecialchars($contactContent['mail']); ?>" required/>
+										</div>
+								<?php 
+									}
+								?>
+
 								<div class="gpBtUpdate">
 									<a class="editButton" href="index.php?action=contentAllAdmin">Annuler</a>
 									<input type="submit" class="editButton" value="Enregistrer" />
@@ -71,7 +112,12 @@
 			<?php
 				} else {
 			?>
-					<h2 class="titreSection"> Vous n'avez pas les droits sur cette page </h2>
+					<section class="contenuDelete mainConnect">
+						<h2 class="titreSection">Vous n'avez pas les droits sur cette page</h2>
+						<div class="btSolo">
+							<a class="button btSolo" href="index.php?action=accueil">Page d'accueil</a>
+						</div>
+					</section>
 			<?php
 				}
 			?>

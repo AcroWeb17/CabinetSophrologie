@@ -22,20 +22,24 @@
 			<?php
 				if (isset($_SESSION['auth'])) {
 			?>	
-
-			<section class="contenuRubriques">
-				<h2 class="titreSection">Le contenu a bien été supprimé</h2>
-				<div class="gpButton">
-					<a class="button deconnectAccueil" href="index.php?action=contentAdmin&id=<?= htmlspecialchars($contentDetail['id']); ?>">Retour à la page précédente</a>
-					<a class="button deconnectAccueil" href="index.php?action=accueil">Retour à la page d'accueil</a>
-				</div>
-			</section>
+					<section class="contenuDelete">
+						<h2 class="titreSection">Le contenu a bien été supprimé</h2>
+						<div class="gpButton">
+							<a class="button" href="index.php?action=contentAllAdmin">Gestion des contenus</a>
+							<a class="button" href="index.php?action=accueil">Page d'accueil</a>
+						</div>
+					</section>
 
 			<!--En mode Utilisateur-->
 			<?php
 				} else {
 			?>
-					<h2 class="titreSection"> Vous n'avez pas les droits sur cette page </h2>
+					<section class="contenuDelete mainConnect">
+						<h2 class="titreSection">Vous n'avez pas les droits sur cette page</h2>
+						<div class="btSolo">
+							<a class="button btSolo" href="index.php?action=accueil">Page d'accueil</a>
+						</div>
+					</section>
 			<?php
 				}
 			?>
@@ -45,11 +49,6 @@
 		<footer>
 			<?php include("public/footer.php");?>
 		</footer>
-
-		<!--Fichiers Javascript-->
-		<script src="tinymce/tinymce.min.js"></script>
-		<script src="tinymce/themes/silver/theme.min.js"></script>
-		<script src="tinymce/parametresTinyMCE.js"></script>
 		
 	</body>
 </html>

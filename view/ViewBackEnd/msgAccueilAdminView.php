@@ -17,14 +17,14 @@
 		</header>
 
 		<!--Corps de page-->
-		<main>
+		<main class="mainPage">
 			<!--En mode Admin-->
 			<?php
 				if (isset($_SESSION['auth'])) {
 			?>	
 					<?php include("public/menu.php");?>
-					<section class="contenuRubriques">
-						<div class="separationSections">
+					<section class="sectionRubriques">
+						<div class="contenuRubriques">
 							<h2 class="titreSection"> Message d'accueil</h2>
 							<form class="styleForm" action="index.php?action=updateMsgAccueil" method="post" >
 							<textarea class="smallTxtAdmin" name="content" rows="255" >
@@ -42,7 +42,12 @@
 			<?php
 				} else {
 			?>
-					<h2 class="titreSection"> Vous n'avez pas les droits sur cette page </h2>
+					<section class="contenuDelete mainConnect">
+						<h2 class="titreSection">Vous n'avez pas les droits sur cette page</h2>
+						<div class="btSolo">
+							<a class="button btSolo" href="index.php?action=accueil">Page d'accueil</a>
+						</div>
+					</section>
 			<?php
 				}
 			?>

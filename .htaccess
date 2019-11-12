@@ -2,6 +2,31 @@ RewriteEngine On
 #redirection de l accueil
 RewriteRule ^accueil$ index.php [L]
 
+#redirection des pages de connexion
+RewriteRule ^connexion$ index.php?action=connect [L]
+RewriteRule ^deconnexion$ index.php?action=deconnect [L]
+RewriteRule ^nouveau-mot-de-passe$ index.php?action=newPassword [L]
+RewriteRule ^mentions-legales$ index.php?action=mentionsLegales [L]
+
+#redirection des pages d'accueil
+RewriteRule ^acceuil$ index.php?action=accueil [L]
+RewriteRule ^message-accueil$ index.php?action=msgAccueil [L]
+
+#redirection des pages
+RewriteRule ^page-([a-z]*)$ index.php?action=page&name=$1 [L]
+RewriteRule ^nouvelle-page$ index.php?action=newPage[L]
+RewriteRule ^gestion-des-pages$ index.php?action=pageAdmin [L]
+RewriteRule ^page-actualisee$ index.php?action=pageAdminUpdate [L]
+RewriteRule ^suppression-page-([0-9]+)$ index.php?action=confirmDeletePage&idPage=$1 [L]
+RewriteRule ^confirmation-suppression-page$ index.php?action=deletePage [L]
+
+#redirection des contenus
+RewriteRule ^mise-a-jour-contenu$ index.php?action=contentAdmin [L]
+RewriteRule ^nouveau-contenu$ index.php?action=newContent [L]
+
+#redirection de la page erreur 404
+RewriteRule ^page-introuvable$ index.php?action=erreur404 [L]
+ErrorDocument 404 http://acroweb.alwaysdata.net/sophrologie/page-introuvable
 
 
 

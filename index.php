@@ -7,6 +7,7 @@ Autoloader::register();
 use Sophrologie\controller\AccueilControl;
 use Sophrologie\controller\PageControl;
 use Sophrologie\controller\ContentControl;
+use Sophrologie\controller\ContactControl;
 use Sophrologie\controller\ConnectControl;
 use Sophrologie\controller\MsgAccueilControl;
 use Sophrologie\controller\MailControl;
@@ -79,12 +80,9 @@ try{
 		//confirmer la suppression d'une page
 		else if ($_GET['action'] == 'confirmDeletePage'){
 			if(isset($_GET['idPage']) && $_GET['idPage']>0){
-				$idPage = isset($_POST['idPage'])?htmlspecialchars($_POST['idPage']):NULL;
-				$title = isset($_POST['title'])?htmlspecialchars($_POST['title']):NULL;
-				$name = isset($_POST['name'])?htmlspecialchars($_POST['name']):NULL;
-				$indexPage = isset($_POST['index_page'])?htmlspecialchars($_POST['index_page']):NULL;
+				$idPage = ($_GET['idPage']);
 				$pageConfirm = new PageControl();
-				$pageIdConfirm = $pageConfirm ->verifDeletePage($_GET['idPage']);
+				$pageIdConfirm = $pageConfirm ->verifDeletePage($idPage);
 			}
 			else {
 				throw new Exception('Erreur lors de la confirmation');
@@ -94,9 +92,9 @@ try{
 		//supprimer une page
 		else if ($_GET['action'] == 'deletePage'){
 			if(isset($_GET['idPage']) && $_GET['idPage']>0){
-				$idPage = isset($_POST['idPage'])?htmlspecialchars($_POST['idPage']):NULL;
+				$idPage = ($_GET['idPage']);
 				$pageControl = new PageControl();
-				$pageDetail = $pageControl->pageDelete($_GET['idPage']);
+				$pageDetail = $pageControl->pageDelete($idPage);
 			}
 			else {
 				throw new Exception('Erreur lors de la suppression de la page');
@@ -142,6 +140,11 @@ try{
 			}
 		}
 
+		else if ($_GET['action'] == 'contactAdmin'){
+			$contactControl = new ContactControl;
+			$contactDetail = $contactControl->contactDetailAdmin();
+		}
+
 		else if ($_GET['action'] == 'contentUpdate'){
 			if(isset($_GET['id'])){
 				$id = isset($_POST['id'])?htmlspecialchars($_POST['id']):NULL;
@@ -149,13 +152,24 @@ try{
 				$content = isset($_POST['content'])?htmlspecialchars($_POST['content']):NULL;
 				$indexContent = isset($_POST['indexContent'])?htmlspecialchars($_POST['indexContent']):NULL;
 				$idPage = isset($_POST['idPage'])?htmlspecialchars($_POST['idPage']):NULL;
+				$latX = isset($_POST['latX'])?htmlspecialchars($_POST['latX']):NULL;
+				$longY = isset($_POST['longY'])?htmlspecialchars($_POST['longY']):NULL;
+				$nameCab = isset($_POST['nameCab'])?htmlspecialchars($_POST['nameCab']):NULL;
+				$adresse = isset($_POST['adresse'])?htmlspecialchars($_POST['adresse']):NULL;
+				$codePostal = isset($_POST['codePostal'])?htmlspecialchars($_POST['codePostal']):NULL;
+				$ville = isset($_POST['ville'])?htmlspecialchars($_POST['ville']):NULL;
+				$tel = isset($_POST['telephone'])?htmlspecialchars($_POST['telephone']):NULL;
+				$mail = isset($_POST['mail'])?htmlspecialchars($_POST['mail']):NULL;
 				$contentControl = new ContentControl;
-				$contentDetail = $contentControl->contentUpdate($_GET['id'],$title, $content, $indexContent, $idPage);
+				$contentDetail = $contentControl->contentUpdate($_GET['id'],$title, $content, $indexContent, $idPage, $latX, $longY, $nameCab, $adresse, $codePostal, $ville, $tel, $mail);
 			}
 			else {
 				throw new Exception('Aucun identifiant de section envoyé');
 			}
 		}
+
+
+
 		//confirmation de la mise à jour d'un contenu
 		else if ($_GET['action'] == 'confirmUpdateContent'){
 			if(isset($_GET['id'])){
@@ -200,11 +214,6 @@ try{
 		else if ($_GET['action'] == 'contentAllAdmin'){
 			$contentControl = new ContentControl();
 			$contentAdmin = $contentControl->contentAllAdmin();
-		}
-
-		else if ($_GET['action'] == 'contact'){
-			$contactControl = new ContactControl();
-			$contactDetail = $contactControl->contactDetail();
 		}
 
 		else if ($_GET['action'] == 'mentionsLegales'){
@@ -285,6 +294,11 @@ try{
 
 		else if ($_GET['action'] == 'erreur404'){
 			require 'view/ViewFrontEnd/error404View.php';
+		}
+
+		else if ($_GET['action'] == ''){
+			$accueilControl = new AccueilControl();
+			$accueilDetail = $accueilControl->accueilDetail();
 		}
 	}
 	else {

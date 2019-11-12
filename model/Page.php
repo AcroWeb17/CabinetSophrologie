@@ -13,7 +13,7 @@ class Page extends DataBase
 	public function getListPages()
 	{
 		$db = $this->dbConnect();
-		$listPages = $db->query('SELECT idPage, name, titlePage, index_page, picture FROM pages WHERE idPage != 10 ORDER BY index_page ASC');
+		$listPages = $db->query('SELECT idPage, name, titlePage, index_page, picture, contact FROM pages WHERE idPage != 10 ORDER BY index_page ASC');
 		return $listPages;
 	}
 
@@ -29,6 +29,15 @@ class Page extends DataBase
 		$db = $this->dbConnect();
 		$req= $db->prepare('SELECT idPage, name FROM pages WHERE name=?');
 		$req->execute(array($name));
+		$page = $req->fetch();
+		return $page;
+	}
+
+		public function verifDeletePage($idPage)
+	{
+		$db = $this->dbConnect();
+		$req= $db->prepare('SELECT idPage FROM pages WHERE idPage=?');
+		$req->execute(array($idPage));
 		$page = $req->fetch();
 		return $page;
 	}

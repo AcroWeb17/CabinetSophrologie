@@ -38,19 +38,21 @@
 							while($data = $content->fetch())
 							{
 						?>
-								<h2 class="titreSection"> <?= htmlspecialchars($data['title']) ?> </h2>
-								<img class="photo" src="<?=$data['picture'] ?>"alt="" title=""/>
-								<p class="contentPage">
-									<?= html_entity_decode($data['content']) ?>
-								</p>
-							<?php
-								if (isset($_SESSION['auth'])){
-							?>	
-									<div class="gpBtUpdate">
-										<a class="editButton" href="index.php?action=contentAdmin&id=<?= htmlspecialchars($data['id']) ?>">Mise à jour</a>
-										<a class="editButton" href="index.php?action=confirmDeleteContent&id=<?= htmlspecialchars($data['id']) ?>">Supprimer</a>
-									</div>
-							<?php
+								<div class="contentSection">
+									<h2 class="titreSection"> <?= htmlspecialchars($data['title']) ?> </h2>
+									<img class="photo" src="<?=$data['picture'] ?>"alt="" title=""/>
+									<p class="contentPage">
+										<?= html_entity_decode($data['content']) ?>
+									</p>
+								<?php
+									if (isset($_SESSION['auth'])){
+								?>	
+										<div class="gpBtUpdate">
+											<a class="editButton" href="index.php?action=contentAdmin&id=<?= htmlspecialchars($data['id']) ?>">Mise à jour</a>
+											<a class="editButton" href="index.php?action=confirmDeleteContent&id=<?= htmlspecialchars($data['id']) ?>">Supprimer</a>
+										</div>
+								</div>
+								<?php
 								}
 							?> 
 						<?php

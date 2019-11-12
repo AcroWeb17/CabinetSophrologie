@@ -2,6 +2,7 @@
 namespace Sophrologie\controller;
 use Sophrologie\model\Page;
 use Sophrologie\model\Content;
+use Sophrologie\model\Contact;
 
 
 class PageControl
@@ -23,6 +24,8 @@ class PageControl
 			if ($pageContact['contact'] === '1'){
 				$contentManager = new Content();
 				$content = $contentManager->getContentContact($_GET['name']);
+				$contactManager = new Contact();
+				$contact = $contactManager->getContact();
 				require('view/ViewFrontEnd/contactView.php');
 			}
 			else {
@@ -77,7 +80,7 @@ class PageControl
 	public function verifDeletePage($idPage)
 	{
 		$pageManager = new Page();
-		$page = $pageManager->getPage($_GET['idPage']);
+		$page = $pageManager->verifDeletePage($idPage);
 		require('view/ViewBackEnd/deletePageView.php');
 	}
 

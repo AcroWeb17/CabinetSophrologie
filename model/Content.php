@@ -20,7 +20,7 @@ class Content extends DataBase
 	public function getJoinContent()
 	{
 		$db = $this->dbConnect();
-		$req = $db->query('SELECT t2.id,t2.title, t2.content,t2.idPage, t1.titlePage FROM content t2 LEFT JOIN pages t1 ON t2.idPage = t1.idPage ORDER BY idPage ASC');
+		$req = $db->query('SELECT t2.id,t2.title, t2.content,t2.idPage, t1.titlePage, t1.contact FROM content t2 LEFT JOIN pages t1 ON t2.idPage = t1.idPage ORDER BY idPage ASC');
 		return $req;
 	}
 

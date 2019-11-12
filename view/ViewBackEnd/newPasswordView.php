@@ -23,31 +23,36 @@
 			<?php
 				if (isset($_SESSION['auth'])) {
 			?>
-				<h2 class="titreSection">Modification du mot de passe </h2>
-				<form id="formMdP" class="formNewMdp" method="post" action="index.php?action=updatePassword">
-					<label for="login"> Identifiant</label>
-					<input type="text" name="login" id="login" required /><br/><br/>
-					<label for="oldPassword">Mot de passe </label>
-					<input id="oldPassword" type="password" name="password" required /><br/><br/>
-					<label for="newPassword">Nouveau mot de passe </label>
-					<input id="newPassword" type="password" name="newPassword" required /><br/><br/>
-					<label for="confirmNewPassword">Confirmer le nouveau mot de passe </label>
-					<input id="confirmNewPassword" type="password" name="confirmNewPassword" required /><br/>
-					<div class="submitNewPassword">
-						<a class="button " href="accueil">Annuler</a>
-						<input type="submit" class="button" value="Valider" />
+					<h2 class="titreSection">Modification du mot de passe </h2>
+					<form id="formMdP" class="formNewMdp" method="post" action="index.php?action=updatePassword">
+						<label for="login"> Identifiant</label>
+						<input type="text" name="login" id="login" required /><br/><br/>
+						<label for="oldPassword">Mot de passe </label>
+						<input id="oldPassword" type="password" name="password" required /><br/><br/>
+						<label for="newPassword">Nouveau mot de passe </label>
+						<input id="newPassword" type="password" name="newPassword" required /><br/><br/>
+						<label for="confirmNewPassword">Confirmer le nouveau mot de passe </label>
+						<input id="confirmNewPassword" type="password" name="confirmNewPassword" required /><br/>
+						<div class="submitNewPassword">
+							<a class="button " href="accueil">Annuler</a>
+							<input type="submit" class="button" value="Valider" />
+						</div>
+					</form>
+					<!--Redirection automatique-->
+					<div id="redirectionNewPsw" class="redirection">
 					</div>
-				</form>
-				<!--Redirection automatique-->
-				<div id="redirectionNewPsw" class="redirection">
-				</div>
 			
 			<!--En mode Utilisateur-->
 			<?php
 				}
 				else {
 			?>
-					<h2 class="titreSection"> Vous n'avez pas les droits sur cette page </h2>
+					<section class="contenuDelete mainConnect">
+						<h2 class="titreSection">Vous n'avez pas les droits sur cette page</h2>
+						<div class="btSolo">
+							<a class="button btSolo" href="index.php?action=accueil">Page d'accueil</a>
+						</div>
+					</section>
 			<?php
 				}
 			?>	
@@ -60,7 +65,7 @@
 		</footer>
 		
 		<!--Fichier Javascript-->
-		<script src="public/js/userForm.js"></script>
+		<script src="public/js/userForm.js" defer></script>
 
 	</body>
 </html>
