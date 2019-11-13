@@ -41,7 +41,7 @@ try{
 			if(isset($_POST['name'])){
 				$title = isset($_POST['newTitle'])?htmlspecialchars($_POST['newTitle']):NULL;
 				$name = isset($_POST['name'])?htmlspecialchars($_POST['name']):NULL;
-				$picture = isset($_POST['picture'])?htmlspecialchars($_POST['picture']):NULL;
+				$picture = isset($_FILES['picture'])?$_FILES['picture']:NULL;
 				$indexPage = isset($_POST['indexPage'])?htmlspecialchars($_POST['indexPage']):NULL;
 				$pageNew = new PageControl();
 				$page = $pageNew->pageAdd($title, $name,$picture, $indexPage);
@@ -71,7 +71,7 @@ try{
 			$idPage = isset($_POST['id'])?htmlspecialchars($_POST['id']):NULL;
 			$title = isset($_POST['newTitle'])?htmlspecialchars($_POST['newTitle']):NULL;
 			$name = isset($_POST['name'])?htmlspecialchars($_POST['name']):NULL;
-			$picture = isset($_POST['picture'])?htmlspecialchars($_POST['picture']):NULL;
+			$picture = isset($_FILES['picture'])?$_FILES['picture']:NULL;
 			$indexPage = isset($_POST['indexPage'])?htmlspecialchars($_POST['indexPage']):NULL;
 			$pageControl = new PageControl;
 			$pageAdminDetail = $pageControl->pageUpdate($idPage,$name,$title,$picture, $indexPage);
@@ -120,9 +120,10 @@ try{
 				$title = isset($_POST['newTitle'])?htmlspecialchars($_POST['newTitle']):NULL;
 				$content = isset($_POST['content'])?htmlspecialchars($_POST['content']):NULL;
 				$idPage = isset($_POST['idPage'])?htmlspecialchars($_POST['idPage']):NULL;
+				$picture = isset($_FILES['picture'])?$_FILES['picture']:NULL;
 				$indexContent = isset($_POST['indexContent'])?htmlspecialchars($_POST['indexContent']):NULL;
 				$contentNew = new ContentControl();
-				$content = $contentNew->contentAdd($title, $content,$indexContent, $idPage);
+				$content = $contentNew->contentAdd($title, $content,$indexContent,$picture, $idPage);
 			}
 			else {
 				throw new Exception('Veuillez renseigner un nom de page valide');
@@ -150,6 +151,9 @@ try{
 				$id = isset($_POST['id'])?htmlspecialchars($_POST['id']):NULL;
 				$title = isset($_POST['newTitle'])?htmlspecialchars($_POST['newTitle']):NULL;
 				$content = isset($_POST['content'])?htmlspecialchars($_POST['content']):NULL;
+				$picture = isset($_FILES['picture'])?$_FILES['picture']:NULL;
+				$noPicture = isset($_POST['noPicture'])?$_POST['noPicture']:NULL;
+				var_dump($noPicture);
 				$indexContent = isset($_POST['indexContent'])?htmlspecialchars($_POST['indexContent']):NULL;
 				$idPage = isset($_POST['idPage'])?htmlspecialchars($_POST['idPage']):NULL;
 				$latX = isset($_POST['latX'])?htmlspecialchars($_POST['latX']):NULL;
@@ -161,7 +165,7 @@ try{
 				$tel = isset($_POST['telephone'])?htmlspecialchars($_POST['telephone']):NULL;
 				$mail = isset($_POST['mail'])?htmlspecialchars($_POST['mail']):NULL;
 				$contentControl = new ContentControl;
-				$contentDetail = $contentControl->contentUpdate($_GET['id'],$title, $content, $indexContent, $idPage, $latX, $longY, $nameCab, $adresse, $codePostal, $ville, $tel, $mail);
+				$contentDetail = $contentControl->contentUpdate($_GET['id'],$title,$picture,$noPicture, $content, $indexContent, $idPage, $latX, $longY, $nameCab, $adresse, $codePostal, $ville, $tel, $mail);
 			}
 			else {
 				throw new Exception('Aucun identifiant de section envoyé');

@@ -17,7 +17,6 @@ class PageControl
 			throw new \Exception('Cette page n\'existe pas!');		
 		}
 		else {
-
 			$pageManager = new Page();
 			$pageMenu = $pageManager->getListMenu();
 			$pageContact = $pageManager->getContact($_GET['name']);
@@ -50,30 +49,53 @@ class PageControl
 			$pageName = new Page();
 			$namePageVerif = $pageName->pageVerif($name);
 			if($namePageVerif==="0"){
-				$pageManager = new Page();
-				$newPage = $pageManager->postPage($title, $name, $picture,$indexPage);
-				if ($newPage === false){
-					throw new \Exception('Impossible d\'ajouter la page!');		
+				$pictureSrc = "";
+				if(!is_null($picture) && $picture!="" && $picture['error']==0){
+					$pictureSrc = $this->uploadPicture($picture, "public/Photos","page-".$name);
 				}
-				else {
-					header('Location: index.php?action=accueil');
-					exit();
+				if ($pictureSrc = ""){
+					throw new \Exception('La photo n\'est pas conforme');
+				} else {
+					$pageManager = new Page();
+					$newPage = $pageManager->postPage($title, $name, $pictureSrc,$indexPage);
+					if ($newPage === false){
+						throw new \Exception('Impossible d\'ajouter la page!');		
+					}
+					else {
+						header('Location: index.php?action=accueil');
+						exit();
+					}
 				}
-			}
-			else {
+			} else {
 				throw new \Exception('Cette page existe déjà');
 			}
 		} 
 		else {
 			throw new \Exception('Nom de page non conforme!');	
 		}
-
 	}
 	
 	public function pageUpdate($idPage,$name,$title,$picture, $indexPage)
 	{
+		$pictureSrc = "";
+		if(!is_null($picture) && $picture!="" && $picture['error']==0){
+			$pictureSrc = $this->uploadPicture($picture,"public/Photos","page-".$name);
+		}
 		$pageManager = new Page();
-		$page = $pageManager->modifyPage($idPage,$name,$title,$picture, $indexPage);
+		if ($pictureSrc == ""){
+			$pictureSrc = "public/Photos/page-".$name.".jpg";
+			$page = $pageManager->getPageFromId($idPage);
+			$oldNamePage = $page['name'];
+			$page = $pageManager->modifyPage($idPage,$name,$title,$pictureSrc, $indexPage);
+			$this->renamePicture("public/Photos/page-".$oldNamePage.".jpg",$pictureSrc);
+
+		} else {
+			$page = $pageManager->getPageFromId($idPage);
+			if ($page['name']!=$name){
+				$this->deletePicture("public/Photos","page-".$page['name']);
+			}
+			$page = $pageManager->modifyPage($idPage,$name,$title,$pictureSrc, $indexPage);
+		}
 		require('view/ViewBackEnd/confirmUpdatePageView.php');
 	}
 
@@ -87,11 +109,14 @@ class PageControl
 	public function pageDelete($idPage)
 	{
 		$pageManager = new Page();
+		$page = $pageManager->getPageFromId($idPage);
+		$pageName = $page['name'];
 		$page = $pageManager->suppPage($idPage);
 		if ($page === false){
-			throw new \Exception('Impossible de supprimer cette page!');		
+			throw new \Exception('Suppression impossible. Vider la page de son contenu avant de la supprimer à nouveau!');		
 		}
 		else {
+			$this->deletePicture("public/Photos","page-".$pageName);
 			header('Location: index.php?action=confPageDelete');
 			exit();	
 		}
@@ -102,6 +127,32 @@ class PageControl
 		$pageManager = new Page();
 		$pageMenu = $pageManager->getListMenu();
 		require 'view/ViewBackEnd/newPageView.php';
+	}
+
+	private function uploadPicture($picture,$folder,$name){
+		$extension = pathinfo($picture['name'])['extension'];
+		if ($extension!="jpg" && $extension!="jpeg"){
+			return "";
+		} else {
+			$path = $folder."/".$name.".jpg";
+			if (move_uploaded_file($picture["tmp_name"],$path)){
+				return $path;
+			} else {
+				return "";
+			}
+		}
+	}
+
+	private function renamePicture ($old, $new){
+		if (file_exists($old) && !file_exists($new)){
+			rename($old,$new);
+		}
+	}
+
+	private function deletePicture ($folder, $name){
+		if (file_exists($folder."/".$name.".jpg")){
+			unlink($folder."/".$name.".jpg");
+		}
 	}
 		
 }

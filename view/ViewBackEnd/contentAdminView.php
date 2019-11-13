@@ -26,17 +26,21 @@
 					<section class="sectionRubriques">
 						<div class="separationSections contenuRubriques">
 							<h2 class="titreSection"> <?= htmlspecialchars($contentDetail['title']); ?></h2>
-							<form class="styleForm" action="index.php?action=contentUpdate&id=<?= htmlspecialchars($contentDetail['id']); ?>" method="post" >
+							<form class="styleForm" action="index.php?action=contentUpdate&id=<?= htmlspecialchars($contentDetail['id']); ?>" method="post" enctype="multipart/form-data">
 								<div class="gpLabelAdmin">
 									<label class="labelAdmin" for="newTitle">Titre de la section:</label>
 									<input class="inputAdmin" type="text" id="newTitle" name="newTitle" value="<?= htmlspecialchars($contentDetail['title']); ?>" required/>
 								</div>
+
 								<div class="gpLabelAdmin">
 									<label class="labelAdmin" for="idPage">Nom de la page:</label>
 									<select  class="inputAdmin" type="text" id="idPage" name="idPage" />
 										<?php
 											while($menu = $listPages->fetch())
 											{
+												if (($contentDetail['idPage'])=="8" & ($menu['idPage'])!="8"){
+													continue;
+												}
 												$selected = "";
 												if (($contentDetail['idPage'])==($menu['idPage'])){
 													$selected="selected";
@@ -44,25 +48,29 @@
 										?>
 										<option <?= $selected ?> value="<?= ($menu['idPage'])?>"><?= htmlspecialchars($menu['titlePage']) ?></option>
 										<?php
-											}
+											} 
+											if (($contentDetail['idPage'])!="8"){
 										?> 
 										<option value="10">Brouillon</option>
+										<?php
+											}
+										?>
 									</select>
-								</div>
-								<div class="gpLabelAdmin">
-									<label class="labelAdmin" for="indexContent">Ordre du contenu dans la page:</label>
-									<input class="inputAdmin" type="number" id="indexContent" name="indexContent" value="<?= htmlspecialchars($contentDetail['index_content']); ?>" required/>
-								</div>
-								<div class="gpLabelAdmin">
-									<textarea class="largeTxtAdmin" name="content" rows="255" >
-										<?=html_entity_decode($contentDetail['content'])?>
-									</textarea>
 								</div>
 
 								<?php 
 									if(($contentDetail['idPage'])=='8')
 									{
-								?>
+								?>		
+										<div class="gpLabelAdmin">
+											<label class="labelAdmin" for="indexContent">Ordre du contenu dans la page:</label>
+											<input class="inputAdmin" readonly type="number" id="indexContent" name="indexContent" value="<?= htmlspecialchars($contentDetail['index_content']); ?>" required/>
+										</div>
+										<div class="gpLabelAdmin">
+											<textarea class="smallTxtAdmin" name="content" rows="255" >
+												<?=html_entity_decode($contentDetail['content'])?>
+											</textarea>
+										</div>
 										<div class="gpLabelAdmin">
 											<label class="labelAdmin" for="latX">Latitude X:</label>
 											<input class="inputAdmin" type="text" id="latX" name="latX" value="<?= htmlspecialchars($contactContent['latX']); ?>" required/>
@@ -95,15 +103,39 @@
 											<label class="labelAdmin" for="mail">Mail:</label>
 											<input class="inputAdmin" type="text" id="mail" name="mail" value="<?= htmlspecialchars($contactContent['mail']); ?>" required/>
 										</div>
-								<?php 
-									}
-								?>
+										<div class="gpBtUpdate">
+											<a class="editButton" href="index.php?action=contentAllAdmin">Annuler</a>
+											<input type="submit" class="editButton" value="Enregistrer" />
+										</div>
+									<?php 
+										}else {
+									?>
+											<div class="gpLabelAdmin">
+												<label class="labelAdmin" for="indexContent">Ordre du contenu dans la page:</label>
+												<input class="inputAdmin" type="number" id="indexContent" name="indexContent" value="<?= htmlspecialchars($contentDetail['index_content']); ?>" required/>
+											</div>
+											<div class="gpLabelAdmin">
+												<label class="labelAdmin" for="picture">Photo</label>
+												<input class="inputAdmin" type="file" id="picture" name="picture"/>
+											</div>
+											<div class="gpLabelAdmin">
+												<label class="labelAdmin" for="noPicture">Ce contenu n'a pas de photo</label>
+												<input class="inputAdmin" type="checkbox" id="noPicture" name="noPicture"/>
+											</div>
+											<div class="gpLabelAdmin">
+												<textarea class="largeTxtAdmin" name="content" rows="255" >
+													<?=html_entity_decode($contentDetail['content'])?>
+												</textarea>
+											</div>
+											<div class="gpBtUpdate">
+												<a class="editButton" href="index.php?action=contentAllAdmin">Annuler</a>
+												<input type="submit" class="editButton" value="Enregistrer" />
+												<a class="editButton" href="index.php?action=confirmDeleteContent&id=<?= htmlspecialchars($contentDetail['id']) ?>">Supprimer</a>
+											</div>
 
-								<div class="gpBtUpdate">
-									<a class="editButton" href="index.php?action=contentAllAdmin">Annuler</a>
-									<input type="submit" class="editButton" value="Enregistrer" />
-									<a class="editButton" href="index.php?action=confirmDeleteContent&id=<?= htmlspecialchars($contentDetail['id']) ?>">Supprimer</a>
-								</div>
+									<?php 
+										}
+									?>
 							</form>
 						</div>
 					</section>

@@ -28,6 +28,7 @@
 							<div class="gpBtUpdate">
 								<a class="editButton" href="index.php?action=newContent">Nouveau contenu</a>
 								<a class="editButton editPage" href="index.php?action=contentAllAdmin">Gestion des contenus</a>
+								<a class="editButton editPage" href="index.php?action=pageAdmin">Gestion des pages</a>
 							</div>
 					<?php
 						}
@@ -70,5 +71,7 @@
 			<?php include("public/footer.php");?>
 		</footer>
 		
+		<script src="public/js/backToTop.js" defer></script>
+
 	</body>
 </html>

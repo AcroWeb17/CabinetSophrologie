@@ -108,7 +108,7 @@
 		<!--<script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/build/ol.js" defer></script> --><!--fond de carte Openlayers-->
 		<script src="public/js/ol.js" defer></script>
 		<script src="public/js/map.js" defer></script>	<!--fichier Javascript de la carte-->
-
+		<script src="public/js/backToTop.js" defer></script>
 		
 	</body>
 </html>

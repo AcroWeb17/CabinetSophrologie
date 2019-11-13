@@ -33,6 +33,15 @@ class Page extends DataBase
 		return $page;
 	}
 
+		public function getPageFromid($idPage)
+	{
+		$db = $this->dbConnect();
+		$req= $db->prepare('SELECT idPage, name FROM pages WHERE idPage=?');
+		$req->execute(array($idPage));
+		$page = $req->fetch();
+		return $page;
+	}
+
 		public function verifDeletePage($idPage)
 	{
 		$db = $this->dbConnect();
@@ -71,7 +80,7 @@ class Page extends DataBase
 		return $pageCount;
 	}
 
-	//modifie le contenu d'une page
+	//modifie le contenu d'une page avec photo
 	public function modifyPage($idPage, $name, $title, $picture, $indexPage)
 	{
 		$db = $this->dbConnect();
@@ -79,6 +88,7 @@ class Page extends DataBase
 		$pageMaj = $req->execute(array($name, $title, $indexPage,$picture, $idPage));
 		return $pageMaj;
 	}
+
 
 	//suppression d'une page
 	public function suppPage($idPage)

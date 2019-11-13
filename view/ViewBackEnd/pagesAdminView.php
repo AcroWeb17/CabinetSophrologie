@@ -36,7 +36,7 @@
 							?>
 							<div class="separationSections">
 								<h3 class="titrePage"> <?= htmlspecialchars($data['titlePage']) ?> </h3>
-								<form class="styleForm" action="index.php?action=pageAdminUpdate" method="post" >
+								<form class="styleForm" action="index.php?action=pageAdminUpdate" method="post" enctype="multipart/form-data">
 									<div class="gpLabelAdmin">
 										<label class="labelAdmin hidden" for="id">Identifiant de la page:</label>
 										<input class="inputAdmin hidden" type="number" id="id" name="id" value="<?= htmlspecialchars($data['idPage']); ?>"/>
@@ -47,7 +47,7 @@
 									</div>
 									<div class="gpLabelAdmin">
 										<label class="labelAdmin" for="picture">Photo</label>
-										<input class="inputAdmin" type="file" id="picture" name="picture" value="<?= htmlspecialchars($data['picture']); ?>" required/>
+										<input class="inputAdmin" type="file" id="picture" name="picture"/>
 									</div>
 									<div class="gpLabelAdmin">
 										<label class="labelAdmin" for="name">Nom de la page:</label>

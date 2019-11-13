@@ -320,14 +320,6 @@ main
 	position:relative;
 }
 
-.photo
-{
-	position:absolute;
-	border-radius:50%;
-	top:-90px;
-	left:-90px;
-}
-
 .sectionRubriques
 {
 	flex:1;
@@ -408,6 +400,15 @@ main
 	text-align:right;
 	padding-right:60px;
 	background:linear-gradient(120deg, #FFF,#667A81 40%, #667A81 95%, #FFF);
+}
+
+.photo
+{
+	border-radius:50%;
+	width:200px;
+	height:200px;
+	margin-top:-160px;
+	margin-left:-135px;
 }
 
 .separationSections

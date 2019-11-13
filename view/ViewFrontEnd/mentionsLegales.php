@@ -53,5 +53,7 @@
 			<?php include("public/footer.php");?>
 		</footer>
 		
+		<script src="public/js/backToTop.js" defer></script>
+
 	</body>
 </html>

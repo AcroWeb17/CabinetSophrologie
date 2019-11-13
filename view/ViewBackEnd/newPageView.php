@@ -30,7 +30,7 @@
 							</div>
 
 							<div class="separationSections">
-								<form class="styleForm" action="index.php?action=addPage" method="post" >
+								<form class="styleForm" action="index.php?action=addPage" method="post" enctype="multipart/form-data">
 									<div class="gpLabelAdmin">
 										<label class="labelAdmin" for="newTitle">Titre de la page:</label>
 										<input class="inputAdmin" type="text" id="newTitle" name="newTitle" required/>

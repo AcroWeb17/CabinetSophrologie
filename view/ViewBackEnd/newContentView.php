@@ -30,7 +30,7 @@
 							</div>
 
 							<div class="separationSections">
-								<form class="styleForm" action="index.php?action=addContent" method="post" >
+								<form class="styleForm" action="index.php?action=addContent" method="post" enctype="multipart/form-data" >
 									<div class="gpLabelAdmin">
 										<label class="labelAdmin" for="newTitle">Titre de la section:</label>
 										<input class="inputAdmin" type="text" id="newTitle" name="newTitle" required/>
@@ -41,6 +41,9 @@
 												<?php
 													while($menu = $listPages->fetch())
 													{
+														if (($menu['idPage'])=="8"){
+															continue;
+														}
 												?>
 												<option value="<?= ($menu['idPage'])?>"><?= htmlspecialchars($menu['titlePage']) ?></option>
 												<?php
@@ -52,6 +55,10 @@
 									<div class="gpLabelAdmin">
 										<label class="labelAdmin" for="indexContent">Ordre du contenu dans la page</label>
 										<input class="inputAdmin" type="number" id="indexContent" name="indexContent" required/>
+									</div>
+									<div class="gpLabelAdmin">
+										<label class="labelAdmin" for="picture">Photo</label>
+										<input class="inputAdmin" type="file" id="picture" name="picture"/>
 									</div>
 									<div class="gpLabelAdmin">
 										<label class="labelAdmin" for="content">Contenu:</label>

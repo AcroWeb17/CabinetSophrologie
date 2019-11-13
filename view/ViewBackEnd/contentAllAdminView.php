@@ -51,7 +51,7 @@
 										?>
 												<div class="gpBtUpdate">
 													<a class="editButton" href="index.php?action=contentAdmin&id=<?= htmlspecialchars($data['id']) ?>">Modifier</a>
-													<a class="editButton" href="index.php?action=confirmDeletePage&idPage=<?= htmlspecialchars($data['idPage']); ?>">Supprimer</a>
+													<a class="editButton" href="index.php?action=confirmDeleteContent&id=<?= htmlspecialchars($data['id']); ?>">Supprimer</a>
 												</div>
 										<?php
 											} else {

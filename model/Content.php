@@ -55,11 +55,11 @@ class Content extends DataBase
 	}
 
 	//ajouter un contenu
-	public function postContent($title, $content, $indexContent,$idPage)
+	public function postContent($title, $content,$picture, $indexContent,$idPage)
 	{
 		$db = $this->dbConnect();
-		$req = $db->prepare('INSERT INTO content (title, content, picture, index_content,idPage) VALUES(?,?,0,?,?)');
-		$newContent = $req->execute(array($title, $content,$indexContent, $idPage));
+		$req = $db->prepare('INSERT INTO content (title, content, picture, index_content,idPage) VALUES(?,?,?,?,?)');
+		$newContent = $req->execute(array($title, $content,$picture,$indexContent, $idPage));
 		return $newContent;
 	}
 
@@ -74,12 +74,12 @@ class Content extends DataBase
 		return $contentCount;
 	}
 
-	//modifie le contenu d'une page
-	public function modifyContent($id, $title, $content, $indexContent, $idPage)
+	//modifie un contenu avec photo
+	public function modifyContent($id, $title, $picture, $content,$indexContent, $idPage)
 	{
 		$db = $this->dbConnect();
-		$req = $db->prepare('UPDATE content SET title=?, content=?, index_content=?, idPage=? WHERE id = ?');
-		$pageMaj = $req->execute(array($title, $content,$indexContent, $idPage, $id));
+		$req = $db->prepare('UPDATE content SET title=?, content=?, index_content=?, picture=?, idPage=? WHERE id = ?');
+		$pageMaj = $req->execute(array($title, $content,$indexContent, $picture, $idPage, $id));
 		return $pageMaj;
 	}
 
