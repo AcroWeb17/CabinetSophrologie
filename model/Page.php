@@ -9,49 +9,44 @@ class Page extends DataBase
 			$_indexPage,
 			$_picture;
 
-	//afficher la liste des pages
+	//Sélection des pages à l'exception de la page contact
 	public function getListPages()
 	{
 		$db = $this->dbConnect();
-		$listPages = $db->query('SELECT idPage, name, titlePage, index_page, picture, contact FROM pages WHERE idPage != 10 ORDER BY index_page ASC');
+		$listPages = $db->query('SELECT id_page, name, title_page, index_page, picture, contact FROM pages WHERE id_page != 10 ORDER BY index_page ASC');
 		return $listPages;
 	}
 
-		public function getListMenu()
+	//Affichage du menu à l'exception de la page contact
+	public function getListMenu()
 	{
 		$db = $this->dbConnect();
-		$listMenu = $db->query('SELECT idPage, name, titlePage, contact FROM pages WHERE idPage != 10 ORDER BY index_page ASC');
+		$listMenu = $db->query('SELECT id_page, name, title_page, contact FROM pages WHERE id_page != 10 ORDER BY index_page ASC');
 		return $listMenu;
 	}
 
+	//Sélection des pages à partir de leur nom
 	public function getPage($name)
 	{
 		$db = $this->dbConnect();
-		$req= $db->prepare('SELECT idPage, name FROM pages WHERE name=?');
+		$req= $db->prepare('SELECT id_page, name, title_page FROM pages WHERE name=?');
 		$req->execute(array($name));
 		$page = $req->fetch();
 		return $page;
 	}
 
-		public function getPageFromid($idPage)
+	//Sélection des pages à partir de leur identifiant
+	public function getPageFromid($idPage)
 	{
 		$db = $this->dbConnect();
-		$req= $db->prepare('SELECT idPage, name FROM pages WHERE idPage=?');
+		$req= $db->prepare('SELECT id_page, name FROM pages WHERE id_page=?');
 		$req->execute(array($idPage));
 		$page = $req->fetch();
 		return $page;
 	}
 
-		public function verifDeletePage($idPage)
-	{
-		$db = $this->dbConnect();
-		$req= $db->prepare('SELECT idPage FROM pages WHERE idPage=?');
-		$req->execute(array($idPage));
-		$page = $req->fetch();
-		return $page;
-	}
-
-		public function getContact($name)
+	//Sélection de la page Contact
+	public function getContact($name)
 	{
 		$db = $this->dbConnect();
 		$req = $db->prepare('SELECT contact FROM pages WHERE name=?');
@@ -60,16 +55,7 @@ class Page extends DataBase
 		return $contact;
 	}
 
-	//ajouter une page
-	public function postPage($title, $name, $photo, $indexPage)
-	{
-		$db = $this->dbConnect();
-		$req = $db->prepare('INSERT INTO pages (name,titlePage,index_page,picture,contact) VALUES(?,?,?,?,0)');
-		$newPage = $req->execute(array($name,$title, $indexPage,$photo));
-		return $newPage;
-	}
-
-	//verifie si le nom de page est existant
+	//Vérifie si le nom de page est existant
 	public function pageVerif($name)
 	{
 		$db = $this->dbConnect();
@@ -80,21 +66,39 @@ class Page extends DataBase
 		return $pageCount;
 	}
 
-	//modifie le contenu d'une page avec photo
+	//Ajouter une page
+	public function postPage($title, $name, $photo, $indexPage)
+	{
+		$db = $this->dbConnect();
+		$req = $db->prepare('INSERT INTO pages (name,title_page,index_page,picture,contact) VALUES(?,?,?,?,0)');
+		$newPage = $req->execute(array($name,$title, $indexPage,$photo));
+		return $newPage;
+	}
+
+	//Modifie le contenu d'une page
 	public function modifyPage($idPage, $name, $title, $picture, $indexPage)
 	{
 		$db = $this->dbConnect();
-		$req = $db->prepare('UPDATE pages SET name=?, titlePage=?, index_page=?, picture=? WHERE idPage=?');
+		$req = $db->prepare('UPDATE pages SET name=?, title_page=?, index_page=?, picture=? WHERE id_page=?');
 		$pageMaj = $req->execute(array($name, $title, $indexPage,$picture, $idPage));
 		return $pageMaj;
 	}
 
+	//Récupération des données avant suppression de la page
+	public function verifDeletePage($idPage)
+	{
+		$db = $this->dbConnect();
+		$req= $db->prepare('SELECT id_page FROM pages WHERE id_page=?');
+		$req->execute(array($idPage));
+		$page = $req->fetch();
+		return $page;
+	}
 
-	//suppression d'une page
+	//Suppression d'une page
 	public function suppPage($idPage)
 	{
 		$db = $this->dbConnect();
-		$req = $db->prepare('DELETE FROM pages WHERE idPage=?');
+		$req = $db->prepare('DELETE FROM pages WHERE id_page=?');
 		$pageDelete = $req->execute(array($idPage));
 		return $pageDelete;
 	}

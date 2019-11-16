@@ -2,19 +2,17 @@
 <html lang="fr">
 	<head>
 		<meta charset="UTF-8"/>
-		<title><?= htmlspecialchars($content['title']); ?> - Cabinet de Sophrologie</title>
+		<title><?php echo($contentDetail['title']);?> - Cabinet de Sophrologie</title>
 		<link rel="shortcut icon" href="public/Illustrations/favicon.ico"/>
 		<link rel="stylesheet" href="public/css/sophrologie.css"/>
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-		<meta name="description" content="Sophrologie Marine">
+		<meta name="description" content="Administration du contenu du site du Cabinet de Sophrologie">
 	</head>
 
 	<body>
 		<!--En tête-->
-		<header>
-			<?php include("public/header.php");?>
-		</header>
+		<?php include("public/header.php");?>
 
 		<!--Corps de page-->
 		<main class="mainPage">
@@ -38,18 +36,18 @@
 										<?php
 											while($menu = $listPages->fetch())
 											{
-												if (($contentDetail['idPage'])=="8" & ($menu['idPage'])!="8"){
+												if (($contentDetail['id_page'])=="8" & ($menu['id_page'])!="8"){
 													continue;
 												}
 												$selected = "";
-												if (($contentDetail['idPage'])==($menu['idPage'])){
+												if (($contentDetail['id_page'])==($menu['id_page'])){
 													$selected="selected";
 												}
 										?>
-										<option <?= $selected ?> value="<?= ($menu['idPage'])?>"><?= htmlspecialchars($menu['titlePage']) ?></option>
+										<option <?= $selected ?> value="<?= ($menu['id_page'])?>"><?= htmlspecialchars($menu['title_page']) ?></option>
 										<?php
 											} 
-											if (($contentDetail['idPage'])!="8"){
+											if (($contentDetail['id_page'])!="8"){
 										?> 
 										<option value="10">Brouillon</option>
 										<?php
@@ -59,7 +57,7 @@
 								</div>
 
 								<?php 
-									if(($contentDetail['idPage'])=='8')
+									if(($contentDetail['id_page'])=='8')
 									{
 								?>		
 										<div class="gpLabelAdmin">
@@ -89,7 +87,7 @@
 										</div>
 										<div class="gpLabelAdmin">
 											<label class="labelAdmin" for="codePostal">Code postal:</label>
-											<input class="inputAdmin" type="text" id="codePostal" name="codePostal" value="<?= htmlspecialchars($contactContent['codePostal']); ?>" required/>
+											<input class="inputAdmin" type="text" id="codePostal" name="codePostal" value="<?= htmlspecialchars($contactContent['code_postal']); ?>" required/>
 										</div>
 										<div class="gpLabelAdmin">
 											<label class="labelAdmin" for="ville">Ville:</label>
@@ -101,41 +99,40 @@
 										</div>
 										<div class="gpLabelAdmin">
 											<label class="labelAdmin" for="mail">Mail:</label>
-											<input class="inputAdmin" type="text" id="mail" name="mail" value="<?= htmlspecialchars($contactContent['mail']); ?>" required/>
+											<input class="inputAdmin" type="email" id="mail" name="mail" value="<?= htmlspecialchars($contactContent['mail']); ?>" required/>
 										</div>
 										<div class="gpBtUpdate">
 											<a class="editButton" href="index.php?action=contentAllAdmin">Annuler</a>
 											<input type="submit" class="editButton" value="Enregistrer" />
 										</div>
-									<?php 
-										}else {
-									?>
-											<div class="gpLabelAdmin">
-												<label class="labelAdmin" for="indexContent">Ordre du contenu dans la page:</label>
-												<input class="inputAdmin" type="number" id="indexContent" name="indexContent" value="<?= htmlspecialchars($contentDetail['index_content']); ?>" required/>
-											</div>
-											<div class="gpLabelAdmin">
-												<label class="labelAdmin" for="picture">Photo</label>
-												<input class="inputAdmin" type="file" id="picture" name="picture"/>
-											</div>
-											<div class="gpLabelAdmin">
-												<label class="labelAdmin" for="noPicture">Ce contenu n'a pas de photo</label>
-												<input class="inputAdmin" type="checkbox" id="noPicture" name="noPicture"/>
-											</div>
-											<div class="gpLabelAdmin">
-												<textarea class="largeTxtAdmin" name="content" rows="255" >
-													<?=html_entity_decode($contentDetail['content'])?>
-												</textarea>
-											</div>
-											<div class="gpBtUpdate">
-												<a class="editButton" href="index.php?action=contentAllAdmin">Annuler</a>
-												<input type="submit" class="editButton" value="Enregistrer" />
-												<a class="editButton" href="index.php?action=confirmDeleteContent&id=<?= htmlspecialchars($contentDetail['id']) ?>">Supprimer</a>
-											</div>
-
-									<?php 
-										}
-									?>
+								<?php 
+									} else {
+								?>
+										<div class="gpLabelAdmin">
+											<label class="labelAdmin" for="indexContent">Ordre du contenu dans la page:</label>
+											<input class="inputAdmin" type="number" id="indexContent" name="indexContent" value="<?= htmlspecialchars($contentDetail['index_content']); ?>" required/>
+										</div>
+										<div class="gpLabelAdmin">
+											<label class="labelAdmin" for="picture">Photo</label>
+											<input class="inputAdmin" type="file" id="picture" name="picture"/>
+										</div>
+										<div class="gpLabelAdmin">
+											<label class="labelAdmin" for="noPicture">Supprimer la photo du contenu</label>
+											<input class="checkboxAdmin" type="checkbox" id="noPicture" name="noPicture"/>
+										</div>
+										<div class="gpLabelAdmin">
+											<textarea class="largeTxtAdmin" name="content" rows="255" >
+												<?=html_entity_decode($contentDetail['content'])?>
+											</textarea>
+										</div>
+										<div class="gpBtUpdate">
+											<a class="editButton" href="index.php?action=contentAllAdmin">Annuler</a>
+											<input type="submit" class="editButton" value="Enregistrer" />
+											<a class="editButton" href="index.php?action=confirmDeleteContent&id=<?= htmlspecialchars($contentDetail['id']) ?>">Supprimer</a>
+										</div>
+								<?php 
+									}
+								?>
 							</form>
 						</div>
 					</section>
@@ -155,15 +152,14 @@
 			?>
 		</main>
 
-				<!--Pied de page-->
-		<footer>
-			<?php include("public/footer.php");?>
-		</footer>
+		<!--Pied de page-->
+		<?php include("public/footer.php");?>
 
-		<!--Fichiers Javascript-->
+		<!--Script-->
 		<script src="tinymce/tinymce.min.js"></script>
 		<script src="tinymce/themes/silver/theme.min.js"></script>
 		<script src="tinymce/parametresTinyMCE.js"></script>
+		<?php include("public/scripts.php");?>
 		
 	</body>
 </html>

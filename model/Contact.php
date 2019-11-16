@@ -11,19 +11,31 @@ class Contact extends DataBase
 			$_telephone,
 			$_mail;
 
+	//Sélection des données
 	public function getContact()
 	{
 		$db = $this->dbConnect();
-		$req = $db->prepare('SELECT id, latX, longY, name, adresse, codePostal, ville, telephone, mail FROM contact WHERE id=1');
+		$req = $db->prepare('SELECT id, latX, longY, name, adresse, code_postal, ville, telephone, mail FROM contact WHERE id=1');
 		$req->execute(array());
 		$contact = $req->fetch();
 		return $contact;
 	}
 
+	//Sélection du mail
+	public function getMail($mail)
+	{
+		$db = $this->dbConnect();
+		$req = $db->prepare('SELECT mail FROM contact');
+		$req->execute(array($mail));
+		$contactArray = $req->fetch();
+		return $contact;
+	}
+
+	//Modification des données
 	public function modifyContact($latX, $longY, $nameCab, $adresse, $codePostal, $ville, $tel, $mail)
 	{
 		$db = $this->dbConnect();
-		$req = $db->prepare('UPDATE contact SET latX=?, longY=?, name=?, adresse=?, codePostal=?, ville=?, telephone=?, mail=?');
+		$req = $db->prepare('UPDATE contact SET latX=?, longY=?, name=?, adresse=?, code_postal=?, ville=?, telephone=?, mail=?');
 		$pageMaj = $req->execute(array($latX, $longY, $nameCab, $adresse, $codePostal, $ville, $tel, $mail));
 		return $pageMaj;
 	}

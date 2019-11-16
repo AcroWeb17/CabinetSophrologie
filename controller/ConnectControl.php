@@ -20,12 +20,10 @@ class ConnectControl
 	//vérification du login et mdp pour connexion
 	public function interfaceAdmin($login,$password)
 	{
-
 		$response  = [
             'status'=>'',
             'msgHtml'=>''
         ];
-
 		if(!empty($_POST) && !empty($_POST['login']) && !empty($_POST['password'])){
 			$passwordConnect = new Users();
 			$passwordCo = $passwordConnect->passwordVerif($login,$password);
@@ -49,21 +47,17 @@ class ConnectControl
 	            'msgHtml'=>'<p>La connexion a échoué pour raisons techniques. Nous vous prions de bien vouloir ré-essayer plus tard.</p>'
 	        ];
 		}
-
 		echo json_encode($response);
         exit();
-
 	}
 
 	//modification du mot de passe
 	public function updatePassword($login, $password, $newPassword)
 	{	
-		
 		$response  = [
             'status'=>'',
             'msgHtml'=>''
         ];
-
 		if(!empty($_POST) && !empty($_POST['login']) && !empty($_POST['password'])){
 			$passwordConnect = new Users();
 			$passwordCo = $passwordConnect->passwordVerif($login,$password);
@@ -76,22 +70,19 @@ class ConnectControl
 					            'status'=>'error',
 					            'msgHtml'=>'<p>Le changement de mot de passe a échoué pour raisons techniques. Nous vous prions de bien vouloir ré-essayer plus tard.</p>'
 					        ];
-						}
-						else {
+						} else {
 							$response  = [
 					            'status'=>'success',
 					            'msgHtml'=>'<p>Votre mot de passe a bien été modifié.<br/> Vous allez être redirigé vers la page d\'accueil dans quelques instants...</p>'
 					        ];
 						}
-				}
-				else {
+				} else {
 					$response  = [
 			            'status'=>'error',
 			            'msgHtml'=>'<p>Les nouveaux mots de passe ne sont pas identiques.</p>'
 			        ];
 				}
-			}
-			else {
+			} else {
 				$response  = [
 		            'status'=>'error',
 		            'msgHtml'=>'<p>Nom d\'utilisateur ou mot de passe incorrect.</p>'
@@ -104,10 +95,7 @@ class ConnectControl
 	            'msgHtml'=>'<p>Veuillez remplir tous les champs.</p>'
 	        ];
 		}
-
 		echo json_encode($response);
     	exit();
-
 	}
-	
 }

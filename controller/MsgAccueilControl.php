@@ -15,7 +15,7 @@ class MsgAccueilControl
 		require('view/ViewBackEnd/msgAccueilAdminView.php');
 	}
 
-	//mise à jour de la page d'accueil
+	//mise à jour du message de la page d'accueil
 	public function updateMsgAccueil($content)
 	{
 		$msgAccueilModify = new MessageAccueil();

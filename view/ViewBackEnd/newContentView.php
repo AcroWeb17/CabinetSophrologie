@@ -7,13 +7,12 @@
 		<link rel="stylesheet" href="public/css/sophrologie.css"/>
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-		<meta name="description" content="Sophrologie Marine">
+		<meta name="description" content="Formulaire de nouveau contenu pour le site du Cabinet de Sophrologie">
 	</head>
 
 	<body>
-		<header>
-			<?php include("public/header.php");?>
-		</header>
+		<!--En-tête-->
+		<?php include("public/header.php");?>
 
 		<!--Corps de page-->
 		<main class="mainPage">
@@ -25,8 +24,8 @@
 						<div class="contenuRubriques">
 							<h2 class="titreSection"> Nouveau contenu </h2>
 							<div class="gpBtUpdate">
-								<a class="editButton" href="index.php?action=contentAllAdmin">Annuler</a>
-								<a class="editButton" href="index.php?action=accueil">Retour à la page d'accueil</a>
+								<a class="editButton editPage" href="index.php?action=contentAllAdmin">Annuler</a>
+								<a class="editButton editPage" href="index.php?action=accueil">Retour à la page d'accueil</a>
 							</div>
 
 							<div class="separationSections">
@@ -41,15 +40,15 @@
 												<?php
 													while($menu = $listPages->fetch())
 													{
-														if (($menu['idPage'])=="8"){
+														if (($menu['id_page'])=="8"){
 															continue;
 														}
 												?>
-												<option value="<?= ($menu['idPage'])?>"><?= htmlspecialchars($menu['titlePage']) ?></option>
+														<option value="<?= ($menu['id_page'])?>"><?= htmlspecialchars($menu['title_page']) ?></option>
 												<?php
 													}
 												?> 
-												<option selected value="10">Brouillon</option>
+														<option selected value="10">Brouillon</option>
 										</select>
 									</div>
 									<div class="gpLabelAdmin">
@@ -87,12 +86,13 @@
 		</main>
 
 		<!--Pied de page-->
-		<footer>
-			<?php include("public/footer.php");?>
-		</footer>
-				<!--Fichiers Javascript-->
+		<?php include("public/footer.php");?>
+		
+		<!--Scripts-->
+		<?php include("public/scripts.php");?>
 		<script src="tinymce/tinymce.min.js"></script>
 		<script src="tinymce/themes/silver/theme.min.js"></script>
 		<script src="tinymce/parametresTinyMCE.js"></script>
+		
 	</body>
 </html>

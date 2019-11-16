@@ -16,6 +16,5 @@ class ContactControl
 		$contentManager = new Content();
 		$contentDetail= $contentManager->getAdminContentPage($_GET['id']);
 		require('view/ViewBackEnd/contactAdminView.php');
-		
 	}
 }

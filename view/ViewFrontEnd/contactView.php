@@ -7,14 +7,12 @@
 		<link rel="stylesheet" href="public/css/sophrologie.css"/>
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-		<meta name="description" content="Sophrologie Marine">
+		<meta name="description" content="Page de contact du site du Cabinet de Sophrologie">
 	</head>
 
 	<body>
 		<!--En tête-->
-		<header>
-			<?php include("public/header.php");?>
-		</header>
+		<?php include("public/header.php");?>
 
 		<!--Corps de page-->
 		<main class="mainPage">
@@ -39,16 +37,14 @@
 						<div id="map_viewer">
 							<p id="sources">© AcroWeb - 2019 <br/> Fond de carte: © OpenStreetMap<br/> </p>
 						</div>
-
 					</div>
 					<div class="coordonnees">
 						<input id="latX" type="hidden" value="<?= html_entity_decode($contact['latX']) ?>" disabled />
 						<input id="longY" type="hidden" value="<?= html_entity_decode($contact['longY']) ?>" disabled />
 						<p class="contentContact"><?= html_entity_decode($contact['name']) ?> </p>
 						<p class="contentContact"><?= html_entity_decode($contact['adresse']) ?> </p>
-						<p class="contentContact"><?= html_entity_decode($contact['codePostal']) ?> <?= html_entity_decode($contact['ville']) ?> </p>
+						<p class="contentContact"><?= html_entity_decode($contact['code_postal']) ?> <?= html_entity_decode($contact['ville']) ?> </p>
 						<p class="contentContact"><?= html_entity_decode($contact['telephone']) ?> </p>
-						<p class="contentContact"><?= html_entity_decode($contact['mail']) ?> </p> 
 						<?php
 							if (isset($_SESSION['auth'])){
 						?>	
@@ -70,7 +66,7 @@
 						</div>
 						<div class="gpLabelContact">
 							<label class="labelContact" for="mailUser">Votre adresse mail</label>
-							<input class="inputContact" type="mail" id="mailUser" name="mailUser"/>
+							<input class="inputContact" type="email" id="mailUser" name="mailUser"/>
 						</div>
 						<div class="gpLabelContact">
 							<label class="labelContact" for="telUser">Votre téléphone</label>
@@ -78,7 +74,7 @@
 						</div>
 						<div class="gpLabelContact gpLabelContactVertical">
                             <label class="labelContact" for="msgUser">Votre message *</label>
-							<textarea class="txtContact" rows="15" id="msgUser" name="msgUser"></textarea>
+							<textarea class="txtContact" rows="15" id="msgUser" name="msgUser" required></textarea>
 						</div>
 						<div class="gpLabelContact">
 							<input class="btSend" type="submit" value="Envoyer" />
@@ -93,22 +89,20 @@
                             </ul>
                         </div>
 					</form>
-
 					<a id="retourHtPage" class="retourHtPage" href="#"><i class="fas fa-arrow-alt-circle-up"></i>Retour en haut de la page</a>
 				</div>
 			</section>
 		</main>
 
 		<!--Pied de page-->
-		<footer>
-			<?php include("public/footer.php");?>
-		</footer>
+		<?php include("public/footer.php");?>
 
+		<!--Scripts-->
+		<?php include("public/scripts.php");?>
 		<script src="public/js/contactForm.js" defer></script>
-		<!--<script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/build/ol.js" defer></script> --><!--fond de carte Openlayers-->
 		<script src="public/js/ol.js" defer></script>
 		<script src="public/js/map.js" defer></script>	<!--fichier Javascript de la carte-->
-		<script src="public/js/backToTop.js" defer></script>
+
 		
 	</body>
 </html>

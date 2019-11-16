@@ -1,9 +1,6 @@
 class contactForm {
     
     constructor(contactFormId, contactFirstNameId, contactLastNameId, contactMailId, contactTelId, contactMsgId, contactErrorId, contactSuccessId, contactLoadingId) {
-        
-        var thisContactForm = this;
-        
         // Eléments HTML du formulaire
         this.contactFormElt = document.getElementById(contactFormId);
         this.contactFirstNameInput = document.getElementById(contactFirstNameId);
@@ -16,9 +13,9 @@ class contactForm {
         this.contactLoadingDiv = document.getElementById(contactLoadingId);
         
         // Validation du formulaire
-        this.contactFormElt.addEventListener ('submit',function(e) {
+        this.contactFormElt.addEventListener ('submit',(e)=> {
 			e.preventDefault();
-            thisContactForm.formValid();
+            this.formValid();
 		});
         
     }
@@ -32,9 +29,7 @@ class contactForm {
     
     // Vérification du bon remplissage des champs et affichage d'un message d'erreur le cas échéant
     inputsVerif() {
-        
         var errors = '';
-        
         if (this.contactFirstNameInput.value=='') {
             errors += '<li>Veuillez fournir un prénom.</li>';
         }
@@ -47,7 +42,7 @@ class contactForm {
         if (this.contactMsgInput.value=='') {
             errors += '<li>Veuillez remplir le message que vous souhaitez m\'adresser.</li>';
         }
-        
+
         if (errors=='') {
             this.contactErrorDiv.innerHTML = '';
             return true;
@@ -88,12 +83,11 @@ class contactForm {
     
     // Affichage de la réponse
     displayResponse(responseText,thisContactForm) {
-        
         var response = {
             'status': '',
             'msgHtml': ''
         };
-        
+
         try {
             response = JSON.parse(responseText);
         } catch (e) {
@@ -108,9 +102,7 @@ class contactForm {
             thisContactForm.contactErrorDiv.innerHTML = '';
             thisContactForm.contactSuccessDiv.innerHTML = response.msgHtml;
         }
-        
     }
-    
 }
 
 new contactForm('formContact','prenomUser','nomUser','mailUser','telUser','msgUser','contactErrorMsg','contactSuccessMsg','formLoading');

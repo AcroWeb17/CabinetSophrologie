@@ -7,13 +7,12 @@
 		<link rel="stylesheet" href="public/css/sophrologie.css"/>
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-		<meta name="description" content="Sophrologie Marine">
+		<meta name="description" content="Administration des pages du site du Cabinet de Sophrologie">
 	</head>
 
 	<body>
-		<header>
-			<?php include("public/header.php");?>
-		</header>
+		<!--En-tête-->
+		<?php include("public/header.php");?>
 
 		<!--Corps de page-->
 		<main class="mainPage">
@@ -25,61 +24,61 @@
 						<div class="contenuRubriques">
 							<h2 class="titreSection"> Gestion des pages </h2>
 							<div class="gpBtUpdate">
-								<a class="editButton" href="index.php?action=newPage">Nouvelle Page</a>
-								<a class="editButton" href="index.php?action=contentAllAdmin">Gestion des contenus</a>
-								<a class="editButton" href="index.php?action=accueil">Retour à la page d'accueil</a>
+								<a class="editButton editPage" href="index.php?action=newPage">Nouvelle Page</a>
+								<a class="editButton editPage" href="index.php?action=contentAllAdmin">Gestion des contenus</a>
+								<a class="editButton editPage" href="index.php?action=accueil">Retour à la page d'accueil</a>
 							</div>
 							<?php
-							//Affichage des rubriques
+								//Affichage des rubriques
 								while($data = $page->fetch())
 								{
 							?>
-							<div class="separationSections">
-								<h3 class="titrePage"> <?= htmlspecialchars($data['titlePage']) ?> </h3>
-								<form class="styleForm" action="index.php?action=pageAdminUpdate" method="post" enctype="multipart/form-data">
-									<div class="gpLabelAdmin">
-										<label class="labelAdmin hidden" for="id">Identifiant de la page:</label>
-										<input class="inputAdmin hidden" type="number" id="id" name="id" value="<?= htmlspecialchars($data['idPage']); ?>"/>
-									</div>
-									<div class="gpLabelAdmin">
-										<label class="labelAdmin" for="newTitle">Titre de la page:</label>
-										<input class="inputAdmin" type="text" id="newTitle" name="newTitle" value="<?= htmlspecialchars($data['titlePage']); ?>" required/>
-									</div>
-									<div class="gpLabelAdmin">
-										<label class="labelAdmin" for="picture">Photo</label>
-										<input class="inputAdmin" type="file" id="picture" name="picture"/>
-									</div>
-									<div class="gpLabelAdmin">
-										<label class="labelAdmin" for="name">Nom de la page:</label>
-										<input class="inputAdmin" type="text" id="name" name="name" value="<?= htmlspecialchars($data['name']); ?>" required/>
-									</div>
-									<div class="gpLabelAdmin">
-										<label class="labelAdmin" for="indexPage">Ordre de la page:</label>
-										<input class="inputAdmin" type="number" id="indexPage" name="indexPage" value="<?= htmlspecialchars($data['index_page']); ?>" required/>
-									</div>
-									<?php
-										if ($data['contact'] === '0'){
-									?>
-											<div class="gpBtUpdate">
-												<input type="submit" class="editButton" value="Enregistrer" />
-												<a class="editButton" href="index.php?action=confirmDeletePage&idPage=<?= htmlspecialchars($data['idPage']); ?>">Supprimer</a>
+									<div class="separationSections">
+										<h3 class="titrePage"> <?= htmlspecialchars($data['title_page']) ?> </h3>
+										<form class="styleForm" action="index.php?action=pageAdminUpdate" method="post" enctype="multipart/form-data">
+											<div class="gpLabelAdmin">
+												<label class="labelAdmin hidden" for="id">Identifiant de la page:</label>
+												<input class="inputAdmin hidden" type="number" id="id" name="id" value="<?= htmlspecialchars($data['id_page']); ?>"/>
 											</div>
-									<?php
-										} else {
-									?>
-											<div class="gpBtUpdate">
-												<input type="submit" class="editButton" value="Enregistrer" />
+											<div class="gpLabelAdmin">
+												<label class="labelAdmin" for="newTitle">Titre de la page:</label>
+												<input class="inputAdmin" type="text" id="newTitle" name="newTitle" value="<?= htmlspecialchars($data['title_page']); ?>" required/>
 											</div>
-									<?php
-										}
-									?>
-								</form>
-							</div>
-						<?php
-							}
-						?> 
-					</div>
-				</section>
+											<div class="gpLabelAdmin">
+												<label class="labelAdmin" for="picture">Photo</label>
+												<input class="inputAdmin" type="file" id="picture" name="picture" required/>
+											</div>
+											<div class="gpLabelAdmin">
+												<label class="labelAdmin" for="name">Nom de la page:</label>
+												<input class="inputAdmin" type="text" id="name" name="name" value="<?= htmlspecialchars($data['name']); ?>" required/>
+											</div>
+											<div class="gpLabelAdmin">
+												<label class="labelAdmin" for="indexPage">Ordre de la page:</label>
+												<input class="inputAdmin" type="number" id="indexPage" name="indexPage" value="<?= htmlspecialchars($data['index_page']); ?>" required/>
+											</div>
+											<?php
+												if ($data['contact'] === '0'){
+											?>
+													<div class="gpBtUpdate">
+														<input type="submit" class="editButton editPage" value="Enregistrer" />
+														<a class="editButton editPage" href="index.php?action=confirmDeletePage&idPage=<?= htmlspecialchars($data['id_page']); ?>">Supprimer</a>
+													</div>
+											<?php
+												} else {
+											?>
+													<div class="gpBtUpdate">
+														<input type="submit" class="editButton" value="Enregistrer" />
+													</div>
+											<?php
+												}
+											?>
+										</form>
+									</div>
+							<?php
+								}
+							?> 
+						</div>
+					</section>
 			<?php
 				} else {
 			?> 
@@ -92,13 +91,14 @@
 			<?php
 				}
 			?> 
-				<a id="retourHtPage"class="retourHtPage" href="#"><i class="fas fa-arrow-alt-circle-up"></i>Retour en haut de la page</a>
+			<a id="retourHtPage"class="retourHtPage" href="#"><i class="fas fa-arrow-alt-circle-up"></i>Retour en haut de la page</a>
 		</main>
 
 		<!--Pied de page-->
-		<footer>
-			<?php include("public/footer.php");?>
-		</footer>
+		<?php include("public/footer.php");?>
+
+		<!--Scripts-->
+		<?php include("public/scripts.php");?>
 		
 	</body>
 </html>

@@ -6,7 +6,7 @@ class MessageAccueil extends DataBase
 	private $_id,
 			$_content;
 
-	//affichage de le message d'accueil
+	//Affichage du message d'accueil
 	public function getContentMessage()
 	{
 		$db = $this->dbConnect();
@@ -16,7 +16,7 @@ class MessageAccueil extends DataBase
 		return $txtPresentation;
 	}
 
-	//mise à jour du message d'accueil
+	//Mise à jour du message d'accueil
 	public function modifMsgAccueil($content)
 	{
 		$db = $this->dbConnect();
@@ -24,5 +24,4 @@ class MessageAccueil extends DataBase
 		$majMsgAccueil =$req->execute(array($content));
 		return $majMsgAccueil;
 	}
-
 }

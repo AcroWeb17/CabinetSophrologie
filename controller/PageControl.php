@@ -4,15 +4,22 @@ use Sophrologie\model\Page;
 use Sophrologie\model\Content;
 use Sophrologie\model\Contact;
 
-
 class PageControl
 {
+	//Interface de navigation
+	//Affichage du menu
+	public function pageMenu()
+	{
+		$pageManager = new Page();
+		$pageMenu = $pageManager->getListMenu();
+		require 'view/ViewBackEnd/newPageView.php';
+	}
 
+	//Affichage des éléments sur une page
 	public function pageDetail()
 	{
 		$pageManager = new Page();
 		$page = $pageManager->getPage($_GET['name']);
-
 		if ($page === false){
 			throw new \Exception('Cette page n\'existe pas!');		
 		}
@@ -35,6 +42,8 @@ class PageControl
 		}
 	}
 
+	//Administration
+	//Administration des intitulés des pages
 	public function pageAdmin()
 	{
 		$pageManager = new Page();
@@ -43,6 +52,7 @@ class PageControl
 		require('view/ViewBackEnd/pagesAdminView.php');
 	}
 
+	//Ajouter une page
 	public function pageAdd($title, $name, $picture, $indexPage)
 	{
 		if(!empty($_POST) && !empty($_POST['name'])){
@@ -60,8 +70,7 @@ class PageControl
 					$newPage = $pageManager->postPage($title, $name, $pictureSrc,$indexPage);
 					if ($newPage === false){
 						throw new \Exception('Impossible d\'ajouter la page!');		
-					}
-					else {
+					} else {
 						header('Location: index.php?action=accueil');
 						exit();
 					}
@@ -69,12 +78,13 @@ class PageControl
 			} else {
 				throw new \Exception('Cette page existe déjà');
 			}
-		} 
-		else {
+
+		} else {
 			throw new \Exception('Nom de page non conforme!');	
 		}
 	}
 	
+	//Mettre à jour une page
 	public function pageUpdate($idPage,$name,$title,$picture, $indexPage)
 	{
 		$pictureSrc = "";
@@ -88,7 +98,6 @@ class PageControl
 			$oldNamePage = $page['name'];
 			$page = $pageManager->modifyPage($idPage,$name,$title,$pictureSrc, $indexPage);
 			$this->renamePicture("public/Photos/page-".$oldNamePage.".jpg",$pictureSrc);
-
 		} else {
 			$page = $pageManager->getPageFromId($idPage);
 			if ($page['name']!=$name){
@@ -99,6 +108,7 @@ class PageControl
 		require('view/ViewBackEnd/confirmUpdatePageView.php');
 	}
 
+	//Vérification avant suppression d'une page
 	public function verifDeletePage($idPage)
 	{
 		$pageManager = new Page();
@@ -106,6 +116,7 @@ class PageControl
 		require('view/ViewBackEnd/deletePageView.php');
 	}
 
+	//Suppression d'une page
 	public function pageDelete($idPage)
 	{
 		$pageManager = new Page();
@@ -122,13 +133,8 @@ class PageControl
 		}
 	}
 
-	public function pageMenu()
-	{
-		$pageManager = new Page();
-		$pageMenu = $pageManager->getListMenu();
-		require 'view/ViewBackEnd/newPageView.php';
-	}
-
+	//Gestion des photos
+	//Téléchargement d'une photo
 	private function uploadPicture($picture,$folder,$name){
 		$extension = pathinfo($picture['name'])['extension'];
 		if ($extension!="jpg" && $extension!="jpeg"){
@@ -143,12 +149,14 @@ class PageControl
 		}
 	}
 
+	//Renommage d'une photo
 	private function renamePicture ($old, $new){
 		if (file_exists($old) && !file_exists($new)){
 			rename($old,$new);
 		}
 	}
 
+	//Suppression d'une photo
 	private function deletePicture ($folder, $name){
 		if (file_exists($folder."/".$name.".jpg")){
 			unlink($folder."/".$name.".jpg");

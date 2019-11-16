@@ -1,17 +1,19 @@
 class backToTop {
     
     constructor(btnId) {
-        var thisBackToTop = this;
         this.backToTopBtn = document.getElementById(btnId);
         this.toggleBtn();
-        window.addEventListener('scroll', function(e) {
-            thisBackToTop.toggleBtn();
+        window.addEventListener('scroll', (e)=> {
+            this.toggleBtn();
         },false);
         
-        this.backToTopBtn.addEventListener('click',function(e) {
-			e.preventDefault();
-            thisBackToTop.goBackToTop();
-		});
+        if (this.backToTopBtn){
+             this.backToTopBtn.addEventListener('click',(e)=> {
+            e.preventDefault();
+            this.goBackToTop();
+             });
+        }
+
     }
     
     //Affichage ou non du bouton en fonction de sa position dans la page

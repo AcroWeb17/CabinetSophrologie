@@ -1,18 +1,15 @@
 class userForm {
     
-    constructor(userFormId,userMsgId,urlRedirect) {
-        
-        var thisUserForm = this;
-        
+    constructor(userFormId,userMsgId,urlRedirect) {     
         // Eléments HTML du formulaire
         this.userFormElt = document.getElementById(userFormId);
         this.userFormDiv = document.getElementById(userMsgId);
         this.urlRedirect = urlRedirect;
         
         // Validation du formulaire
-        this.userFormElt.addEventListener ('submit',function(e) {
+        this.userFormElt.addEventListener ('submit',(e)=> {
 			e.preventDefault();
-            thisUserForm.callRequest();
+            this.callRequest();
 		});
         
     }
@@ -41,7 +38,6 @@ class userForm {
     
     // Affichage de la réponse du formulaire de connnexion
     displayResponse(responseText,thisUserForm) {
-        
         var response = {
             'status': '',
             'msgHtml': ''
@@ -60,9 +56,7 @@ class userForm {
                window.location = thisUserForm.urlRedirect;
             },2000);
         }
-
     }
-    
 }
 
 if (document.getElementById('formConnexion') && document.getElementById('redirectionConnect')) {

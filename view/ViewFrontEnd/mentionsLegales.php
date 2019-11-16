@@ -7,14 +7,12 @@
 		<link rel="stylesheet" href="public/css/sophrologie.css"/>
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-		<meta name="description" content="Sophrologie Marine">
+		<meta name="description" content="Mentions légales du site du Cabinet de Sophrologie">
 	</head>
 
 	<body>
 		<!--En tête-->
-		<header>
-			<?php include("public/header.php");?>
-		</header>
+		<?php include("public/header.php");?>
 
 		<!--Corps de page-->
 		<main class="mainMLegales">
@@ -45,15 +43,13 @@
 			<div class=" accueilML">
 				<a class="button" href="index.php?action=accueil">Page d'accueil</a>
 			</div>
-
 		</main>	
 
 		<!--Pied de page-->
-		<footer>
-			<?php include("public/footer.php");?>
-		</footer>
-		
-		<script src="public/js/backToTop.js" defer></script>
+		<?php include("public/footer.php");?>
+
+		<!--Scripts-->
+		<?php include("public/scripts.php");?>
 
 	</body>
 </html>

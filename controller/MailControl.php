@@ -1,10 +1,10 @@
 <?php
 namespace Sophrologie\controller;
 use Sophrologie\model\Users;
+use Sophrologie\model\Contact;
 
 class MailControl
 {   
-    
     private $sautLigne = "\r\n";
 
 	// Envoi de message depuis le formulaire de contact
@@ -36,7 +36,9 @@ class MailControl
                 //Paramètres des mails envoyés et reçus
                 // Création des variables destinataire, sujet et headers
                 $boundary = "-----=".md5(rand());
-                $admin = "acroweb@orange.fr";
+                $adminMailContact = new Contact();
+                $adminArray = $adminMailContact->getMail($mailAdmin);
+                $admin = $adminArray['mail'];
                 $subject = "Message de: cabinet-sophrologie";                
 			    $headers = $this->prepareHeaders('Cabinet de Sophrologie','ne-pas-repondre@alwaysdata.net',$boundary);
                 
@@ -94,7 +96,7 @@ class MailControl
                     ];
                 } else {
                     $response  = [
-                        'status'=>'success',
+                        'status'=>'echec',
                         'msgHtml'=>'<p>L\'envoi de votre message a échoué pour raisons techniques. Nous vous prions de bien vouloir ré-essayer plus tard.</p>'
                     ];
                 }
@@ -128,37 +130,26 @@ class MailControl
     // Envoi de nouveau mot de passe par mot de passe oublié
 	public function sendNewPwd($mail)
 	{
-        
         $response  = [
             'status'=>'',
             'msgHtml'=>''
         ];
         
 		try {
-
             if (is_null($mail) || $mail=="") {
-                
                 $response  = [
                     'status'=>'error',
                     'msgHtml'=>'Veuillez fournir un email valide.'
                 ];
-
             } else {
-
                 $passwordConnect = new Users();
                 $passwordCo = $passwordConnect->mailVerif($mail);
-
                 if($passwordCo==0){
-
                     $response  = [
                         'status'=>'error',
                         'msgHtml'=>'Votre email n\'est pas reconnu, veuillez contacter l\'administrateur du site.'
                     ];
-
-                }
-
-                else{
-
+                } else{
                     //Si le champs mail est correctement remplis alors on génère un nouveau mot de passe dans la BDD            
                     $newMdP = $this->randomMdP(8);
                     
@@ -203,18 +194,14 @@ class MailControl
                         'status'=>'success',
                         'msgHtml'=>'Votre demande de ré-initialisation de mot de passe a bien été envoyée. Vous allez bientôt recevoir un nouveau mot de passe dans votre boîte mail.'
                         ];
-
                     } else {
-                        
                         $response  = [
                             'status'=>'error',
                             'msgHtml'=>'L\'envoi d\'un nouveau mot de passe a échoué pour raisons techniques. Nous vous prions de bien vouloir ré-essayer plus tard.'
                         ];
-
                     }
                 }
             }
-
         }
         
         // Erreur technique
@@ -224,9 +211,7 @@ class MailControl
                 'status'=>'error',
                 'msgHtml'=>'L\'envoi d\'un nouveau mot de passe a échoué pour raisons techniques. Nous vous prions de bien vouloir ré-essayer plus tard.'
             ];
-
 		}
-        
         // Envoi de la réponse
         echo json_encode($response);
         exit();
@@ -242,7 +227,6 @@ class MailControl
     
     // Formate le contenu d'un mail combiné texte+html à partir des messages bruts texte et html
     private function prepareFormatedContent($msgTxt,$msgHtml,$boundary) {
-        
         // Initialisation du message
         $msg = $this->sautLigne."--".$boundary.$this->sautLigne;
         
@@ -258,9 +242,7 @@ class MailControl
         $msg .= $this->sautLigne.$msgHtml.$this->sautLigne;
         $msg .= $this->sautLigne."--".$boundary."--".$this->sautLigne;
         $msg .= $this->sautLigne."--".$boundary."--".$this->sautLigne;
-        
         return $msg;
-        
     }
     
     // Génére un mot de passe aléatoire d'une longueur donnée
@@ -273,5 +255,4 @@ class MailControl
         }
         return $MdP;
     }
-    
 }
