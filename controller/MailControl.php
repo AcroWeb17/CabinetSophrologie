@@ -86,7 +86,6 @@ class MailControl
                 
                 //Envoi des mails et de la réponse 
 			    // Envoi des mails et réponse à la page HTML
-                var_dump($admin);
                 if (mail($admin,$subject,$msg,$headers)) {
                     if (!is_null($mail) && $mail!="") {
                     	mail($mail,$subject,$msgCopy,$headers);

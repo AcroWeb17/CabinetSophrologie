@@ -5,8 +5,7 @@
 	src: url('../fonts/Gabriola.ttf') format('eot'),
 		 url('../fonts/Gabriola.woff2') format('woff2'),
 		 url('../fonts/Gabriola.woff') format('woff'),
-		 url('../fonts/Gabriola.ttf') format('ttf'),
-		 url('../fonts/Gabriola.svg') format('svg');
+		 url('../fonts/Gabriola.ttf') format('ttf');
 }
 
 @font-face

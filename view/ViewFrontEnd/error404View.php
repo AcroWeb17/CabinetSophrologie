@@ -16,7 +16,7 @@
 
 		<main class="mainConnect">
 			<section class="contenuDelete">
-				<h2 class="titreSection">Cette page n'existe pas></h2>
+				<h2 class="titreSection">Cette page n'existe pas</h2>
 				<div class="gpButton">
 					<a class="button" href="accueil">Retour à la page d'accueil</a>
 				</div>

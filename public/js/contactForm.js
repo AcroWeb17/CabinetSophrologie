@@ -71,7 +71,6 @@ class contactForm {
         var thisForm=this;
         req.addEventListener('load',function(){
             thisForm.contactLoadingDiv.classList.add('hidden');
-            console.log(req.responseText);
             if (req.status>=200 && req.status <400) {
                 callback(req.responseText,thisForm);
             } else {
@@ -88,11 +87,8 @@ class contactForm {
             'status': '',
             'msgHtml': ''
         };
-        console.log(responseText);
-        console.log(response);
         try {
             response = JSON.parse(responseText);
-            console.log('test catch');
 
         } catch (e) {
             response.status = 'error';

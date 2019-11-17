@@ -67,7 +67,7 @@
 								?> 
 							</div>
 						</div>
-						<a id="retourHtPage"class="retourHtPage" href="#"><i class="fas fa-arrow-alt-circle-up"></i>Retour en haut de la page</a>
+						<a id="retourHtPage" class="retourHtPage" href="#"><i class="fas fa-arrow-alt-circle-up"></i>Retour en haut de la page</a>
 					</section>
 			<?php
 				} else {

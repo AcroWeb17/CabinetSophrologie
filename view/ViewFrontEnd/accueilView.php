@@ -65,9 +65,7 @@
 		</main>
 
 		<!--Pied de page-->
-		<footer>
-			<?php include("public/footer.php");?>
-		</footer>
+		<?php include("public/footer.php");?>
 		
 	</body>
 </html>

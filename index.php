@@ -287,15 +287,14 @@ try{
 			require 'view/ViewFrontEnd/mentionsLegales.php';
 		}
 
-		//Page d'erreurs
-		else if ($_GET['action'] == 'erreur404'){
-			require 'view/ViewFrontEnd/error404View.php';
-		}
-
 		//Redirection sur la page d'accueil
 		else if ($_GET['action'] == ''){
 			$accueilControl = new AccueilControl();
 			$accueilDetail = $accueilControl->accueilDetail();
+		}
+
+		else {
+			require 'view/ViewFrontEnd/error404View.php';
 		}
 	}
 	else {
