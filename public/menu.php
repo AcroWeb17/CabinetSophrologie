@@ -9,10 +9,10 @@
 			while($menu = $pageMenu->fetch())
 			{
 		?>
-				<a class="lienMenu" href="index.php?action=page&name=<?= htmlspecialchars($menu['name']) ?>"><?= htmlspecialchars($menu['title_page']) ?></a>
+				<a class="lienMenu" href="<?= htmlspecialchars($menu['name']) ?>"><?= htmlspecialchars($menu['title_page']) ?></a>
 		<?php
 			}
 		?> 
-				<a class="lienMenu" href="index.php?action=accueil">Retour page d'accueil</a>
+				<a class="lienMenu" href="accueil">Retour page d'accueil</a>
 	</div>
 </nav>

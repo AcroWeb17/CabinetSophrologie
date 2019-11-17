@@ -2,18 +2,23 @@
 @font-face
 {
 	font-family:'Gabriola';
-	src: url('../fonts/Gabriola.ttf') format('ttf'),
-		 url('../fonts/Gabriola.eot') format('eot') ,
-		 url('../fonts/Gabriola.woff') format('woff');
+	src: url('../fonts/Gabriola.ttf') format('eot'),
+		 url('../fonts/Gabriola.woff2') format('woff2'),
+		 url('../fonts/Gabriola.woff') format('woff'),
+		 url('../fonts/Gabriola.ttf') format('ttf'),
+		 url('../fonts/Gabriola.svg') format('svg');
 }
 
 @font-face
 {
 	font-family:'LearningCurve';
-	src: url('../fonts/LearningCurve.ttf') format('ttf'),
-		 url('../fonts/LearningCurve.eot') format('eot') ,
-		 url('../fonts/LearningCurve.woff') format('woff');
+	src: url('../fonts/LearningCurve.eot') format('eot'),
+ 		 url('../fonts/LearningCurve.woff2') format('woff2'),
+		 url('../fonts/LearningCurve.woff') format('woff'),
+		 url('../fonts/LearningCurve.ttf') format('ttf'),
+		 url('../fonts/LearningCurve.svg') format('svg');
 }
+
 /*Propriétés générales*/
 *
 {
@@ -27,12 +32,21 @@ body
 	background-color:white;
 	position:relative;
 	overflow-x: hidden;
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
 }
 
 a
 {
 	text-decoration:none;
 	color:white;
+}
+
+a:hover,
+a:focus
+{
+	text-decoration:underline;
 }
 
 header
@@ -43,7 +57,9 @@ header
 main
 {
 	display:flex;
+	width:100%;
 	position:relative;
+	flex:1 0 auto;
 }
 
 .hidden
@@ -62,6 +78,8 @@ main
 	text-align:center;
 	cursor:pointer;
 	margin-left:25px;
+	display: inline-block;
+	margin-bottom: 10px;
 }
 
 .editButton
@@ -74,6 +92,13 @@ main
 	padding:3px 7px 3px 7px;
 	background-color: #C35E97;
 	cursor:pointer;
+}
+
+.editButton:hover,
+.editButton:focus
+{
+	text-decoration:none;
+	background-color:#667A81;
 }
 
 /* En tête */
@@ -104,20 +129,20 @@ main
 	position:absolute;
 	font-weight: 400;
 	margin:0;
+	width:100%;	
+	text-align:center;
 }
 
 .titreBandeau
 {
 	font-size:4em;
 	top:33px;
-	left:27%;
 }
 
 .ssTitreBandeau
 {
 	font-size:2.5em;
 	top:115px;
-	left:22%;
 }
 
 .intitulesMenu
@@ -145,7 +170,6 @@ main
 {
 	display:none;
 }
-
 
 /* Page d'accueil */
 .mainAccueil
@@ -258,7 +282,7 @@ main
 }
 
 .menuMobile::before
-{
+{		
 	content:"";
 	display:block;
 	position:absolute;
@@ -301,7 +325,6 @@ main
 	border-bottom: 1px solid white;
 }
 
-
 .msgAccueilTxt p
 {
 	color:white;
@@ -323,10 +346,28 @@ main
 
 .titreRubrique
 {
+	position:absolute;
 	font-family:Gabriola;
 	font-size:2.5em;
 	font-weight:400;
 	color:white;
+	margin:0;
+	bottom:0px;
+	width:100%;
+	background-color:#667A81;
+	text-align:right;
+	padding-right:30px;
+}
+
+.titreRubrique::after
+{
+	content:"";
+	position:absolute;
+	width:100%;
+	height:50%;
+	bottom:100%;
+	right:0;
+	background:linear-gradient(176deg, transparent, transparent 48.5%, #667A81, #667A81 51.5%);
 }
 
 .rubriques
@@ -334,17 +375,36 @@ main
 	position: relative;
 	display:flex;
 	flex-wrap: wrap;
-	width:80%;
+	width:100%;
 	justify-content: space-around;
-	margin:50px 30px 0px 20px;
+	margin:50px 20px 0px 20px;
 }
 
 .itemsRubrique
 {
 	position:relative;
 	margin-bottom:50px;
-	width:400px;
-	margin-left:30px;
+	max-width:400px;
+	margin-left:15px;
+	margin-right:15px;
+}
+
+.itemsRubrique a
+{
+	display:block;
+	width:100%;
+}
+
+.itemsRubrique a:hover .titreRubrique,
+.itemsRubrique a:focus .titreRubrique
+{
+	background-color:#506067;
+}
+
+.itemsRubrique a:hover .titreRubrique::after,
+.itemsRubrique a:focus .titreRubrique::after
+{
+	background:linear-gradient(176deg, transparent, transparent 48.5%, #506067, #506067 51.5%);
 }
 
 .imgRubrique
@@ -362,28 +422,6 @@ main
 	background-color:#667A81;
 }
 
-.titreRubrique
-{
-	position:absolute;
-	margin:0;
-	bottom:-15px;
-	width:100%;
-	background-color:#667A81;
-	text-align:right;
-	padding-right:30px;
-}
-
-.titreRubrique::after
-{
-	content:"";
-	position:absolute;
-	width:100%;
-	height:50%;
-	bottom:66px;
-	right:0;
-	background:linear-gradient(176deg, transparent, transparent 48.5%, #667A81, #667A81 51.5%);
-}
-
 /* Page message d'accueil */
 .submitAccueil
 {
@@ -391,7 +429,7 @@ main
 	margin-left:72%;
 }
 
-/* Rubriques */
+/* Pages */
 .mainPage
 {
 	margin-left:auto;
@@ -448,7 +486,6 @@ main
 	font-family:Gabriola;
 	font-size:1.5em;
 	color:#C35E97;
-	margin:0;
 	margin:40px 0px 10px 0px
 }
 
@@ -459,32 +496,32 @@ main
 
 .contenuRubriques ul 
 {
-  padding-left: 25px;
+  	padding-left: 25px;
 }
 
 .contenuRubriques ul li
 {
-  list-style-type: none;
-  position: relative;
+ 	list-style-type: none;
+  	position: relative;
 }
 
 .contenuRubriques ul li:not(:last-child) 
 {
-  margin-bottom: 10px;
+  	margin-bottom: 10px;
 }
 
 .contenuRubriques ul li::before 
 {
-  content: "";
-  display: block;
-  position: absolute;
-  left: -18px;
-  top: 5px;
-  width: 0;
-  height: 0;
-  border-top: 5px solid transparent;
-  border-bottom: 5px solid transparent;
-  border-left: 10px solid #667A81;
+  	content: "";
+  	display: block;
+  	position: absolute;
+  	left: -18px;
+  	top: 5px;
+  	width: 0;
+  	height: 0;
+  	border-top: 5px solid transparent;
+  	border-bottom: 5px solid transparent;
+  	border-left: 10px solid #667A81;
 }
 
 .titreSection
@@ -518,15 +555,17 @@ main
 	position: relative
 }
 
-
 .retourHtPage
 {
 	position: fixed;
 	right:30px;
 	bottom:20px;
 	color: #667A81;
-	width:50px;
-	height:50px;
+	background-color: white;
+	width:41px;
+	height:41px;
+	border-radius: 50%;
+	padding:3px;
 	z-index:1;
 	font-size:0;
 	text-decoration:none;
@@ -535,6 +574,29 @@ main
 .fa-arrow-alt-circle-up
 {
 	font-size:35px;
+}
+
+.pagination-buttons
+{
+	width:100%;
+	text-align:center;
+}
+
+.page-button
+{
+	background:linear-gradient(120deg, #FFF, #667A81 25%, #667A81 80%, #FFF);
+	color:white;
+	height:25px;
+	width:25px;
+	border:none;
+	cursor:pointer;
+	margin:0px 3px 0px 3px;
+}
+
+.page-button:hover,
+.page-button:focus
+{
+	background:#C35E97;
 }
 
 /* Interface de mise à jour */
@@ -553,6 +615,7 @@ main
 .gpBtUpdate
 {
 	text-align:right;
+	margin-top:20px;
 }
 
 .contenuRubriques h3.titrePage
@@ -587,6 +650,12 @@ main
 	max-width:80vw;
 }
 
+.inputAdmin:hover,
+.inputAdmin:focus
+{
+	outline: 2px solid #864670;
+}
+
 .checkboxAdmin
 {
 	width:18px;
@@ -604,7 +673,6 @@ main
 {
 	margin-bottom:30px;
 }
-
 
 /* Administration des contenus */
 .contenuRubriques h3.titreGestionContenu
@@ -666,8 +734,6 @@ main
 {
 	line-height:10px;
 }
-
-
 
 /* Carte de localisation */
 .mapContact
@@ -748,7 +814,6 @@ main
 	font-size:0.8em;
 }
 
-
 /* Formulaire de contact */
 .formContact
 {
@@ -778,6 +843,15 @@ main
 	border-bottom:1px solid white;
 	color:white;
 	font-size:1.2em;
+}
+
+.inputContact:focus,
+.txtContact:focus,
+.inputContact:hover,
+.txtContact:hover
+{
+	border:2px solid white;
+	color:white;
 }
 
 .gpLabelContact
@@ -821,61 +895,74 @@ main
 	cursor:pointer;
 }
 
-.contactInfoMsg:empty {
+.btSend:hover,
+.btSend:focus
+{
+	background:white;
+}
+
+.contactInfoMsg:empty
+{
     display:none;
 }
 
-.contactInfoMsg {
+.contactInfoMsg
+{
     margin-top:15px;
     padding:15px;
     border-radius:3px;
     border:1px solid #667a81;
     color:#667a81;
-    background:#f2f2f2;
+    background:#FFF;
     font-size:.9em;
 }
 
-.contactInfoMsg.contactSuccessMsg li::before {
+.contactInfoMsg.contactSuccessMsg li::before
+{
     top:4px;
+    border-left-color:#488f06;
 }
 
-.contactInfoMsg.contactSuccessMsg {
+.contactInfoMsg.contactSuccessMsg
+{
     border-color:#488f06;
     color:#488f06;
     background:#f1fbd1;
 }
 
-.contactInfoMsg.contactSuccessMsg li::before {
-    border-left-color:#488f06;
-}
-
-.contactInfoMsg.contactErrorMsg {
+.contactInfoMsg.contactErrorMsg
+{
     border-color:#b50303;
     color:#b50303;
     background:#fee5e2;
 }
 
-.contactInfoMsg.contactErrorMsg li::before {
+.contactInfoMsg.contactErrorMsg li::before
+{
     border-left-color:#b50303;
 }
 
 .contactInfoMsg p,
-.contactInfoMsg ul {
+.contactInfoMsg ul 
+{
     margin-top:0;
 }
 
 .contactInfoMsg p:not(:last-child),
-.contactInfoMsg ul:not(:last-child) {
+.contactInfoMsg ul:not(:last-child) 
+{
     margin-bottom:10px;
 }
 
 .contactInfoMsg p:last-child,
 .contactInfoMsg ul:last-child,
-.contactInfoMsg ul li:last-child {
+.contactInfoMsg ul li:last-child 
+{
     margin-bottom:0;
 }
 
-.formContact .formLoading {
+.formContact .formLoading 
+{
     flex: 1;
     text-align: center;
     margin-top: 8px;
@@ -892,11 +979,6 @@ main
 }
 
 /* Interface de connexion */
-.mainConnect
-{
-	min-height:54vh;
-}
-
 .contenuConnect
 {
 	width:600px;
@@ -1018,7 +1100,6 @@ footer
 	width:100%;
 	max-width: 1275px;
 	padding:36px 0px 10px 20px;
-
 }
 
 .contacts::after
@@ -1053,7 +1134,6 @@ footer
 	{
 		margin-top:-70px;
 	}
-
 }
 
 @media(max-width: 1200px)
@@ -1065,7 +1145,8 @@ footer
 
 	.ssTitreBandeau
 	{
-		top:75px;
+		font-size:2.3em;
+		top:68px;
 	}
 
 	.identification
@@ -1098,7 +1179,6 @@ footer
 	{
 		margin-top:30px;
 	}
-
 }
 
 @media(max-width: 980px)
@@ -1111,13 +1191,11 @@ footer
 	.ferme
 	{
 		transform:translateX(-350px);
-
 	}
 
 	.ouvre
 	{
 		transform:translateX(0px);
-
 	}
 
 	.menuPage
@@ -1173,7 +1251,6 @@ footer
 		bottom:-7px;
 	}
 
-
 	.msgAccueilTxt p
 	{
 		padding:0px 20px 0px 20px;
@@ -1194,16 +1271,13 @@ footer
 	.titreBandeau
 	{
 		font-size:3em;
-		left:28%;
 	}
 
 	.ssTitreBandeau
 	{
 		font-size:2em;
-		left:22%;
 		top:60px;
 	}
-
 }
 
 @media(max-width: 800px)
@@ -1241,10 +1315,10 @@ footer
 	.ssTitreBandeau
 	{
 		font-size:1.8em;
-		left:18%;
 		top:45px;
 	}
 
+	.titreRubrique,
 	.titreSection
 	{
 		font-size:2em;
@@ -1261,15 +1335,10 @@ footer
 
 @media(max-width: 650px)
 {
-	.titreBandeau
-	{
-		left:14%;
-	}
-
+	
 	.ssTitreBandeau
 	{
 		font-size:1.5em;
-		left:9%;
 		top:40px;
 	}
 
@@ -1284,7 +1353,7 @@ footer
 		right:23px;
 	}
 
-	.menu
+	.menuPage
 	{
 		margin-top:45px;
 	}
@@ -1298,6 +1367,16 @@ footer
 	{
 		margin-left:6px;
 	}
+
+	.gpLabelContact
+	{
+		display:block;
+	}
+
+	.inputContact
+	{
+		width:100%;
+	}
 }
 
 @media(max-width:500px)
@@ -1310,8 +1389,12 @@ footer
 	.ssTitreBandeau
 	{
 		font-size:1.3em;
-		left:6%;
 		top:32px;
+	}
+
+	.titreRubrique
+	{
+		font-size:1.8em;
 	}
 
 	.titreSection
@@ -1335,6 +1418,11 @@ footer
 	{
 		flex-direction:column;
 	}
+
+	.signature
+	{
+		margin-left:0;
+	}
 }
 
 @media(max-width:380px)
@@ -1342,14 +1430,16 @@ footer
 	.titreBandeau
 	{
 		font-size:1.8em;
-		left:16%;
 	}
 
 	.ssTitreBandeau
 	{
-		font-size:1.2em;
-		left:6%;
-		top:30px;
+		display:none;
+	}
+
+	.titreRubrique
+	{
+		font-size:1.6em;
 	}
 
 	.titreSection
@@ -1373,13 +1463,7 @@ footer
 {
 	.titreBandeau
 	{
-		left:9%;
 		top:0;
-	}
-
-	.ssTitreBandeau
-	{
-		display:none;
 	}
 
 	.menuMobile
@@ -1387,7 +1471,7 @@ footer
 		top:65px;
 	}
 
-	.menu
+	.menuPage
 	{
 		margin-top:80px;
 		left:-20px;

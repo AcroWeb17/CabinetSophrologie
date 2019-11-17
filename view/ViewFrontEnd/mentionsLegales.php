@@ -41,7 +41,7 @@
 			<a id="retourHtPage"class="retourHtPage" href="#"><i class="fas fa-arrow-alt-circle-up"></i>Retour en haut de la page</a>
 
 			<div class=" accueilML">
-				<a class="button" href="index.php?action=accueil">Page d'accueil</a>
+				<a class="button" href="accueil">Page d'accueil</a>
 			</div>
 		</main>	
 

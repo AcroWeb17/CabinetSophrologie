@@ -19,7 +19,7 @@
 			<section class="contenuConnect">
 				<h2 class="titreSection">Vous êtes maintenant déconnecté </h2>
 				<div class="gpButton">
-					<a class="button btSolo" href="index.php?action=accueil">Retour à la page d'accueil</a>
+					<a class="button btSolo" href="accueil">Retour à la page d'accueil</a>
 				</div>
 			</section>
 		</main>

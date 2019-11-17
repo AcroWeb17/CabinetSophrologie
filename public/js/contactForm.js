@@ -67,41 +67,45 @@ class contactForm {
     ajaxPost(url, data, callback){
         var req = new XMLHttpRequest();
         req.open('POST', url);
-        var thisContactForm = this;
         this.contactLoadingDiv.classList.remove('hidden');
+        var thisForm=this;
         req.addEventListener('load',function(){
-            thisContactForm.contactLoadingDiv.classList.add('hidden');
+            thisForm.contactLoadingDiv.classList.add('hidden');
+            console.log(req.responseText);
             if (req.status>=200 && req.status <400) {
-                callback(req.responseText,thisContactForm);
+                callback(req.responseText,thisForm);
             } else {
-                this.contactSuccessDiv.innerHTML = '';
-                this.contactErrorDiv.innerHTML = '<p>L\'envoi de votre message a échoué pour raisons techniques. Nous vous prions de bien vouloir ré-essayer plus tard.</p>';
+                thisForm.contactSuccessDiv.innerHTML = '';
+                thisForm.contactErrorDiv.innerHTML = '<p>L\'envoi de votre message a échoué pour raisons techniques. Nous vous prions de bien vouloir ré-essayer plus tard.</p>';
             }
         }); 
         req.send(data);
     }
     
     // Affichage de la réponse
-    displayResponse(responseText,thisContactForm) {
+    displayResponse(responseText,thisForm) {
         var response = {
             'status': '',
             'msgHtml': ''
         };
-
+        console.log(responseText);
+        console.log(response);
         try {
             response = JSON.parse(responseText);
+            console.log('test catch');
+
         } catch (e) {
             response.status = 'error';
             response.msgHtml = '<p>L\'envoi de votre message a échoué pour raisons techniques. Nous vous prions de bien vouloir ré-essayer plus tard.</p>';
         }
-        
         if (response.status == 'error') {
-            thisContactForm.contactSuccessDiv.innerHTML = '';
-            thisContactForm.contactErrorDiv.innerHTML = response.msgHtml;
+            thisForm.contactSuccessDiv.innerHTML = '';
+            thisForm.contactErrorDiv.innerHTML = response.msgHtml;
         } else if (response.status == 'success') {
-            thisContactForm.contactErrorDiv.innerHTML = '';
-            thisContactForm.contactSuccessDiv.innerHTML = response.msgHtml;
+            thisForm.contactErrorDiv.innerHTML = '';
+            thisForm.contactSuccessDiv.innerHTML = response.msgHtml;
         }
+
     }
 }
 

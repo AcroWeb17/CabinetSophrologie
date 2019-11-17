@@ -31,7 +31,7 @@
 								</div>
 
 								<div class="gpLabelAdmin">
-									<label class="labelAdmin" for="idPage">Nom de la page:</label>
+									<label class="labelAdmin" for="idPage">Contenu affiché sur la page:</label>
 									<select  class="inputAdmin" type="text" id="idPage" name="idPage" />
 										<?php
 											while($menu = $listPages->fetch())
@@ -62,7 +62,7 @@
 								?>		
 										<div class="gpLabelAdmin">
 											<label class="labelAdmin" for="indexContent">Ordre du contenu dans la page:</label>
-											<input class="inputAdmin" readonly type="number" id="indexContent" name="indexContent" value="<?= htmlspecialchars($contentDetail['index_content']); ?>" required/>
+											<input class="inputAdmin" readonly type="number" id="indexContent" min="1" name="indexContent" value="<?= htmlspecialchars($contentDetail['index_content']); ?>" required/>
 										</div>
 										<div class="gpLabelAdmin">
 											<textarea class="smallTxtAdmin" name="content" rows="255" >
@@ -102,7 +102,7 @@
 											<input class="inputAdmin" type="email" id="mail" name="mail" value="<?= htmlspecialchars($contactContent['mail']); ?>" required/>
 										</div>
 										<div class="gpBtUpdate">
-											<a class="editButton" href="index.php?action=contentAllAdmin">Annuler</a>
+											<a class="editButton" href="admin-gestion-des-contenus">Annuler</a>
 											<input type="submit" class="editButton" value="Enregistrer" />
 										</div>
 								<?php 
@@ -110,9 +110,9 @@
 								?>
 										<div class="gpLabelAdmin">
 											<label class="labelAdmin" for="indexContent">Ordre du contenu dans la page:</label>
-											<input class="inputAdmin" type="number" id="indexContent" name="indexContent" value="<?= htmlspecialchars($contentDetail['index_content']); ?>" required/>
+											<input class="inputAdmin" type="number" id="indexContent" min="1" name="indexContent" min="1" value="<?= htmlspecialchars($contentDetail['index_content']); ?>" required/>
 										</div>
-										<div class="gpLabelAdmin">
+										<div class="gpLabelAdmin" title="Photo au format jpg, dimensions attendues 200x200">
 											<label class="labelAdmin" for="picture">Photo</label>
 											<input class="inputAdmin" type="file" id="picture" name="picture"/>
 										</div>
@@ -126,9 +126,9 @@
 											</textarea>
 										</div>
 										<div class="gpBtUpdate">
-											<a class="editButton" href="index.php?action=contentAllAdmin">Annuler</a>
+											<a class="editButton" href="admin-gestion-des-contenus">Annuler</a>
 											<input type="submit" class="editButton" value="Enregistrer" />
-											<a class="editButton" href="index.php?action=confirmDeleteContent&id=<?= htmlspecialchars($contentDetail['id']) ?>">Supprimer</a>
+											<a class="editButton" href="admin-suppression-contenu-n-<?= htmlspecialchars($contentDetail['id']) ?>">Supprimer</a>
 										</div>
 								<?php 
 									}
@@ -144,7 +144,7 @@
 					<section class="contenuDelete mainConnect">
 						<h2 class="titreSection">Vous n'avez pas les droits sur cette page</h2>
 						<div class="btSolo">
-							<a class="button btSolo" href="index.php?action=accueil">Page d'accueil</a>
+							<a class="button btSolo" href="accueil">Page d'accueil</a>
 						</div>
 					</section>
 			<?php
@@ -155,7 +155,7 @@
 		<!--Pied de page-->
 		<?php include("public/footer.php");?>
 
-		<!--Script-->
+		<!--Scripts-->
 		<script src="tinymce/tinymce.min.js"></script>
 		<script src="tinymce/themes/silver/theme.min.js"></script>
 		<script src="tinymce/parametresTinyMCE.js"></script>

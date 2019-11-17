@@ -26,7 +26,7 @@
 					<button class="button btConnect" id="connectButton" type="submit" value="Se connecter">Connecter</button>
 				</form>
 				<div class=forgetPwd>
-					<a id="oubliPassword" href="index.php?action=forgetPassword">Mot de passe oublié</a>
+					<a id="oubliPassword" href="mot-de-passe-oublie">Mot de passe oublié</a>
 				</div>
 				<div id="redirectionConnect" class="redirection">
 				</div>

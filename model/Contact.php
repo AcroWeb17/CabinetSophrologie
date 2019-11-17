@@ -21,16 +21,6 @@ class Contact extends DataBase
 		return $contact;
 	}
 
-	//Sélection du mail
-	public function getMail($mail)
-	{
-		$db = $this->dbConnect();
-		$req = $db->prepare('SELECT mail FROM contact');
-		$req->execute(array($mail));
-		$contactArray = $req->fetch();
-		return $contact;
-	}
-
 	//Modification des données
 	public function modifyContact($latX, $longY, $nameCab, $adresse, $codePostal, $ville, $tel, $mail)
 	{

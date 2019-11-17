@@ -37,7 +37,7 @@ class MailControl
                 // Création des variables destinataire, sujet et headers
                 $boundary = "-----=".md5(rand());
                 $adminMailContact = new Contact();
-                $adminArray = $adminMailContact->getMail($mailAdmin);
+                $adminArray = $adminMailContact->getContact();
                 $admin = $adminArray['mail'];
                 $subject = "Message de: cabinet-sophrologie";                
 			    $headers = $this->prepareHeaders('Cabinet de Sophrologie','ne-pas-repondre@alwaysdata.net',$boundary);
@@ -86,6 +86,7 @@ class MailControl
                 
                 //Envoi des mails et de la réponse 
 			    // Envoi des mails et réponse à la page HTML
+                var_dump($admin);
                 if (mail($admin,$subject,$msg,$headers)) {
                     if (!is_null($mail) && $mail!="") {
                     	mail($mail,$subject,$msgCopy,$headers);
@@ -96,7 +97,7 @@ class MailControl
                     ];
                 } else {
                     $response  = [
-                        'status'=>'echec',
+                        'status'=>'error',
                         'msgHtml'=>'<p>L\'envoi de votre message a échoué pour raisons techniques. Nous vous prions de bien vouloir ré-essayer plus tard.</p>'
                     ];
                 }

@@ -60,7 +60,7 @@ class ContentControl
 					throw new \Exception('Impossible d\'ajouter le contenu!');		
 				}
 				else {
-					header('Location: index.php?action=accueil');
+					header('Location:accueil');
 					exit();
 				}
 			}
@@ -116,7 +116,7 @@ class ContentControl
 		if ($contentUpdate=== false){
 			throw new \Exception('Impossible d\'effectuer la mise à jour!');		
 		} else {
-			header('Location: index.php?action=confirmUpdateContent&id=');
+			header('Location:admin-confirmation-actualisation-du-contenu');
 			exit();
 		}
 	}
@@ -141,7 +141,7 @@ class ContentControl
 		} else {
 			$titleNormalize = $this->replaceTitle($contentTitle);
 			$this->deletePicture("public/Photos","content-".$titleNormalize);
-			header('Location: index.php?action=confContentDelete');
+			header('Location: admin-confirmation-suppression-du-contenu');
 			exit();	
 		}
 	}

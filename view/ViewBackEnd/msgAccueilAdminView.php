@@ -23,13 +23,13 @@
 					<?php include("public/menu.php");?>
 					<section class="sectionRubriques">
 						<div class="contenuRubriques">
-							<h2 class="titreSection"> Message d'accueil</h2>
+							<h2 class="titreSection">Message d'accueil</h2>
 							<form class="styleForm" action="index.php?action=updateMsgAccueil" method="post" >
 								<textarea class="smallTxtAdmin" name="content" rows="255" >
 									<?=html_entity_decode(($msgAccueil['content']))?>
 								</textarea>
 								<div class="submitAccueil">
-									<a class="editButton" href="index.php?action=accueil">Annuler</a>
+									<a class="editButton" href="accueil">Annuler</a>
 									<input type="submit" class="editButton" value="Enregistrer" />
 								</div>
 							</form>
@@ -43,7 +43,7 @@
 					<section class="contenuDelete mainConnect">
 						<h2 class="titreSection">Vous n'avez pas les droits sur cette page</h2>
 						<div class="btSolo">
-							<a class="button btSolo" href="index.php?action=accueil">Page d'accueil</a>
+							<a class="button btSolo" href="accueil">Page d'accueil</a>
 						</div>
 					</section>
 			<?php

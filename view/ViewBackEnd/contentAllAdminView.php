@@ -24,9 +24,9 @@
 						<div class="contenuRubriques">
 							<h2 class="titreSection"> Gestion des contenus </h2>
 							<div class="gpBtUpdate">
-								<a class="editButton editPage" href="index.php?action=newContent">Nouveau contenu</a>
-								<a class="editButton editPage" href="index.php?action=pageAdmin">Gestion des pages</a>
-								<a class="editButton editPage" href="index.php?action=accueil">Retour à la page d'accueil</a>
+								<a class="editButton editPage" href="admin-nouveau-contenu">Nouveau contenu</a>
+								<a class="editButton editPage" href="admin-gestion-des-pages">Gestion des pages</a>
+								<a class="editButton editPage" href="accueil">Retour à la page d'accueil</a>
 							</div>
 							<div class="separationSections">
 								<?php
@@ -42,21 +42,21 @@
 										}
 									?>
 										<div class="separationGestionContenu">
-											<a href="index.php?action=contentAdmin&id=<?= htmlspecialchars($data['id']) ?>">
+											<a href="admin-maj-contenu-n-<?= htmlspecialchars($data['id']) ?>">
 												<p class="titreGestionContenu"> <?= htmlspecialchars($data['title']) ?> </p>
 											</a>
 											<?php
 												if ($data['contact'] === '0'){
 											?>
 													<div class="gpBtUpdate">
-														<a class="editButton editPage" href="index.php?action=contentAdmin&id=<?= htmlspecialchars($data['id']) ?>">Modifier</a>
-														<a class="editButton editPage" href="index.php?action=confirmDeleteContent&id=<?= htmlspecialchars($data['id']); ?>">Supprimer</a>
+														<a class="editButton editPage" href="admin-maj-contenu-n-<?= htmlspecialchars($data['id']) ?>">Modifier</a>
+														<a class="editButton editPage" href="admin-suppression-contenu-n-<?= htmlspecialchars($data['id']); ?>">Supprimer</a>
 													</div>
 											<?php
 												} else {
 											?>
 													<div class="gpBtUpdate">
-														<a class="editButton" href="index.php?action=contentAdmin&id=<?= htmlspecialchars($data['id']) ?>">Modifier</a>
+														<a class="editButton" href="admin-maj-contenu-n-<?= htmlspecialchars($data['id']) ?>">Modifier</a>
 													</div>
 											<?php
 												}
@@ -75,7 +75,7 @@
 					<section class="contenuDelete mainConnect">
 						<h2 class="titreSection">Vous n'avez pas les droits sur cette page</h2>
 						<div class="btSolo">
-							<a class="button btSolo" href="index.php?action=accueil">Page d'accueil</a>
+							<a class="button btSolo" href="accueil">Page d'accueil</a>
 						</div>
 					</section>
 			<?php

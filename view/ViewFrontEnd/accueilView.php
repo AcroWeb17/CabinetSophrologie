@@ -7,7 +7,7 @@
 		<link rel="stylesheet" href="public/css/sophrologie.css"/>
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-		<meta name="description" content="Page d'accueil du site du Cabinet de Sophrologie">
+		<meta name="description" content="Marine vous accueille dans son cabinet de Sophrologie situé à Amiens, pour des séances individuelles ou collectives.">
 	</head>
 
 	<body>
@@ -28,7 +28,7 @@
 						if (isset($_SESSION['auth'])){
 					?>	
 						<div class="msgAccueilEdit">
-							<a class="editButton msgAccueilEdit" href="index.php?action=msgAccueil">Mise à jour</a>
+							<a class="editButton msgAccueilEdit" href="message-accueil">Mise à jour</a>
 						</div>
 					<?php
 						}
@@ -43,7 +43,7 @@
 					{
 				?>
 				<article class="itemsRubrique">
-					<a href="index.php?action=page&name=<?= htmlspecialchars($data['name']) ?>">
+					<a href="<?= htmlspecialchars($data['name']) ?>">
 						<img class="imgRubrique" src="<?=$data['picture'] ?>" alt="Image d'une section de la page d'accueil" title="<?=$data['title_page'] ?>"/>
 						<h3 class="titreRubrique"> <?= htmlspecialchars($data['title_page']) ?> </h3>
 					</a>
@@ -55,8 +55,8 @@
 					if (isset($_SESSION['auth'])){
 				?>	
 						<div class="pageUpdate">
-							<a class="editButton editPage" href="index.php?action=pageAdmin">Gestion des pages</a>
-							<a class="editButton editPage" href="index.php?action=contentAllAdmin">Gestion des contenus</a>
+							<a class="editButton editPage" href="admin-gestion-des-pages">Gestion des pages</a>
+							<a class="editButton editPage" href="admin-gestion-des-contenus">Gestion des contenus</a>
 						</div>
 				<?php
 					}

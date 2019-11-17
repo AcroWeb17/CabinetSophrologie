@@ -7,7 +7,7 @@
 		<link rel="stylesheet" href="public/css/sophrologie.css"/>
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-		<meta name="description" content="Page de contact du site du Cabinet de Sophrologie">
+		<meta name="description" content="Marine vous accueille dans son cabinet de Sophrologie situé à Amiens, pour des séances individuelles ou collectives.">
 	</head>
 
 	<body>
@@ -27,7 +27,7 @@
 							if (isset($_SESSION['auth'])){
 						?>	
 								<div class="gpBtUpdate">
-									<a class="editButton" href="index.php?action=contentAdmin&id=<?= htmlspecialchars($content['id']) ?>">Mise à jour</a>
+									<a class="editButton" href="admin-maj-contenu-n-<?= htmlspecialchars($content['id']) ?>">Mise à jour</a>
 								</div>
 						<?php
 							}
@@ -49,7 +49,7 @@
 							if (isset($_SESSION['auth'])){
 						?>	
 								<div class="gpBtUpdate">
-									<a class="editButton" href="index.php?action=contentAdmin&id=<?= htmlspecialchars($content['id']) ?>">Mise à jour</a>
+									<a class="editButton" href="admin-maj-contenu-n-<?= htmlspecialchars($content['id']) ?>">Mise à jour</a>
 								</div>
 						<?php
 							}

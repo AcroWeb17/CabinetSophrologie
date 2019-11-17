@@ -1,4 +1,4 @@
-class menuObjet {
+class menu {
     
     constructor(menu, crossMenu, menuMobile) {
         this.menu = document.getElementById(menu);
@@ -29,9 +29,14 @@ class menuObjet {
 
     //Ouverture du menu
     menuOpen(){
-        this.menu.classList.remove("ferme");
-        this.menu.classList.add("ouvre");
+        if(this.menu.classList.contains("ferme")){
+            this.menu.classList.remove("ferme");
+            this.menu.classList.add("ouvre");
+        } else {
+            this.menu.classList.add("ferme");
+            this.menu.classList.remove("ouvre");
+        }
     }
 }
 
-new menuObjet ('menu', 'crossMenu', 'menuMobile');
+new menu ('menu', 'crossMenu', 'menuMobile');

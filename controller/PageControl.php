@@ -71,7 +71,7 @@ class PageControl
 					if ($newPage === false){
 						throw new \Exception('Impossible d\'ajouter la page!');		
 					} else {
-						header('Location: index.php?action=accueil');
+						header('Location: accueil');
 						exit();
 					}
 				}
@@ -105,7 +105,8 @@ class PageControl
 			}
 			$page = $pageManager->modifyPage($idPage,$name,$title,$pictureSrc, $indexPage);
 		}
-		require('view/ViewBackEnd/confirmUpdatePageView.php');
+		header('Location:admin-confirmation-actualisation-des-pages');
+		exit();
 	}
 
 	//Vérification avant suppression d'une page
@@ -128,7 +129,7 @@ class PageControl
 		}
 		else {
 			$this->deletePicture("public/Photos","page-".$pageName);
-			header('Location: index.php?action=confPageDelete');
+			header('Location:admin-confirmation-suppression-page');
 			exit();	
 		}
 	}

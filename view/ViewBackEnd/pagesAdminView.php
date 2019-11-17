@@ -24,9 +24,9 @@
 						<div class="contenuRubriques">
 							<h2 class="titreSection"> Gestion des pages </h2>
 							<div class="gpBtUpdate">
-								<a class="editButton editPage" href="index.php?action=newPage">Nouvelle Page</a>
-								<a class="editButton editPage" href="index.php?action=contentAllAdmin">Gestion des contenus</a>
-								<a class="editButton editPage" href="index.php?action=accueil">Retour à la page d'accueil</a>
+								<a class="editButton editPage" href="admin-nouvelle-page">Nouvelle Page</a>
+								<a class="editButton editPage" href="admin-gestion-des-contenus">Gestion des contenus</a>
+								<a class="editButton editPage" href="accueil">Retour à la page d'accueil</a>
 							</div>
 							<?php
 								//Affichage des rubriques
@@ -44,24 +44,24 @@
 												<label class="labelAdmin" for="newTitle">Titre de la page:</label>
 												<input class="inputAdmin" type="text" id="newTitle" name="newTitle" value="<?= htmlspecialchars($data['title_page']); ?>" required/>
 											</div>
-											<div class="gpLabelAdmin">
+											<div class="gpLabelAdmin" title="Photo au format jpg, dimensions attendues 400x270">
 												<label class="labelAdmin" for="picture">Photo</label>
-												<input class="inputAdmin" type="file" id="picture" name="picture" required/>
+												<input class="inputAdmin" type="file" id="picture" name="picture"/>
 											</div>
-											<div class="gpLabelAdmin">
+											<div class="gpLabelAdmin" title="Nom en minuscules et sans espaces ni caractères spéciaux">
 												<label class="labelAdmin" for="name">Nom de la page:</label>
-												<input class="inputAdmin" type="text" id="name" name="name" value="<?= htmlspecialchars($data['name']); ?>" required/>
+												<input class="inputAdmin" type="text" id="name" name="name" pattern="[a-z]*" value="<?= htmlspecialchars($data['name']); ?>" required/>
 											</div>
 											<div class="gpLabelAdmin">
 												<label class="labelAdmin" for="indexPage">Ordre de la page:</label>
-												<input class="inputAdmin" type="number" id="indexPage" name="indexPage" value="<?= htmlspecialchars($data['index_page']); ?>" required/>
+												<input class="inputAdmin" type="number" id="indexPage" name="indexPage" min="1" value="<?= htmlspecialchars($data['index_page']); ?>" required/>
 											</div>
 											<?php
 												if ($data['contact'] === '0'){
 											?>
 													<div class="gpBtUpdate">
 														<input type="submit" class="editButton editPage" value="Enregistrer" />
-														<a class="editButton editPage" href="index.php?action=confirmDeletePage&idPage=<?= htmlspecialchars($data['id_page']); ?>">Supprimer</a>
+														<a class="editButton editPage" href="admin-suppression-page-n-<?= htmlspecialchars($data['id_page']); ?>">Supprimer</a>
 													</div>
 											<?php
 												} else {

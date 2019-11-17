@@ -23,7 +23,7 @@
 					<section class="contenuDelete">
 						<h2 class="titreSection">Etes-vous certain de vouloir supprimer cette page? </h2>
 						<div class="gpButton">
-							<a class="button" href="index.php?action=pageAdmin">Annuler</a>
+							<a class="button" href="admin-gestion-des-pages">Annuler</a>
 							<a href="index.php?action=deletePage&idPage=<?= htmlspecialchars($page['id_page']); ?>" 
 							   class="button">Confirmer la suppression</a>
 						</div>
@@ -35,7 +35,7 @@
 					<section class="contenuDelete mainConnect">
 						<h2 class="titreSection">Vous n'avez pas les droits sur cette page</h2>
 						<div class="btSolo">
-							<a class="button btSolo" href="index.php?action=accueil">Page d'accueil</a>
+							<a class="button btSolo" href="accueil">Page d'accueil</a>
 						</div>
 					</section>
 			<?php

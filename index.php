@@ -132,12 +132,7 @@ try{
 
 		//Confirmation de la mise à jour d'une page
 		else if ($_GET['action'] == 'confirmUpdatePage'){
-			if(isset($_GET['id'])){
-				require 'view/ViewBackEnd/confirmUpdatePageView.php';
-			}
-			else {
-				throw new Exception('Aucun identifiant de section envoyé');
-			}
+			require 'view/ViewBackEnd/confirmUpdatePageView.php';
 		}
 
 		//Formulaire de confirmation avant la suppression d'une page
@@ -205,7 +200,7 @@ try{
 				$contentDetail = $contentControl->contentDetailAdmin();
 			}
 			else {
-				throw new Exception('Aucun titre de section envoyé');
+				throw new Exception('Aucun identifiant de contenu envoyé');
 			}
 		}
 
@@ -255,12 +250,7 @@ try{
 
 		//Confirmation de la mise à jour d'un contenu
 		else if ($_GET['action'] == 'confirmUpdateContent'){
-			if(isset($_GET['id'])){
-				require 'view/ViewBackEnd/confirmUpdateContentView.php';
-			}
-			else {
-				throw new Exception('Aucun identifiant de section envoyé');
-			}
+			require 'view/ViewBackEnd/confirmUpdateContentView.php';
 		}
 
 		//Formulaire de confirmation avant la suppression d'un contenu

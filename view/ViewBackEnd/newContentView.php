@@ -22,10 +22,10 @@
 					<?php include("public/menu.php");?>
 					<section class="sectionRubriques">
 						<div class="contenuRubriques">
-							<h2 class="titreSection"> Nouveau contenu </h2>
+							<h2 class="titreSection">Nouveau contenu</h2>
 							<div class="gpBtUpdate">
-								<a class="editButton editPage" href="index.php?action=contentAllAdmin">Annuler</a>
-								<a class="editButton editPage" href="index.php?action=accueil">Retour à la page d'accueil</a>
+								<a class="editButton editPage" href="admin-gestion-des-contenus">Annuler</a>
+								<a class="editButton editPage" href="accueil">Retour à la page d'accueil</a>
 							</div>
 
 							<div class="separationSections">
@@ -35,7 +35,7 @@
 										<input class="inputAdmin" type="text" id="newTitle" name="newTitle" required/>
 									</div>
 									<div class="gpLabelAdmin">
-										<label class="labelAdmin" for="idPage">Nom de la page</label>
+										<label class="labelAdmin" for="idPage">Contenu affiché sur la page:</label>
 										<select  class="inputAdmin" type="text" id="idPage" name="idPage" />
 												<?php
 													while($menu = $listPages->fetch())
@@ -53,9 +53,9 @@
 									</div>
 									<div class="gpLabelAdmin">
 										<label class="labelAdmin" for="indexContent">Ordre du contenu dans la page</label>
-										<input class="inputAdmin" type="number" id="indexContent" name="indexContent" required/>
+										<input class="inputAdmin" type="number" id="indexContent" min="1" name="indexContent" required/>
 									</div>
-									<div class="gpLabelAdmin">
+									<div class="gpLabelAdmin" title="Photo au format jpg, dimensions attendues 200x200">
 										<label class="labelAdmin" for="picture">Photo</label>
 										<input class="inputAdmin" type="file" id="picture" name="picture"/>
 									</div>
@@ -77,7 +77,7 @@
 					<section class="contenuDelete mainConnect">
 						<h2 class="titreSection">Vous n'avez pas les droits sur cette page</h2>
 						<div class="btSolo">
-							<a class="button btSolo" href="index.php?action=accueil">Page d'accueil</a>
+							<a class="button btSolo" href="accueil">Page d'accueil</a>
 						</div>
 					</section>
 			<?php

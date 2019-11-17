@@ -24,8 +24,8 @@
 						<div class="contenuRubriques">
 							<h2 class="titreSection"> Nouvelle page </h2>
 							<div class="gpBtUpdate">
-								<a class="editButton" href="index.php?action=pageAdmin">Annuler</a>
-								<a class="editButton" href="index.php?action=accueil">Retour à la page d'accueil</a>
+								<a class="editButton" href="admin-gestion-des-pages">Annuler</a>
+								<a class="editButton" href="accueil">Retour à la page d'accueil</a>
 							</div>
 
 							<div class="separationSections">
@@ -34,17 +34,17 @@
 										<label class="labelAdmin" for="newTitle">Titre de la page:</label>
 										<input class="inputAdmin" type="text" id="newTitle" name="newTitle" required/>
 									</div>
-									<div class="gpLabelAdmin">
+									<div class="gpLabelAdmin" title="Nom en minuscules et sans espaces ni caractères spéciaux">
 										<label class="labelAdmin" for="name">Nom de la page:</label>
-										<input class="inputAdmin" type="text" id="name" name="name" required/>
+										<input class="inputAdmin" type="text" id="name" pattern="[a-z]*" name="name" required/>
 									</div>
-									<div class="gpLabelAdmin">
+									<div class="gpLabelAdmin" title="Photo au format jpg, dimensions attendues 400x270">
 										<label class="labelAdmin" for="picture">Photo</label>
 										<input class="inputAdmin" type="file" id="picture" name="picture"required/>
 									</div>
 									<div class="gpLabelAdmin">
 										<label class="labelAdmin" for="indexPage">Ordre de la page:</label>
-										<input class="inputAdmin" type="number" id="indexPage" name="indexPage" required/>
+										<input class="inputAdmin" type="number" id="indexPage" min="1" name="indexPage" required/>
 									</div>
 									<div class="gpBtUpdate">
 										<input type="submit" class="editButton" value="Enregistrer" />
@@ -60,7 +60,7 @@
 					<section class="contenuDelete mainConnect">
 						<h2 class="titreSection">Vous n'avez pas les droits sur cette page</h2>
 						<div class="btSolo">
-							<a class="button btSolo" href="index.php?action=accueil">Page d'accueil</a>
+							<a class="button btSolo" href="accueil">Page d'accueil</a>
 						</div>
 					</section>
 			<?php

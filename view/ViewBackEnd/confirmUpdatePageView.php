@@ -23,8 +23,8 @@
 					<section class="contenuConnect">
 						<h2 class="titreSection">La page a bien été mise à jour </h2>
 						<div class="gpButton">
-							<a class="button" href="index.php?action=pageAdmin">Retour à la page précédente</a>
-							<a class="button" href="index.php?action=accueil">Retour à la page d'accueil</a>
+							<a class="button" href="admin-gestion-des-pages">Gestion des pages</a>
+							<a class="button" href="accueil">Page d'accueil</a>
 						</div>
 					</section>
 
@@ -35,7 +35,7 @@
 					<section class="contenuDelete mainConnect">
 						<h2 class="titreSection">Vous n'avez pas les droits sur cette page</h2>
 						<div class="btSolo">
-							<a class="button btSolo" href="index.php?action=accueil">Page d'accueil</a>
+							<a class="button btSolo" href="accueil">Page d'accueil</a>
 						</div>
 					</section>
 			<?php

@@ -5,28 +5,41 @@ RewriteRule ^accueil$ index.php [L]
 #redirection des pages de connexion
 RewriteRule ^connexion$ index.php?action=connect [L]
 RewriteRule ^deconnexion$ index.php?action=deconnect [L]
+RewriteRule ^mot-de-passe-oublie$ index.php?action=forgetPassword [L]
 RewriteRule ^nouveau-mot-de-passe$ index.php?action=newPassword [L]
 RewriteRule ^mentions-legales$ index.php?action=mentionsLegales [L]
 
 #redirection des pages d'accueil
-RewriteRule ^acceuil$ index.php?action=accueil [L]
+RewriteRule ^accueil$ index.php?action=accueil [L]
 RewriteRule ^message-accueil$ index.php?action=msgAccueil [L]
 
 #redirection des pages
-RewriteRule ^page-([a-z]*)$ index.php?action=page&name=$1 [L]
-RewriteRule ^nouvelle-page$ index.php?action=newPage[L]
-RewriteRule ^gestion-des-pages$ index.php?action=pageAdmin [L]
-RewriteRule ^page-actualisee$ index.php?action=pageAdminUpdate [L]
-RewriteRule ^suppression-page-([0-9]+)$ index.php?action=confirmDeletePage&idPage=$1 [L]
-RewriteRule ^confirmation-suppression-page$ index.php?action=deletePage [L]
+RewriteRule ^([a-z]*)$ index.php?action=page&name=$1 [L]
+RewriteRule ^admin-nouvelle-page$ index.php?action=newPage [L]
+RewriteRule ^admin-gestion-des-pages$ index.php?action=pageAdmin [L]
+RewriteRule ^admin-confirmation-actualisation-des-pages$ index.php?action=confirmUpdatePage [L]
+RewriteRule ^admin-suppression-page-n-([0-9]+)$ index.php?action=confirmDeletePage&idPage=$1 [L]
+RewriteRule ^admin-confirmation-suppression-page$ index.php?action=confPageDelete [L]
 
 #redirection des contenus
-RewriteRule ^mise-a-jour-contenu$ index.php?action=contentAdmin [L]
-RewriteRule ^nouveau-contenu$ index.php?action=newContent [L]
+RewriteRule ^admin-gestion-des-contenus$ index.php?action=contentAllAdmin [L]
+RewriteRule ^admin-nouveau-contenu$ index.php?action=newContent [L]
+RewriteRule ^admin-maj-contenu-n-([0-9]+)$ index.php?action=contentAdmin&id=$1 [L]
+RewriteRule ^admin-confirmation-actualisation-du-contenu$ index.php?action=confirmUpdateContent [L]
+RewriteRule ^admin-suppression-contenu-n-([0-9]+)$ index.php?action=confirmDeleteContent&id=$1 [L]
+RewriteRule ^admin-confirmation-suppression-du-contenu$ index.php?action=confContentDelete [L]
 
 #redirection de la page erreur 404
 RewriteRule ^page-introuvable$ index.php?action=erreur404 [L]
 ErrorDocument 404 http://acroweb.alwaysdata.net/sophrologie/page-introuvable
+
+#Sécurité
+<IfModule mod_headers.c>
+Header set Content-Security-Policy "script-src 'self'"
+Header always set X-XSS-Protection "1; mode=block"
+Header always set X-FRAME-OPTIONS "DENY"
+Header always set X-Content-Type-Options "nosniff"
+</IfModule>
 
 
 
